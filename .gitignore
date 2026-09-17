@@ -17,4 +17,7 @@ public/videos
 startup.sh
 AGENTS.md
 КАК-ВЫЛОЖИТЬ.txt
-.DS_Store
+.design-v1
+.design-v2
+.node_modules.lock
+
