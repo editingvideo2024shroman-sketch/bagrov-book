@@ -51,63 +51,63 @@ const CHAPTERS: {
   {
     roman: "I",
     title: "Синдром хронической усталости",
-    blurb: "Голова тяжёлая, нет сил на простые действия. Смеси на блендер и кастрюлю.",
+    blurb: "Как убрать ощущение «тяжёлой головы» и вернуть ясность мыслей, когда нет сил даже на простые бытовые дела. Пошаговые рецепты витаминных и тонизирующих смесей, которые готовятся за 2 минуты в блендере или обычной кастрюле без редких экзотических ингредиентов.",
     count: "24 рецепта",
     Icon: Zap,
   },
   {
     roman: "II",
     title: "Проверенные тёплые напитки",
-    blurb: "Чем родители поднимали нас на ноги. Ромашка, лук, мёд, малина.",
+    blurb: "Уютные, согревающие вкусы из детства, которыми родители мгновенно поднимали нас на ноги при первых признаках простуды. Правильные пропорции и секреты заваривания ромашки, лука, мёда и малины, чтобы они работали как мощный природный щит, а не просто вкусный чай.",
     count: "20 рецептов",
     Icon: Flame,
   },
   {
     roman: "III",
     title: "Дискомфорт после еды",
-    blurb: "Тяжесть и вздутие. Лёгкие смеси после обеда.",
+    blurb: "Быстрое избавление от мучительной тяжести, распирания и вздутия живота после обеда. Мягкие травяные сборы и лёгкие домашние смеси, которые мгновенно «включают» пищеварение, убирают спазмы и возвращают лёгкость в теле.",
     count: "22 рецепта",
     Icon: Apple,
   },
   {
     roman: "IV",
     title: "Забота о кишечнике",
-    blurb: "Кефир, чернослив, лён и каши при редком стуле.",
+    blurb: "Скорая помощь при нерегулярном и редком стуле без агрессивных аптечных слабительных. Мягкое и предсказуемое очищение организма с помощью правильных сочетаний кефира, чернослива, льна и особых каш, которые мягко запустят кишечник как часы.",
     count: "10 рецептов",
     Icon: Wheat,
   },
   {
     roman: "V",
     title: "Скорая помощь при изжоге",
-    blurb: "Обволакивающие каши и кисели без лимона и томата.",
+    blurb: "Как за считанные минуты погасить «пожар» в груди и защитить пищевод. Простые рецепты нежных обволакивающих каш и домашних киселей, составленные со строгим исключением скрытых триггеров изжоги (без лимона, томатов и кислот), которые мгновенно успокоят раздражённую слизистую.",
     count: "10 рецептов",
     Icon: Droplets,
   },
   {
     roman: "VI",
     title: "Поддержка сосудов",
-    blurb: "Свёкла, чеснок и зелень. Без лишней соли.",
+    blurb: "Доступная природная профилактика для защиты сердца и чистки сосудов. Сила привычных продуктов — свёклы, чеснока и свежей зелени — в рецептах со сниженным содержанием соли, которые помогают мягко поддержать давление и тонус.",
     count: "21 рецепт",
     Icon: HeartPulse,
   },
   {
     roman: "VII",
     title: "Домашнее спа для ног",
-    blurb: "Ванночки и компрессы, когда к ночи не согнуться.",
+    blurb: "Настоящее спасение после тяжёлого дня на ногах или сидячей работы, когда к вечеру невозможно разогнуться от усталости. Рецепты ванночек и компрессов, которые за 15 минут снимут гул, отёки и подарят ногам ощущение лёгкости.",
     count: "17 рецептов",
     Icon: Sprout,
   },
   {
     roman: "VIII",
     title: "Кожа, волосы, лицо",
-    blurb: "Маски и ополаскиватели из двух-трёх продуктов.",
+    blurb: "Секреты сияющей кожи, густых волос и свежего лица без трат на дорогую салонную косметику. Натуральные маски и ополаскиватели из 2–3 продуктов из холодильника.",
     count: "16 рецептов",
     Icon: Sparkles,
   },
   {
     roman: "IX",
     title: "Антистресс: когда сдают нервы",
-    blurb: "Не еда. Дыхание и тело за 3 минуты.",
+    blurb: "Уникальный раздел, где нет рецептов еды. Дыхательные упражнения и телесные практики, которые за 3 минуты заземлят в момент сильной паники, снимут фоновую тревогу и перезагрузят нервную систему.",
     count: "10 практик",
     Icon: Brain,
   },
@@ -284,10 +284,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_22rem] lg:items-center">
           <div>
             <p className="kicker text-clay">Электронная книга</p>
-            <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-              150 таёжных рецептов, которые работают
-            </h2>
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-6 space-y-3">
               {INCLUDED.map((item) => (
                 <li key={item} className="flex gap-3 font-sans text-sm text-ink-soft">
                   <Check className="mt-0.5 size-4 shrink-0 text-clay" />
@@ -298,7 +295,7 @@ function Home() {
           </div>
           <div className="rounded-2xl border border-line bg-cream p-6 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)]">
             <p className="font-sans text-[0.7rem] tracking-[0.18em] text-clay uppercase">
-              Акция
+              Акция для читателей блога
             </p>
             <SalePrice size="lg" className="mt-2" />
             <p className="mt-2 font-serif text-sm text-muted">
@@ -347,40 +344,34 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
-        <p className="kicker text-clay">Важно</p>
-        <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-          Отказ от ответственности
-        </h2>
-        <div className="mt-5 space-y-4 font-serif text-lg leading-relaxed text-ink-soft">
-          <p>
-            Данная книга носит исключительно ознакомительный и кулинарный
-            характер.
-          </p>
-          <p>
-            Рецепты смузи и коктейлей не являются лекарственными средствами,
-            медицинскими назначениями или заменой профессионального лечения.
-          </p>
-          <p>
-            Перед изменением рациона и при наличии хронических заболеваний
-            обязательно проконсультируйтесь с лечащим врачом.
-          </p>
-        </div>
+      <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10">
+        <p className="font-sans text-[0.7rem] font-semibold tracking-[0.16em] text-muted uppercase">
+          Важно
+        </p>
+        <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
+          Данная книга носит исключительно ознакомительный и кулинарный характер.
+          Рецепты смузи и коктейлей не являются лекарственными средствами,
+          медицинскими назначениями или заменой профессионального лечения. Перед
+          изменением рациона и при наличии хронических заболеваний обязательно
+          проконсультируйтесь с лечащим врачом.
+        </p>
       </section>
 
-      <section id="care" className="border-t border-line py-16 sm:py-24">
+      <section id="care" className="border-t border-line py-8 sm:py-10">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <p className="kicker text-clay">Служба заботы</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+          <p className="font-sans text-[0.7rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            Служба заботы
+          </p>
+          <p className="mt-2 font-display text-xl leading-snug">
             Не пришло письмо с книгой или остались вопросы по оплате?
-          </h2>
-          <p className="mt-5 font-serif text-lg leading-relaxed text-ink-soft">
+          </p>
+          <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
             Ссылка доставляется за 1–2 минуты. Если письма нет во входящих и в
             папке «Спам», или возникли любые сложности — напишите нам, мы на
             связи и сразу поможем.
           </p>
-          <div className="mt-8">
-            <Button size="lg" asChild>
+          <div className="mt-4">
+            <Button size="sm" asChild>
               <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noreferrer">
                 Написать в Telegram
               </a>
@@ -388,7 +379,7 @@ function Home() {
           </div>
           <a
             href="mailto:vikramodin@gmail.com"
-            className="mt-4 inline-block font-sans text-sm text-clay hover:text-ink"
+            className="mt-3 inline-block font-sans text-sm text-clay hover:text-ink"
           >
             vikramodin@gmail.com
           </a>
