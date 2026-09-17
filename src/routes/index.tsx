@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import {
   Apple,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Droplets,
-  Flame,
   HeartPulse,
+  Shield,
   Sparkles,
   Sprout,
   Wheat,
@@ -14,7 +17,6 @@ import {
 } from "lucide-react";
 import { BookCover } from "@/components/book-cover";
 import { BuyDialog } from "@/components/buy-dialog";
-import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { photo } from "@/lib/book";
 import { usePurchase } from "@/lib/purchase";
@@ -51,63 +53,63 @@ const CHAPTERS: {
   {
     roman: "I",
     title: "Синдром хронической усталости",
-    blurb: "Как убрать ощущение «тяжёлой головы» и вернуть ясность мыслей, когда нет сил даже на простые бытовые дела. Пошаговые рецепты витаминных и тонизирующих смесей, которые готовятся за 2 минуты в блендере или обычной кастрюле без редких экзотических ингредиентов.",
+    blurb: "Тяжесть в голове, дефицит энергии, упадок сил. Витаминные смеси за 2 минуты в блендере.",
     count: "24 рецепта",
     Icon: Zap,
   },
   {
     roman: "II",
     title: "Проверенные тёплые напитки",
-    blurb: "Уютные, согревающие вкусы из детства, которыми родители мгновенно поднимали нас на ноги при первых признаках простуды. Правильные пропорции и секреты заваривания ромашки, лука, мёда и малины, чтобы они работали как мощный природный щит, а не просто вкусный чай.",
+    blurb: "Первые симптомы простуды, озноб и слабость. Те самые согревающие рецепты, которыми родители в детстве мгновенно поднимали нас на ноги.",
     count: "20 рецептов",
-    Icon: Flame,
+    Icon: Shield,
   },
   {
     roman: "III",
     title: "Дискомфорт после еды",
-    blurb: "Быстрое избавление от мучительной тяжести, распирания и вздутия живота после обеда. Мягкие травяные сборы и лёгкие домашние смеси, которые мгновенно «включают» пищеварение, убирают спазмы и возвращают лёгкость в теле.",
+    blurb: "Вздутие, тяжесть и распирание живота. Лёгкие домашние смеси для быстрого перезапуска пищеварения.",
     count: "22 рецепта",
     Icon: Apple,
   },
   {
     roman: "IV",
     title: "Забота о кишечнике",
-    blurb: "Скорая помощь при нерегулярном и редком стуле без агрессивных аптечных слабительных. Мягкое и предсказуемое очищение организма с помощью правильных сочетаний кефира, чернослива, льна и особых каш, которые мягко запустят кишечник как часы.",
+    blurb: "Редкий и нерегулярный стул. Мягкое очищение без слабительных: правильные сочетания кефира, льна и чернослива.",
     count: "10 рецептов",
     Icon: Wheat,
   },
   {
     roman: "V",
     title: "Скорая помощь при изжоге",
-    blurb: "Как за считанные минуты погасить «пожар» в груди и защитить пищевод. Простые рецепты нежных обволакивающих каш и домашних киселей, составленные со строгим исключением скрытых триггеров изжоги (без лимона, томатов и кислот), которые мгновенно успокоят раздражённую слизистую.",
+    blurb: "«Пожар» в груди и раздражённый желудок. Обволакивающие кисели и каши строго без лимона и томатов.",
     count: "10 рецептов",
     Icon: Droplets,
   },
   {
     roman: "VI",
     title: "Поддержка сосудов",
-    blurb: "Доступная природная профилактика для защиты сердца и чистки сосудов. Сила привычных продуктов — свёклы, чеснока и свежей зелени — в рецептах со сниженным содержанием соли, которые помогают мягко поддержать давление и тонус.",
+    blurb: "Скачки давления и холестерин. Оздоровление капилляров силой свёклы, чеснока и зелени без лишней соли.",
     count: "21 рецепт",
     Icon: HeartPulse,
   },
   {
     roman: "VII",
     title: "Домашнее спа для ног",
-    blurb: "Настоящее спасение после тяжёлого дня на ногах или сидячей работы, когда к вечеру невозможно разогнуться от усталости. Рецепты ванночек и компрессов, которые за 15 минут снимут гул, отёки и подарят ногам ощущение лёгкости.",
+    blurb: "Вечерний гул, отёки и усталость, когда к ночи не согнуться. 15-минутные ванночки и компрессы.",
     count: "17 рецептов",
     Icon: Sprout,
   },
   {
     roman: "VIII",
     title: "Кожа, волосы, лицо",
-    blurb: "Секреты сияющей кожи, густых волос и свежего лица без трат на дорогую салонную косметику. Натуральные маски и ополаскиватели из 2–3 продуктов из холодильника.",
+    blurb: "Тусклый тон, выпадение волос и шелушения. Натуральные маски и ополаскиватели из 2–3 продуктов из холодильника.",
     count: "16 рецептов",
     Icon: Sparkles,
   },
   {
     roman: "IX",
     title: "Антистресс: когда сдают нервы",
-    blurb: "Уникальный раздел, где нет рецептов еды. Дыхательные упражнения и телесные практики, которые за 3 минуты заземлят в момент сильной паники, снимут фоновую тревогу и перезагрузят нервную систему.",
+    blurb: "Паника, фоновая тревога и выгорание. Дыхание и телесные техники за 3 минуты — без еды и таблеток.",
     count: "10 практик",
     Icon: Brain,
   },
@@ -144,9 +146,7 @@ function Home() {
 
   return (
     <div className="min-h-svh bg-paper">
-      <SiteHeader />
-
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-8 pb-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:pt-12 lg:pb-16">
         <div>
           <p className="inline-flex rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
             О чём книга
@@ -200,35 +200,7 @@ function Home() {
           <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
             150 рецептов в 9 главах
           </h2>
-          <p className="mt-6 font-sans text-sm text-clay lg:hidden">
-            Листайте в сторону →
-          </p>
-          <div className="snap-row mt-4 flex touch-pan-x flex-nowrap gap-4 overflow-x-auto overscroll-x-contain pb-3 lg:mt-10 lg:grid lg:grid-cols-2 lg:gap-5 lg:overflow-visible lg:pb-0">
-            {CHAPTERS.map((sec) => (
-              <article
-                key={sec.roman}
-                className="w-[82%] shrink-0 snap-center rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] transition-transform duration-200 hover:-translate-y-1 active:-translate-y-1 lg:w-auto lg:snap-align-none"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
-                    <sec.Icon className="size-5" strokeWidth={1.75} />
-                  </span>
-                  <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
-                    {sec.count}
-                  </span>
-                </div>
-                <h3 className="mt-4 font-display text-xl leading-snug">
-                  {sec.title}
-                </h3>
-                <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
-                  <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-                    Что внутри
-                  </span>
-                  {sec.blurb}
-                </p>
-              </article>
-            ))}
-          </div>
+          <ChapterCarousel />
         </div>
       </section>
 
@@ -374,6 +346,73 @@ function Home() {
           © {new Date().getFullYear()} Тимофей Багров
         </p>
       </footer>
+    </div>
+  );
+}
+
+function ChapterCarousel() {
+  const n = CHAPTERS.length;
+  const [i, setI] = useState(0);
+  const startX = useRef(0);
+  const sec = CHAPTERS[i];
+
+  function go(d: number) {
+    setI((x) => (x + d + n) % n);
+  }
+
+  return (
+    <div className="mt-8 max-w-xl">
+      <div className="flex items-center justify-between gap-3">
+        <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">
+          {i + 1} / {n}
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Предыдущая глава"
+            onClick={() => go(-1)}
+            className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Следующая глава"
+            onClick={() => go(1)}
+            className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+          >
+            <ChevronRight className="size-5" />
+          </button>
+        </div>
+      </div>
+      <article
+        className="mt-5 rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6"
+        onTouchStart={(e) => {
+          startX.current = e.touches[0]?.clientX ?? 0;
+        }}
+        onTouchEnd={(e) => {
+          const x = e.changedTouches[0]?.clientX ?? 0;
+          const dx = x - startX.current;
+          if (dx < -40) go(1);
+          if (dx > 40) go(-1);
+        }}
+      >
+        <div className="flex items-start justify-between gap-3">
+          <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
+            <sec.Icon className="size-5" strokeWidth={1.75} />
+          </span>
+          <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
+            {sec.count}
+          </span>
+        </div>
+        <h3 className="mt-4 font-display text-xl leading-snug">{sec.title}</h3>
+        <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
+          <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+            Что внутри
+          </span>
+          {sec.blurb}
+        </p>
+      </article>
     </div>
   );
 }
