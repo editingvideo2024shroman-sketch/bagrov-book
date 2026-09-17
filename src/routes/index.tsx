@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Droplets,
   HeartPulse,
+  Mail,
   Shield,
   Sparkles,
   Sprout,
@@ -312,41 +313,101 @@ function Home() {
         </p>
       </section>
 
-      <section id="care" className="border-t border-line py-8 sm:py-10">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <p className="font-sans text-[0.7rem] font-semibold tracking-[0.16em] text-clay uppercase">
-            Служба заботы
-          </p>
-          <p className="mt-2 font-display text-xl leading-snug">
-            Не пришло письмо с книгой или остались вопросы по оплате?
-          </p>
-          <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
-            Ссылка доставляется за 1–2 минуты. Если письма нет во входящих и в
-            папке «Спам», или возникли любые сложности — напишите нам, мы на
-            связи и сразу поможем.
-          </p>
-          <div className="mt-4">
-            <Button size="sm" asChild>
-              <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noreferrer">
-                Написать в Telegram
-              </a>
-            </Button>
+      <section id="care" className="px-4 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-2xl border border-line bg-cream px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6">
+          <div className="max-w-2xl">
+            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+              Служба заботы
+            </p>
+            <p className="mt-1 font-display text-lg leading-snug sm:text-xl">
+              Не пришло письмо или остались вопросы по оплате?
+            </p>
+            <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
+              Ссылка доставляется за 1–2 минуты. Если письма нет во входящих и в
+              папке «Спам», или возникли любые сложности — напишите нам, мы на
+              связи и сразу поможем.
+            </p>
           </div>
           <a
-            href="mailto:vikramodin@gmail.com"
-            className="mt-3 inline-block font-sans text-sm text-clay hover:text-ink"
+            href="https://t.me/MusicNPC_AI"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-forest px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-forest-2 sm:mt-0"
           >
-            vikramodin@gmail.com
+            Написать в поддержку
           </a>
+        </div>
+
+        <div className="mx-auto mt-4 grid max-w-6xl gap-8 rounded-2xl bg-forest px-5 py-7 text-cream-fg sm:grid-cols-[1fr_auto] sm:items-start sm:px-8 sm:py-8">
+          <div>
+            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-cream-fg/55 uppercase">
+              Будьте здоровы
+            </p>
+            <p className="mt-1 font-display text-2xl">Тимофей Багров</p>
+            <p className="mt-3 font-sans text-sm text-cream-fg/75">
+              Шамин Роман Александрович
+            </p>
+            <p className="font-sans text-sm text-cream-fg/75">ИНН 222222</p>
+            <div className="mt-4 flex flex-col gap-1 font-sans text-sm">
+              <Link to="/privacy" className="text-cream-fg/80 underline-offset-2 hover:underline">
+                Политика конфиденциальности
+              </Link>
+              <Link to="/offer" className="text-cream-fg/80 underline-offset-2 hover:underline">
+                Публичная оферта
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <div className="flex gap-2">
+              <a
+                href="mailto:vikramodin@gmail.com"
+                aria-label="Почта"
+                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
+              >
+                <Mail className="size-4" />
+              </a>
+              <a
+                href="https://t.me/MusicNPC_AI"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Telegram"
+                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
+              >
+                <TelegramIcon />
+              </a>
+            </div>
+            <a
+              href="mailto:vikramodin@gmail.com"
+              className="font-sans text-sm text-cream-fg/80"
+            >
+              vikramodin@gmail.com
+            </a>
+            <a
+              href="https://t.me/MusicNPC_AI"
+              target="_blank"
+              rel="noreferrer"
+              className="font-sans text-sm text-cream-fg/80"
+            >
+              Telegram · @MusicNPC_AI
+            </a>
+          </div>
         </div>
       </section>
 
-      <footer className="border-t border-line px-4 py-8 text-center">
+      <footer className="px-4 pb-8 text-center">
         <p className="font-sans text-xs text-muted">
-          © {new Date().getFullYear()} Тимофей Багров
+          © {new Date().getFullYear()} Все права защищены.
         </p>
       </footer>
     </div>
+  );
+}
+
+function TelegramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+      <path d="M21.5 3.3 2.8 10.5c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8 1 .8.5 0 .7-.2 1-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9l3.7-17.4c.4-1.5-.5-2.2-1.6-1.6Z" />
+    </svg>
   );
 }
 
