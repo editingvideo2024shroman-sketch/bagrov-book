@@ -12,9 +12,6 @@ export function SiteHeader() {
           <a href="#toc" className="hover:text-ink">
             Оглавление
           </a>
-          <a href="#sample" className="hover:text-ink">
-            Внутри
-          </a>
           <a href="#author" className="hover:text-ink">
             Автор
           </a>

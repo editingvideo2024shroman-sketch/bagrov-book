@@ -47,7 +47,7 @@ export type Book = {
 
 export const book = raw as Book;
 
-export const SAMPLE_IDS = [3, 40, 131] as const;
+export const SAMPLE_IDS: readonly number[] = [];
 
 export function photo(key: string) {
   return `/photos/${key}.jpg?v=14`;

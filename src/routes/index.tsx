@@ -1,11 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import {
+  Apple,
+  Check,
+  Droplets,
+  Flame,
+  HeartPulse,
+  Sparkles,
+  Sprout,
+  Wheat,
+  Zap,
+  Brain,
+  type LucideIcon,
+} from "lucide-react";
 import { BookCover } from "@/components/book-cover";
 import { BuyDialog } from "@/components/buy-dialog";
-import { RecipeSpread } from "@/components/recipe-block";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { SAMPLE_IDS, book, photo, recipeById } from "@/lib/book";
+import { photo } from "@/lib/book";
 import { usePurchase } from "@/lib/purchase";
 import { SalePrice } from "@/components/sale-price";
 
@@ -13,84 +24,92 @@ export const Route = createFileRoute("/")({ component: Home });
 
 const FOR_WHOM = [
   {
-    title: "Вы проснулись уже уставшим",
-    body: "Когда нет сил на самые простые действия, голова «чугунная», а внутри абсолютное опустошение. Вам нужно готовое и быстрое решение прямо на сегодня.",
+    title: "Нет сил, тревога, бессонница",
+    body: "Голова тяжёлая, не уснуть, к обеду уже пусто. Нужно простое на сегодня — не курс и не «детокс».",
   },
   {
-    title: "Вы чувствуете, что заболеваете",
-    body: "Горло першит, тело ломит, а на календаре вечер и до ближайшей аптеки не добраться.",
+    title: "Простыли, а аптека далеко",
+    body: "Горло, насморк, ломота. Вечер, вахта, деревня. Под рукой мёд, лук и то, что в холодильнике.",
   },
   {
-    title: "Ваш желудок бунтует после еды",
-    body: "Вы регулярно сталкиваетесь с тяжестью, изжогой, вздутием или нерегулярным стулом и хотите навести порядок в пищеварении.",
+    title: "Тяжесть после еды, изжога, живот",
+    body: "Распирает, редкий стул, печёт. Хочется навести порядок кашей и кефиром, без лишней химии.",
   },
   {
-    title: "К вечеру гудят ноги и ноют суставы",
-    body: "Когда после тяжёлого дня спина и колени буквально отказываются сгибаться, а стопы требуют немедленного расслабления.",
-  },
-  {
-    title: "Стресс стал вашим постоянным спутником",
-    body: "Вы не можете уснуть от роя мыслей, срываетесь по пустякам и чувствуете, что нервы на пределе.",
-  },
-  {
-    title: "Вы хотите поддержать организм без химии",
-    body: "Ищете проверенные способы укрепить сердце и сосуды, вернуть здоровый блеск волосам и свежесть лицу с помощью доступных продуктов.",
-  },
-  {
-    title: "Вы часто оказываетесь отрезаны от цивилизации",
-    body: "Живёте в деревне, уезжаете в командировки, на вахту или дачу, где под рукой нет круглосуточной аптеки, но есть базовые продукты.",
-  },
-  {
-    title: "Хотите помочь близким тем, что есть дома",
-    body: "Родители, партнёр, дети. Не бежать в аптеку за каждым першением — собрать напиток из мёда, лука и того, что лежит в холодильнике.",
+    title: "Нужен домашний справочник",
+    body: "Суставы, давление, кожа, волосы. Один разворот — граммовки, шаги и кому не стоит.",
   },
 ];
 
-const CHAPTERS = [
+const CHAPTERS: {
+  roman: string;
+  title: string;
+  blurb: string;
+  count: string;
+  Icon: LucideIcon;
+}[] = [
   {
     roman: "I",
     title: "Синдром хронической усталости",
-    blurb: "Голова тяжёлая, совсем не думает. 24 рецепта для сил, настроения и энергии.",
+    blurb: "Голова тяжёлая, нет сил на простые действия. Смеси на блендер и кастрюлю.",
+    count: "24 рецепта",
+    Icon: Zap,
   },
   {
     roman: "II",
-    title: "Проверенные временем тёплые напитки",
-    blurb: "20 рецептов, которыми родители поднимали нас на ноги.",
+    title: "Проверенные тёплые напитки",
+    blurb: "Чем родители поднимали нас на ноги. Ромашка, лук, мёд, малина.",
+    count: "20 рецептов",
+    Icon: Flame,
   },
   {
     roman: "III",
     title: "Дискомфорт после еды",
-    blurb: "22 рецепта от тяжести и вздутия в животе.",
+    blurb: "Тяжесть и вздутие. Лёгкие смеси после обеда.",
+    count: "22 рецепта",
+    Icon: Apple,
   },
   {
     roman: "IV",
     title: "Забота о кишечнике",
-    blurb: "10 мягких рецептов с кефиром, черносливом, льном и кашами при редком стуле.",
+    blurb: "Кефир, чернослив, лён и каши при редком стуле.",
+    count: "10 рецептов",
+    Icon: Wheat,
   },
   {
     roman: "V",
     title: "Скорая помощь при изжоге",
-    blurb: "10 обволакивающих каш и киселей без лимона и томата.",
+    blurb: "Обволакивающие каши и кисели без лимона и томата.",
+    count: "10 рецептов",
+    Icon: Droplets,
   },
   {
     roman: "VI",
-    title: "Поддержка и укрепление сосудов",
-    blurb: "21 рецепт из свёклы, чеснока и зелени без лишней соли.",
+    title: "Поддержка сосудов",
+    blurb: "Свёкла, чеснок и зелень. Без лишней соли.",
+    count: "21 рецепт",
+    Icon: HeartPulse,
   },
   {
     roman: "VII",
-    title: "Домашнее спа: ванночки и компрессы",
-    blurb: "17 расслабляющих процедур для уставших стоп и коленей.",
+    title: "Домашнее спа для ног",
+    blurb: "Ванночки и компрессы, когда к ночи не согнуться.",
+    count: "17 рецептов",
+    Icon: Sprout,
   },
   {
     roman: "VIII",
-    title: "Естественная красота: кожа, волосы, глаза",
-    blurb: "16 экспресс-средств против тусклого лица, секущихся волос и усталости глаз.",
+    title: "Кожа, волосы, лицо",
+    blurb: "Маски и ополаскиватели из двух-трёх продуктов.",
+    count: "16 рецептов",
+    Icon: Sparkles,
   },
   {
     roman: "IX",
     title: "Антистресс: когда сдают нервы",
-    blurb: "Не еда. 10 дыхательных и телесных практик за 3 минуты.",
+    blurb: "Не еда. Дыхание и тело за 3 минуты.",
+    count: "10 практик",
+    Icon: Brain,
   },
 ];
 
@@ -122,13 +141,12 @@ const FAQ = [
 
 function Home() {
   const owned = usePurchase((s) => s.owned);
-  const sample = SAMPLE_IDS.map((id) => recipeById(id)!);
 
   return (
     <div className="min-h-svh bg-paper">
       <SiteHeader />
 
-      <section className="relative isolate min-h-[88svh] overflow-hidden bg-forest text-cream">
+      <section className="relative isolate min-h-[88svh] overflow-hidden bg-forest text-cream-fg">
         <img
           src={photo("hero")}
           alt="Тимофей Багров играет с Майей"
@@ -136,11 +154,11 @@ function Home() {
         />
         <div className="absolute inset-0 bg-linear-to-t from-ink/90 via-ink/40 to-transparent" />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-4 pb-10 pt-28 sm:px-6 sm:pb-14 lg:pb-16">
-          <p className="kicker text-cream/70">Тимофей Багров</p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2rem] leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+          <p className="kicker text-cream-fg/70">Тимофей Багров</p>
+          <h1 className="mt-3 max-w-3xl font-display text-[2rem] leading-[1.05] tracking-tight text-cream-fg sm:text-5xl lg:text-6xl">
             150 таёжных рецептов, которые работают
           </h1>
-          <p className="mt-4 max-w-xl font-serif text-base leading-relaxed text-cream/90 sm:mt-6 sm:text-xl">
+          <p className="mt-4 max-w-xl font-serif text-base leading-relaxed text-cream-fg/90 sm:mt-6 sm:text-xl">
             Я собрал 150 рецептов из того, что всегда есть дома или можно легко
             найти в ближайшем магазине или у соседа.
           </p>
@@ -176,21 +194,23 @@ function Home() {
         </div>
       </section>
 
-      <section id="for-whom" className="bg-forest py-16 text-cream sm:py-24">
+      <section id="for-whom" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Эта книга для вас, если:
+          <p className="kicker text-clay">Для кого эта книга</p>
+          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+            Узнаете себя в этих ситуациях?
           </h2>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl bg-cream/10 sm:grid-cols-2">
-            {FOR_WHOM.map((s) => (
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {FOR_WHOM.map((s, i) => (
               <article
                 key={s.title}
-                className="bg-forest-2 p-5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1.5 sm:p-6"
+                className="rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1.5 active:-translate-y-1 sm:p-6"
               >
-                <h3 className="font-display text-xl leading-snug">
-                  {s.title}
-                </h3>
-                <p className="mt-2 font-serif text-sm leading-relaxed text-cream/75">
+                <p className="mb-3 inline-flex size-9 items-center justify-center rounded-full bg-paper-2 font-sans text-sm font-semibold text-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-display text-xl leading-snug">{s.title}</h3>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
                   {s.body}
                 </p>
               </article>
@@ -199,73 +219,43 @@ function Home() {
         </div>
       </section>
 
-      <section id="toc" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <p className="kicker text-clay">Содержание</p>
-        <h2 className="mt-4 font-display text-5xl leading-[1.05] tracking-tight sm:text-7xl">
-          Оглавление
-        </h2>
-        <ol className="mt-12">
-          {CHAPTERS.map((sec) => (
-            <li
-              key={sec.title}
-              className="grid gap-3 border-t border-line py-8 last:border-b sm:grid-cols-[7rem_1fr] sm:items-center sm:gap-8"
-            >
-              <span className="font-display text-5xl leading-none text-clay sm:text-6xl">
-                {sec.roman}
-              </span>
-              <div>
-                <p className="font-display text-2xl leading-snug tracking-tight sm:text-3xl">
+      <section id="toc" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="kicker text-clay">Структура книги</p>
+          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+            150 рецептов в 9 главах
+          </h2>
+          <p className="mt-3 max-w-xl font-serif text-lg text-ink-soft">
+            На телефоне листайте карточки вбок. На компьютере — сетка.
+          </p>
+          <p className="mt-6 font-sans text-sm text-clay lg:hidden">
+            Листайте в сторону →
+          </p>
+          <div className="snap-row mt-4 flex gap-4 overflow-x-auto pb-3 lg:mt-10 lg:grid lg:grid-cols-2 lg:gap-5 lg:overflow-visible lg:pb-0">
+            {CHAPTERS.map((sec) => (
+              <article
+                key={sec.roman}
+                className="w-[82%] shrink-0 snap-center rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] transition-transform duration-200 hover:-translate-y-1 active:-translate-y-1 lg:w-auto lg:snap-align-none"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
+                    <sec.Icon className="size-5" strokeWidth={1.75} />
+                  </span>
+                  <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
+                    {sec.count}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-xl leading-snug">
                   {sec.title}
-                </p>
-                <p className="mt-2 max-w-2xl font-serif text-lg text-muted">
+                </h3>
+                <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
+                  <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                    Что внутри
+                  </span>
                   {sec.blurb}
                 </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section id="sample" className="bg-paper-2/50 py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="kicker text-clay">Внутри книги</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Как будут выглядеть рецепты
-          </h2>
-          <div className="mt-4 max-w-2xl space-y-3 font-serif text-lg leading-relaxed text-ink-soft">
-            <p>К каждому рецепту идёт фото с ингредиентами и в готовом виде.</p>
-            <p>Описания — для кого, почему советую и как приготовить.</p>
-            <p>
-              Для ознакомления с книгой мы открыли по одному рецепту из трёх
-              глав.
-            </p>
-          </div>
-          <div className="mt-12 flex flex-col gap-16 sm:gap-20">
-            {sample.map((r, i) => (
-              <div
-                key={r.id}
-                className={i === 0 ? "" : "border-t border-line pt-16 sm:pt-20"}
-              >
-                <RecipeSpread recipe={r} reverse={i % 2 === 1} />
-              </div>
+              </article>
             ))}
-          </div>
-          <div className="mt-14 text-center">
-            {owned ? (
-              <Button size="lg" asChild>
-                <Link to="/book" search={{ r: 1 }}>
-                  Читать все 150
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            ) : (
-              <BuyDialog>
-                <Button size="lg">
-                  Открыть остальные {book.recipes.length - sample.length} рецептов
-                  <ArrowRight className="size-4" />
-                </Button>
-              </BuyDialog>
-            )}
           </div>
         </div>
       </section>
@@ -301,40 +291,40 @@ function Home() {
         />
       </section>
 
-      <section id="buy" className="bg-forest py-16 text-cream sm:py-24">
+      <section id="buy" className="py-16 sm:py-24">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_22rem] lg:items-center">
           <div>
-            <p className="kicker text-cream/55">Электронная книга</p>
+            <p className="kicker text-clay">Электронная книга</p>
             <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
               150 таёжных рецептов, которые работают
             </h2>
             <ul className="mt-8 space-y-3">
               {INCLUDED.map((item) => (
-                <li key={item} className="flex gap-3 font-sans text-sm text-cream/85">
-                  <Check className="mt-0.5 size-4 shrink-0 text-cream" />
+                <li key={item} className="flex gap-3 font-sans text-sm text-ink-soft">
+                  <Check className="mt-0.5 size-4 shrink-0 text-clay" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-cream/15 bg-forest-2 p-6">
+          <div className="rounded-2xl border border-line bg-cream p-6 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)]">
             <p className="font-sans text-[0.7rem] tracking-[0.18em] text-clay uppercase">
               Акция
             </p>
-            <SalePrice size="lg" invert className="mt-2" />
-            <p className="mt-2 font-serif text-sm text-cream/65">
+            <SalePrice size="lg" className="mt-2" />
+            <p className="mt-2 font-serif text-sm text-muted">
               Книга откроется сразу. Можно читать и скачать.
             </p>
             <div className="mt-6">
               {owned ? (
-                <Button variant="cream" size="lg" className="w-full" asChild>
+                <Button size="lg" className="w-full" asChild>
                   <Link to="/book" search={{ r: 1 }}>
                     Открыть книгу
                   </Link>
                 </Button>
               ) : (
                 <BuyDialog>
-                  <Button variant="cream" size="lg" className="w-full">
+                  <Button size="lg" className="w-full">
                     Получить книгу
                   </Button>
                 </BuyDialog>
@@ -346,7 +336,7 @@ function Home() {
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="kicker text-clay">FAQ</p>
-        <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+        <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
           Частые вопросы
         </h2>
         <div className="mt-10 divide-y divide-line border-y border-line">

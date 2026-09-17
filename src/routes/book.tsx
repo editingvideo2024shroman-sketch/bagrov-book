@@ -205,7 +205,7 @@ function Gate({ title }: { title: string }) {
       </p>
       <h1 className="mt-2 font-display text-3xl">{title}</h1>
       <p className="mt-3 font-serif text-ink-soft">
-        Этот разворот открывается после покупки. Образцы — на главной.
+        Этот разворот открывается после покупки.
       </p>
       <div className="mt-6">
         <BuyDialog>

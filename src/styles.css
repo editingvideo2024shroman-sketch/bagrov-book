@@ -3,17 +3,17 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-paper: #f3eadc;
-  --color-paper-2: #e7d9c4;
-  --color-cream: #faf4ea;
-  --color-ink: #16110e;
-  --color-ink-soft: #3c322b;
-  --color-muted: #6f645a;
-  --color-forest: #1c2822;
-  --color-forest-2: #26352d;
+  --color-paper: #f7f4ee;
+  --color-paper-2: #efebe3;
+  --color-cream: #ffffff;
+  --color-ink: #1a1d1a;
+  --color-ink-soft: #4a524c;
+  --color-muted: #7a827b;
+  --color-forest: #24302a;
+  --color-forest-2: #2d3b33;
   --color-clay: #c45a32;
   --color-clay-hover: #a84724;
-  --color-line: #d8ccbb;
+  --color-line: #e4dfd6;
   --color-cream-fg: #faf4ea;
 
   --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
@@ -97,6 +97,29 @@
 .book-3d-live {
   will-change: transform;
   transition: transform 220ms var(--ease-out);
+}
+
+@media (hover: none) {
+  .book-3d-live {
+    animation: book-sway 4.5s ease-in-out infinite;
+  }
+}
+@keyframes book-sway {
+  0%,
+  100% {
+    transform: rotateY(-20deg) rotateX(6deg);
+  }
+  50% {
+    transform: rotateY(-11deg) rotateX(8deg);
+  }
+}
+
+.snap-row {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.snap-row::-webkit-scrollbar {
+  display: none;
 }
 
 .reveal {
