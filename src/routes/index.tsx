@@ -24,20 +24,20 @@ export const Route = createFileRoute("/")({ component: Home });
 
 const FOR_WHOM = [
   {
-    title: "Нет сил, тревога, бессонница",
-    body: "Голова тяжёлая, не уснуть, к обеду уже пусто. Нужно простое на сегодня — не курс и не «детокс».",
+    title: "Постоянная боль в суставах, спине или перепады давления",
+    body: "Таблетки приносят лишь временное облегчение или вредят желудку. Вам нужны проверенные натуральные рецепты для безопасного и регулярного восстановления организма.",
   },
   {
-    title: "Простыли, а аптека далеко",
-    body: "Горло, насморк, ломота. Вечер, вахта, деревня. Под рукой мёд, лук и то, что в холодильнике.",
+    title: "Тревожность, плохой сон и упадок сил",
+    body: "Хронический стресс не даёт полноценно отдыхать по ночам. Необходимы мягкие успокаивающие сборы и вечерние ритуалы, которые вернут глубокий сон без дневной сонливости и привыкания.",
   },
   {
-    title: "Тяжесть после еды, изжога, живот",
-    body: "Распирает, редкий стул, печёт. Хочется навести порядок кашей и кефиром, без лишней химии.",
+    title: "Поиск безопасных средств при простуде у детей",
+    body: "При первых признаках кашля или жара важно иметь чёткий план действий. Вам нужны надёжные домашние методы без химических сиропов, искусственных красителей и лишней нагрузки на детский организм.",
   },
   {
-    title: "Нужен домашний справочник",
-    body: "Суставы, давление, кожа, волосы. Один разворот — граммовки, шаги и кому не стоит.",
+    title: "Потребность в проверенном домашнем руководстве",
+    body: "Больше не придётся собирать сомнительные советы на форумах. Вы получите под рукой чёткий справочник с точными дозировками, пошаговыми рецептами и обязательным указанием противопоказаний.",
   },
 ];
 
@@ -163,17 +163,9 @@ function Home() {
             найти в ближайшем магазине или у соседа.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
-            {owned ? (
-              <Button size="xl" variant="cream" asChild>
-                <Link to="/book" search={{ r: 1 }}>
-                  Открыть книгу
-                </Link>
-              </Button>
-            ) : (
-              <Button size="xl" variant="cream" asChild>
-                <a href="#toc">Посмотреть содержание</a>
-              </Button>
-            )}
+            <Button size="xl" variant="cream" asChild>
+              <a href="#toc">Открыть содержание</a>
+            </Button>
           </div>
         </div>
       </section>
@@ -225,13 +217,10 @@ function Home() {
           <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
             150 рецептов в 9 главах
           </h2>
-          <p className="mt-3 max-w-xl font-serif text-lg text-ink-soft">
-            На телефоне листайте карточки вбок. На компьютере — сетка.
-          </p>
           <p className="mt-6 font-sans text-sm text-clay lg:hidden">
             Листайте в сторону →
           </p>
-          <div className="snap-row mt-4 flex gap-4 overflow-x-auto pb-3 lg:mt-10 lg:grid lg:grid-cols-2 lg:gap-5 lg:overflow-visible lg:pb-0">
+          <div className="snap-row mt-4 flex touch-pan-x flex-nowrap gap-4 overflow-x-auto overscroll-x-contain pb-3 lg:mt-10 lg:grid lg:grid-cols-2 lg:gap-5 lg:overflow-visible lg:pb-0">
             {CHAPTERS.map((sec) => (
               <article
                 key={sec.roman}
@@ -379,25 +368,35 @@ function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-line px-4 py-10 text-center">
-        <p className="font-serif text-base text-ink-soft">
-          Техподдержка по всем вопросам, связанным с заказом книги
-        </p>
-        <a
-          href="mailto:vikramodin@gmail.com"
-          className="mt-2 inline-block font-sans text-sm text-clay hover:text-ink"
-        >
-          vikramodin@gmail.com
-        </a>
-        <a
-          href="https://t.me/MusicNPC_AI"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-2 block font-sans text-sm text-clay hover:text-ink"
-        >
-          Telegram · @MusicNPC_AI
-        </a>
-        <p className="mt-4 font-sans text-xs text-muted">
+      <section id="care" className="border-t border-line py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <p className="kicker text-clay">Служба заботы</p>
+          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+            Не пришло письмо с книгой или остались вопросы по оплате?
+          </h2>
+          <p className="mt-5 font-serif text-lg leading-relaxed text-ink-soft">
+            Ссылка доставляется за 1–2 минуты. Если письма нет во входящих и в
+            папке «Спам», или возникли любые сложности — напишите нам, мы на
+            связи и сразу поможем.
+          </p>
+          <div className="mt-8">
+            <Button size="lg" asChild>
+              <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noreferrer">
+                Написать в Telegram
+              </a>
+            </Button>
+          </div>
+          <a
+            href="mailto:vikramodin@gmail.com"
+            className="mt-4 inline-block font-sans text-sm text-clay hover:text-ink"
+          >
+            vikramodin@gmail.com
+          </a>
+        </div>
+      </section>
+
+      <footer className="border-t border-line px-4 py-8 text-center">
+        <p className="font-sans text-xs text-muted">
           © {new Date().getFullYear()} Тимофей Багров
         </p>
       </footer>
