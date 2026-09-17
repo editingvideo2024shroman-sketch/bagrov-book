@@ -36,7 +36,7 @@ export function BookCover({ className }: { className?: string }) {
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-ink/90 via-ink/40 to-transparent px-6 pt-20 pb-5">
             <p className="font-display text-[1.2rem] leading-[1.1] tracking-tight text-cream">
-              150 таёжных рецептов, которые работают
+              150 проверенных рецептов
             </p>
             <p className="mt-2 font-sans text-[0.68rem] tracking-[0.18em] text-cream/70 uppercase">
               Тимофей Багров

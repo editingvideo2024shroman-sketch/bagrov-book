@@ -12,6 +12,7 @@ import {
   Brain,
   type LucideIcon,
 } from "lucide-react";
+import { BookCover } from "@/components/book-cover";
 import { BuyDialog } from "@/components/buy-dialog";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
@@ -148,15 +149,16 @@ function Home() {
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
         <div>
           <p className="inline-flex rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
-            Авторский сборник Тимофея Багрова
+            О чём книга
           </p>
-          <h1 className="mt-5 font-display text-[2rem] leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            150 таёжных рецептов, которые работают
+          <h1 className="mt-5 font-display text-[2rem] leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
+            Здоровье без аптек: сила привычных продуктов на вашей кухне
           </h1>
           <p className="mt-5 max-w-xl font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
-            Я собрал 150 рецептов из того, что всегда есть дома или можно легко
-            найти в ближайшем магазине или у соседа. Здоровье без аптек: сила
-            привычных продуктов, которые прямо сейчас лежат в холодильнике.
+            Я собрал 150 проверенных временем рецептов из того, что всегда есть
+            у вас дома, в ближайшем супермаркете или на грядке у соседа. Это
+            готовая система домашнего оздоровления без агрессивной химии, редкой
+            экзотики и сложных аптечных сиропов.
           </p>
           <div className="mt-8">
             <Button size="xl" asChild>
@@ -164,13 +166,7 @@ function Home() {
             </Button>
           </div>
         </div>
-        <figure className="overflow-hidden rounded-2xl border border-line bg-cream p-2 shadow-[0_18px_40px_-24px_rgb(26_20_16/0.45)]">
-          <img
-            src={photo("cover")}
-            alt="Тимофей Багров с книгой и Майей"
-            className="aspect-4/5 w-full rounded-xl object-cover object-[50%_18%]"
-          />
-        </figure>
+        <BookCover className="w-full max-w-[340px] lg:max-w-[400px]" />
       </section>
 
       <section id="for-whom" className="py-16 sm:py-24">
