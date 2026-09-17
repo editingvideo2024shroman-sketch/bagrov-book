@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Unbounded:wght@500;600;700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-paper: #f3eadc;
+  --color-paper-2: #e7d9c4;
+  --color-cream: #faf4ea;
+  --color-ink: #16110e;
+  --color-ink-soft: #3c322b;
+  --color-muted: #6f645a;
+  --color-forest: #1c2822;
+  --color-forest-2: #26352d;
+  --color-clay: #c45a32;
+  --color-clay-hover: #a84724;
+  --color-line: #d8ccbb;
+  --color-cream-fg: #faf4ea;
+
+  --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-lift: 0 18px 50px -24px rgb(26 20 16 / 0.45);
+  --shadow-book: 0 24px 60px -20px rgb(26 20 16 / 0.55);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+}
+
+.book-3d {
+  perspective: 1600px;
+  padding: 1.25rem 2.75rem 2.25rem 0.75rem;
+}
+
+.book-3d-inner {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  transform: rotateY(-20deg) rotateX(6deg);
+  transform-style: preserve-3d;
+}
+
+.book-3d-live {
+  will-change: transform;
+  transition: transform 220ms var(--ease-out);
+}
+
+.reveal {
+  opacity: 0;
+  filter: blur(8px);
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 700ms var(--ease-out),
+    filter 700ms var(--ease-out);
+}
+.reveal-up {
+  transform: translateY(32px);
+}
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+.hero-zoom {
+  animation: hero-zoom 22s var(--ease-out) infinite alternate;
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-in {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  animation: fade-up 800ms var(--ease-out) forwards;
+}
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.book-3d-cover {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 2px 6px 6px 2px;
+  background: var(--color-forest);
+  box-shadow:
+    22px 30px 44px -18px rgb(26 20 16 / 0.55),
+    inset 12px 0 18px -12px rgb(0 0 0 / 0.6);
+}
+
+.book-3d-pages {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 100%;
+  width: 18px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f6efe2 0 2px,
+    #cfc3b0 2px 3px
+  );
+  border-radius: 0 2px 2px 0;
+  box-shadow: 6px 10px 18px rgb(26 20 16 / 0.22);
+}
+
+.book-3d-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 13px;
+  border-radius: 2px 0 0 2px;
+  background: linear-gradient(90deg, #141b17, #2c3a32 60%, #1a2420);
+  box-shadow: inset -2px 0 3px rgb(0 0 0 / 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+}
