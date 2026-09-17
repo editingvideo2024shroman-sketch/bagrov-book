@@ -203,35 +203,39 @@ function Home() {
         </div>
       </section>
 
-      <section id="author" className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,24rem)] lg:items-start lg:py-24">
-        <div>
-          <p className="kicker text-clay">Автор</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Тимофей Багров
-          </h2>
-          <div className="mt-5 max-w-2xl space-y-4 font-serif text-lg leading-relaxed text-ink-soft">
-            <p>Экс-фельдшер скорой.</p>
-            <p>
-              Четыре года назад уехал с собакой Майей жить в тайгу — за сотни
-              километров от цивилизации и аптек.
+      <section id="author" className="px-4 py-4 sm:px-6">
+        <div className="mx-auto grid max-w-6xl items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:grid-cols-[1fr_16rem]">
+          <div>
+            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+              Автор
             </p>
-            <p>
-              Возрождаю и тестирую на себе методы выживания наших дедов. Делюсь
-              тем, что работает.
-            </p>
-            <p>
-              Бонусом в конце книги оставил для тебя 6 коротких записей, на
-              случай если тебе сейчас тяжело. Не болейте, друзья!
-            </p>
+            <h2 className="mt-2 font-display text-2xl leading-snug sm:text-3xl">
+              Тимофей Багров
+            </h2>
+            <div className="mt-3 space-y-2 font-serif text-sm leading-relaxed text-ink-soft sm:text-base">
+              <p>Экс-фельдшер скорой.</p>
+              <p>
+                Четыре года назад уехал с собакой Майей жить в тайгу — за сотни
+                километров от цивилизации и аптек.
+              </p>
+              <p>
+                Возрождаю и тестирую на себе методы выживания наших дедов. Делюсь
+                тем, что работает.
+              </p>
+              <p>
+                Бонусом в конце книги оставил для тебя 6 коротких записей, на
+                случай если тебе сейчас тяжело. Не болейте, друзья!
+              </p>
+            </div>
           </div>
+          <img
+            src={photo("author")}
+            alt="Тимофей Багров и Майя"
+            width={1008}
+            height={1792}
+            className="h-48 w-full rounded-xl object-cover object-[50%_18%] sm:h-56 lg:h-full lg:min-h-52"
+          />
         </div>
-        <img
-          src={photo("author")}
-          alt="Тимофей Багров и Майя"
-          width={1008}
-          height={1792}
-          className="h-auto w-full rounded-lg"
-        />
       </section>
 
       <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
@@ -414,7 +418,7 @@ function TelegramIcon() {
 
 function ChapterCard({ sec }: { sec: (typeof CHAPTERS)[number] }) {
   return (
-    <article className="rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6">
+    <article className="flex h-full flex-col rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
           <sec.Icon className="size-5" strokeWidth={1.75} />
@@ -424,7 +428,7 @@ function ChapterCard({ sec }: { sec: (typeof CHAPTERS)[number] }) {
         </span>
       </div>
       <h3 className="mt-4 font-display text-xl leading-snug">{sec.title}</h3>
-      <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
+      <p className="mt-3 flex-1 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
         <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
           Что внутри
         </span>
@@ -438,7 +442,6 @@ function ChapterCarousel() {
   const n = CHAPTERS.length;
   const [i, setI] = useState(0);
   const startX = useRef(0);
-  const sec = CHAPTERS[i];
 
   function go(d: number) {
     setI((x) => (x + d + n) % n);
@@ -476,7 +479,7 @@ function ChapterCarousel() {
           </div>
         </div>
         <div
-          className="mt-5"
+          className="mt-5 grid"
           onTouchStart={(e) => {
             startX.current = e.touches[0]?.clientX ?? 0;
           }}
@@ -487,7 +490,16 @@ function ChapterCarousel() {
             if (dx > 40) go(-1);
           }}
         >
-          <ChapterCard sec={sec} />
+          {CHAPTERS.map((c, idx) => (
+            <div
+              key={c.roman}
+              className="col-start-1 row-start-1"
+              style={{ visibility: idx === i ? "visible" : "hidden" }}
+              aria-hidden={idx !== i}
+            >
+              <ChapterCard sec={c} />
+            </div>
+          ))}
         </div>
       </div>
     </>
