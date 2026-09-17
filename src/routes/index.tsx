@@ -283,18 +283,21 @@ function Home() {
           <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
             Частые вопросы
           </p>
-          <div className="mt-4 divide-y divide-line">
+          <div className="mt-4 space-y-2">
             {FAQ.map((f) => (
-              <details key={f.q} className="group py-4">
+              <details
+                key={f.q}
+                className="group rounded-xl bg-paper px-4 py-3"
+              >
                 <summary className="cursor-pointer list-none font-display text-lg leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-4">
                     {f.q}
-                    <span className="font-sans text-2xl font-light text-clay group-open:rotate-45">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cream font-sans text-xl font-light text-clay group-open:rotate-45">
                       +
                     </span>
                   </span>
                 </summary>
-                <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
+                <p className="mt-3 rounded-xl bg-cream px-4 py-3 font-serif text-sm leading-relaxed text-ink-soft">
                   {f.a}
                 </p>
               </details>
@@ -337,7 +340,7 @@ function Home() {
             href="https://t.me/MusicNPC_AI"
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-forest px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-forest-2 sm:mt-0"
+            className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-clay-hover sm:mt-0"
           >
             Написать в поддержку
           </a>

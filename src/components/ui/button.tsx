@@ -8,7 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-clay text-cream hover:bg-clay-hover",
+        default: "rounded-full bg-clay text-cream hover:bg-clay-hover",
         forest: "bg-forest text-cream hover:bg-forest-2",
         outline:
           "border border-line bg-transparent text-ink hover:bg-paper-2",

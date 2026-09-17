@@ -11,8 +11,8 @@
   --color-muted: #7a827b;
   --color-forest: #24302a;
   --color-forest-2: #2d3b33;
-  --color-clay: #c45a32;
-  --color-clay-hover: #a84724;
+  --color-clay: #e25d24;
+  --color-clay-hover: #c44b18;
   --color-line: #e4dfd6;
   --color-cream-fg: #faf4ea;
 
@@ -68,6 +68,23 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-clay) var(--color-paper-2);
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background: var(--color-clay);
+    border-radius: 99px;
+    border: 2px solid var(--color-paper);
   }
 }
 
