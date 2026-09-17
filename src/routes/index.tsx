@@ -261,7 +261,9 @@ function Home() {
             </p>
             <SalePrice size="md" className="mt-2 sm:justify-end" />
             <p className="mt-2 font-serif text-sm text-muted">
-              Книга откроется сразу. Можно читать и скачать.
+              Оплата единоразово, без подписок.
+              <br />
+              Ссылка на скачивание придёт на вашу почту.
             </p>
             <div className="mt-4">
               {owned ? (
