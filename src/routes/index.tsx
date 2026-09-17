@@ -12,7 +12,6 @@ import {
   Brain,
   type LucideIcon,
 } from "lucide-react";
-import { BookCover } from "@/components/book-cover";
 import { BuyDialog } from "@/components/buy-dialog";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
@@ -146,44 +145,32 @@ function Home() {
     <div className="min-h-svh bg-paper">
       <SiteHeader />
 
-      <section className="relative isolate min-h-[88svh] overflow-hidden bg-forest text-cream-fg">
-        <img
-          src={photo("hero")}
-          alt="Тимофей Багров играет с Майей"
-          className="absolute inset-0 h-full w-full object-cover object-[46%_20%]"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-ink/90 via-ink/40 to-transparent" />
-        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-4 pb-10 pt-28 sm:px-6 sm:pb-14 lg:pb-16">
-          <p className="kicker text-cream-fg/70">Тимофей Багров</p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2rem] leading-[1.05] tracking-tight text-cream-fg sm:text-5xl lg:text-6xl">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+        <div>
+          <p className="inline-flex rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
+            Авторский сборник Тимофея Багрова
+          </p>
+          <h1 className="mt-5 font-display text-[2rem] leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
             150 таёжных рецептов, которые работают
           </h1>
-          <p className="mt-4 max-w-xl font-serif text-base leading-relaxed text-cream-fg/90 sm:mt-6 sm:text-xl">
+          <p className="mt-5 max-w-xl font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
             Я собрал 150 рецептов из того, что всегда есть дома или можно легко
-            найти в ближайшем магазине или у соседа.
+            найти в ближайшем магазине или у соседа. Здоровье без аптек: сила
+            привычных продуктов, которые прямо сейчас лежат в холодильнике.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
-            <Button size="xl" variant="cream" asChild>
+          <div className="mt-8">
+            <Button size="xl" asChild>
               <a href="#toc">Открыть содержание</a>
             </Button>
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:py-24">
-        <BookCover className="mx-auto w-full max-w-[320px] lg:max-w-[380px]" />
-        <div>
-          <p className="kicker text-clay">О чём книга</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Здоровье без аптек: сила привычных продуктов.
-          </h2>
-          <div className="mt-6 space-y-4 font-serif text-lg leading-relaxed text-ink-soft">
-            <p>
-              Рецепты натуральных смесей и напитков, которые годами доказывают
-              свою эффективность и прямо сейчас лежат в вашем холодильнике.
-            </p>
-          </div>
-        </div>
+        <figure className="overflow-hidden rounded-2xl border border-line bg-cream p-2 shadow-[0_18px_40px_-24px_rgb(26_20_16/0.45)]">
+          <img
+            src={photo("cover")}
+            alt="Тимофей Багров с книгой и Майей"
+            className="aspect-4/5 w-full rounded-xl object-cover object-[50%_18%]"
+          />
+        </figure>
       </section>
 
       <section id="for-whom" className="py-16 sm:py-24">
