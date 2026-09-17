@@ -234,11 +234,13 @@ function Home() {
         />
       </section>
 
-      <section id="buy" className="py-16 sm:py-24">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_22rem] lg:items-center">
-          <div>
-            <p className="kicker text-clay">Электронная книга</p>
-            <ul className="mt-6 space-y-3">
+      <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <div className="max-w-xl">
+            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+              Электронная книга
+            </p>
+            <ul className="mt-4 space-y-2.5">
               {INCLUDED.map((item) => (
                 <li key={item} className="flex gap-3 font-sans text-sm text-ink-soft">
                   <Check className="mt-0.5 size-4 shrink-0 text-clay" />
@@ -247,26 +249,24 @@ function Home() {
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-line bg-cream p-6 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)]">
-            <p className="font-sans text-[0.7rem] tracking-[0.18em] text-clay uppercase">
+          <div className="shrink-0 sm:text-right">
+            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Акция для читателей блога
             </p>
-            <SalePrice size="lg" className="mt-2" />
+            <SalePrice size="md" className="mt-2 sm:justify-end" />
             <p className="mt-2 font-serif text-sm text-muted">
               Книга откроется сразу. Можно читать и скачать.
             </p>
-            <div className="mt-6">
+            <div className="mt-4">
               {owned ? (
-                <Button size="lg" className="w-full" asChild>
+                <Button className="w-full sm:w-auto" asChild>
                   <Link to="/book" search={{ r: 1 }}>
                     Открыть книгу
                   </Link>
                 </Button>
               ) : (
                 <BuyDialog>
-                  <Button size="lg" className="w-full">
-                    Получить книгу
-                  </Button>
+                  <Button className="w-full sm:w-auto">Получить книгу</Button>
                 </BuyDialog>
               )}
             </div>
@@ -274,44 +274,47 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
-        <p className="kicker text-clay">FAQ</p>
-        <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-          Частые вопросы
-        </h2>
-        <div className="mt-10 divide-y divide-line border-y border-line">
-          {FAQ.map((f) => (
-            <details key={f.q} className="group py-5">
-              <summary className="cursor-pointer list-none font-display text-xl leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center justify-between gap-4">
-                  {f.q}
-                  <span className="font-sans text-2xl font-light text-clay group-open:rotate-45">
-                    +
+      <section className="px-4 pb-4 sm:px-6">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
+          <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            Частые вопросы
+          </p>
+          <div className="mt-4 divide-y divide-line">
+            {FAQ.map((f) => (
+              <details key={f.q} className="group py-4">
+                <summary className="cursor-pointer list-none font-display text-lg leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-center justify-between gap-4">
+                    {f.q}
+                    <span className="font-sans text-2xl font-light text-clay group-open:rotate-45">
+                      +
+                    </span>
                   </span>
-                </span>
-              </summary>
-              <p className="mt-3 font-serif text-base leading-relaxed text-ink-soft">
-                {f.a}
-              </p>
-            </details>
-          ))}
+                </summary>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
+                  {f.a}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10">
-        <p className="font-sans text-[0.7rem] font-semibold tracking-[0.16em] text-muted uppercase">
-          Важно
-        </p>
-        <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
-          Данная книга носит исключительно ознакомительный и кулинарный характер.
-          Рецепты смузи и коктейлей не являются лекарственными средствами,
-          медицинскими назначениями или заменой профессионального лечения. Перед
-          изменением рациона и при наличии хронических заболеваний обязательно
-          проконсультируйтесь с лечащим врачом.
-        </p>
+      <section className="px-4 py-4 sm:px-6">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-line bg-cream px-5 py-5 sm:px-7">
+          <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-muted uppercase">
+            Важно
+          </p>
+          <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
+            Данная книга носит исключительно ознакомительный и кулинарный характер.
+            Рецепты смузи и коктейлей не являются лекарственными средствами,
+            медицинскими назначениями или заменой профессионального лечения. Перед
+            изменением рациона и при наличии хронических заболеваний обязательно
+            проконсультируйтесь с лечащим врачом.
+          </p>
+        </div>
       </section>
 
-      <section id="care" className="px-4 py-10 sm:px-6 sm:py-14">
+      <section id="care" className="px-4 py-4 sm:px-6 sm:pb-14">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-2xl border border-line bg-cream px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6">
           <div className="max-w-2xl">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
@@ -409,6 +412,28 @@ function TelegramIcon() {
   );
 }
 
+function ChapterCard({ sec }: { sec: (typeof CHAPTERS)[number] }) {
+  return (
+    <article className="rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6">
+      <div className="flex items-start justify-between gap-3">
+        <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
+          <sec.Icon className="size-5" strokeWidth={1.75} />
+        </span>
+        <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
+          {sec.count}
+        </span>
+      </div>
+      <h3 className="mt-4 font-display text-xl leading-snug">{sec.title}</h3>
+      <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
+        <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+          Что внутри
+        </span>
+        {sec.blurb}
+      </p>
+    </article>
+  );
+}
+
 function ChapterCarousel() {
   const n = CHAPTERS.length;
   const [i, setI] = useState(0);
@@ -420,58 +445,51 @@ function ChapterCarousel() {
   }
 
   return (
-    <div className="mt-8 max-w-xl">
-      <div className="flex items-center justify-between gap-3">
-        <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">
-          {i + 1} / {n}
-        </p>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            aria-label="Предыдущая глава"
-            onClick={() => go(-1)}
-            className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Следующая глава"
-            onClick={() => go(1)}
-            className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
-          >
-            <ChevronRight className="size-5" />
-          </button>
+    <>
+      <div className="mt-10 hidden gap-5 lg:grid lg:grid-cols-2">
+        {CHAPTERS.map((c) => (
+          <ChapterCard key={c.roman} sec={c} />
+        ))}
+      </div>
+      <div className="mt-8 max-w-xl lg:hidden">
+        <div className="flex items-center justify-between gap-3">
+          <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">
+            {i + 1} / {n}
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Предыдущая глава"
+              onClick={() => go(-1)}
+              className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Следующая глава"
+              onClick={() => go(1)}
+              className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
+        </div>
+        <div
+          className="mt-5"
+          onTouchStart={(e) => {
+            startX.current = e.touches[0]?.clientX ?? 0;
+          }}
+          onTouchEnd={(e) => {
+            const x = e.changedTouches[0]?.clientX ?? 0;
+            const dx = x - startX.current;
+            if (dx < -40) go(1);
+            if (dx > 40) go(-1);
+          }}
+        >
+          <ChapterCard sec={sec} />
         </div>
       </div>
-      <article
-        className="mt-5 rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6"
-        onTouchStart={(e) => {
-          startX.current = e.touches[0]?.clientX ?? 0;
-        }}
-        onTouchEnd={(e) => {
-          const x = e.changedTouches[0]?.clientX ?? 0;
-          const dx = x - startX.current;
-          if (dx < -40) go(1);
-          if (dx > 40) go(-1);
-        }}
-      >
-        <div className="flex items-start justify-between gap-3">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
-            <sec.Icon className="size-5" strokeWidth={1.75} />
-          </span>
-          <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
-            {sec.count}
-          </span>
-        </div>
-        <h3 className="mt-4 font-display text-xl leading-snug">{sec.title}</h3>
-        <p className="mt-3 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
-          <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-            Что внутри
-          </span>
-          {sec.blurb}
-        </p>
-      </article>
-    </div>
+    </>
   );
 }
