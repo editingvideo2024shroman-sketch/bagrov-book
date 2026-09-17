@@ -149,13 +149,11 @@ function Home() {
     <div className="min-h-svh bg-paper">
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-8 pb-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:pt-12 lg:pb-16">
         <div>
+          <h1 className="sr-only">150 таёжных рецептов, которые работают</h1>
           <p className="inline-flex rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
             О чём книга
           </p>
-          <h1 className="mt-5 font-display text-[2rem] leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
-            150 таёжных рецептов, которые работают
-          </h1>
-          <p className="mt-5 max-w-xl font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
+          <p className="mt-5 max-w-xl font-serif text-lg leading-relaxed text-ink-soft sm:text-xl">
             Я собрал 150 проверенных временем рецептов из того, что всегда есть
             у вас дома, в ближайшем супермаркете или на грядке у соседа. Это
             готовая система домашнего оздоровления без агрессивной химии, редкой
