@@ -206,7 +206,7 @@ function Home() {
       </section>
 
       <section id="author" className="px-4 py-4 sm:px-6">
-        <div className="mx-auto grid max-w-6xl items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:grid-cols-[1fr_16rem]">
+        <div className="mx-auto grid max-w-6xl items-start gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:grid-cols-[1fr_minmax(14rem,20rem)]">
           <div>
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Автор
@@ -235,7 +235,7 @@ function Home() {
             alt="Тимофей Багров и Майя"
             width={1008}
             height={1792}
-            className="h-48 w-full rounded-xl object-cover object-[50%_18%] sm:h-56 lg:h-full lg:min-h-52"
+            className="h-auto w-full rounded-xl object-contain"
           />
         </div>
       </section>
