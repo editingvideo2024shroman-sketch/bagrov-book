@@ -32,6 +32,10 @@ function PrivacyPage() {
           Чтобы уточнить, изменить или удалить данные, напишите на{" "}
           <a className="text-clay" href="mailto:vikramodin@gmail.com">
             vikramodin@gmail.com
+          </a>
+          , позвоните{" "}
+          <a className="text-clay" href="tel:+79517857698">
+            +7 951 785-76-98
           </a>{" "}
           или в{" "}
           <a

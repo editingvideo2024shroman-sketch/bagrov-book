@@ -8,6 +8,7 @@ import {
   Droplets,
   HeartPulse,
   Mail,
+  Phone,
   Shield,
   Sparkles,
   Sprout,
@@ -392,6 +393,13 @@ function Home() {
           <div className="flex flex-col items-start gap-3 sm:items-end">
             <div className="flex gap-2">
               <a
+                href="tel:+79517857698"
+                aria-label="Телефон"
+                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
+              >
+                <Phone className="size-4" />
+              </a>
+              <a
                 href="mailto:vikramodin@gmail.com"
                 aria-label="Почта"
                 className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
@@ -408,6 +416,12 @@ function Home() {
                 <TelegramIcon />
               </a>
             </div>
+            <a
+              href="tel:+79517857698"
+              className="font-sans text-sm text-cream-fg/80"
+            >
+              +7 951 785-76-98
+            </a>
             <a
               href="mailto:vikramodin@gmail.com"
               className="font-sans text-sm text-cream-fg/80"

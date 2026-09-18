@@ -49,6 +49,10 @@ function OfferPage() {
         </p>
         <p>
           Поддержка:{" "}
+          <a className="text-clay" href="tel:+79517857698">
+            +7 951 785-76-98
+          </a>
+          ,{" "}
           <a className="text-clay" href="mailto:vikramodin@gmail.com">
             vikramodin@gmail.com
           </a>
