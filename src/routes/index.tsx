@@ -369,22 +369,16 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-3 sm:items-end">
-            <div className="flex gap-2">
-              <a
-                href="tel:+79517857698"
-                aria-label="Телефон"
-                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
-              >
-                <Phone className="size-4" />
-              </a>
-              <a
-                href="mailto:vikramodin@gmail.com"
-                aria-label="Почта"
-                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
-              >
-                <Mail className="size-4" />
-              </a>
+          <div className="flex flex-col items-start gap-2.5 sm:items-end">
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
+              <Phone className="size-4 shrink-0 opacity-80" aria-hidden />
+              +7 951 785-76-98
+            </p>
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
+              <Mail className="size-4 shrink-0 opacity-80" aria-hidden />
+              vikramodin@gmail.com
+            </p>
+            <div className="mt-1 flex gap-2">
               <a
                 href="https://t.me/MusicNPC_AI"
                 target="_blank"
@@ -394,27 +388,16 @@ function Home() {
               >
                 <TelegramIcon />
               </a>
+              <a
+                href="https://www.instagram.com/odin.v.tayge"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"
+              >
+                <InstagramIcon />
+              </a>
             </div>
-            <a
-              href="tel:+79517857698"
-              className="font-sans text-sm text-cream-fg/80"
-            >
-              +7 951 785-76-98
-            </a>
-            <a
-              href="mailto:vikramodin@gmail.com"
-              className="font-sans text-sm text-cream-fg/80"
-            >
-              vikramodin@gmail.com
-            </a>
-            <a
-              href="https://t.me/MusicNPC_AI"
-              target="_blank"
-              rel="noreferrer"
-              className="font-sans text-sm text-cream-fg/80"
-            >
-              Telegram · @MusicNPC_AI
-            </a>
           </div>
           <p className="sm:col-span-2 font-sans text-xs text-cream-fg/50">
             © {new Date().getFullYear()} Все права защищены.
@@ -429,6 +412,14 @@ function TelegramIcon() {
   return (
     <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
       <path d="M21.5 3.3 2.8 10.5c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8 1 .8.5 0 .7-.2 1-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9l3.7-17.4c.4-1.5-.5-2.2-1.6-1.6Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+      <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8ZM17.35 6.4a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z" />
     </svg>
   );
 }

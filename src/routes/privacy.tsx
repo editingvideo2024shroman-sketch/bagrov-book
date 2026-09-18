@@ -29,24 +29,8 @@ function PrivacyPage() {
           без вашего согласия.
         </p>
         <p>
-          Чтобы уточнить, изменить или удалить данные, напишите на{" "}
-          <a className="text-clay" href="mailto:vikramodin@gmail.com">
-            vikramodin@gmail.com
-          </a>
-          , позвоните{" "}
-          <a className="text-clay" href="tel:+79517857698">
-            +7 951 785-76-98
-          </a>{" "}
-          или в{" "}
-          <a
-            className="text-clay"
-            href="https://t.me/MusicNPC_AI"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Telegram
-          </a>
-          .
+          Чтобы уточнить, изменить или удалить данные, напишите нам через
+          контакты на главной странице.
         </p>
       </div>
     </main>

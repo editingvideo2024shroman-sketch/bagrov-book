@@ -20,27 +20,8 @@ function RefundPage() {
           </p>
           <p>
             Если ссылка не пришла или файл не открывается — напишите в
-            поддержку. Это не возврат товара, а помощь с доставкой.
-          </p>
-          <p>
-            Поддержка:{" "}
-            <a className="text-clay" href="tel:+79517857698">
-              +7 951 785-76-98
-            </a>
-            ,{" "}
-            <a className="text-clay" href="mailto:vikramodin@gmail.com">
-              vikramodin@gmail.com
-            </a>
-            , Telegram{" "}
-            <a
-              className="text-clay"
-              href="https://t.me/MusicNPC_AI"
-              target="_blank"
-              rel="noreferrer"
-            >
-              @MusicNPC_AI
-            </a>
-            .
+            поддержку на главной странице. Это не возврат товара, а помощь с
+            доставкой.
           </p>
         </div>
       </div>

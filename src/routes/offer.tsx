@@ -31,26 +31,6 @@ function OfferPage() {
             Оплачивая, вы подтверждаете, что ознакомились с этой офертой и
             политикой конфиденциальности.
           </p>
-          <p>
-            Поддержка:{" "}
-            <a className="text-clay" href="tel:+79517857698">
-              +7 951 785-76-98
-            </a>
-            ,{" "}
-            <a className="text-clay" href="mailto:vikramodin@gmail.com">
-              vikramodin@gmail.com
-            </a>
-            , Telegram{" "}
-            <a
-              className="text-clay"
-              href="https://t.me/MusicNPC_AI"
-              target="_blank"
-              rel="noreferrer"
-            >
-              @MusicNPC_AI
-            </a>
-            .
-          </p>
         </div>
       </div>
     </main>
