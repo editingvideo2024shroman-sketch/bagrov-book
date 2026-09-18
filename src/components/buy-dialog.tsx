@@ -109,7 +109,7 @@ export function BuyDialog({
               оферту
             </a>{" "}
             и{" "}
-            <a href="/offer#vozvrat" className="underline underline-offset-2">
+            <a href="/refund" className="underline underline-offset-2">
               условия возврата
             </a>
             . Товар цифровой: после отправки ссылки на скачивание возврат не

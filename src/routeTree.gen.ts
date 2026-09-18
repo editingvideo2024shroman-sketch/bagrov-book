@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as OfferRouteImport } from './routes/offer'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundRouteImport } from './routes/refund'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RefundRoute = RefundRouteImport.update({
+  id: '/refund',
+  path: '/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/book': typeof BookRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/offer' | '/privacy'
+  fullPaths: '/' | '/book' | '/offer' | '/privacy' | '/refund'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/offer' | '/privacy'
-  id: '__root__' | '/' | '/book' | '/offer' | '/privacy'
+  to: '/' | '/book' | '/offer' | '/privacy' | '/refund'
+  id: '__root__' | '/' | '/book' | '/offer' | '/privacy' | '/refund'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +76,7 @@ export interface RootRouteChildren {
   BookRoute: typeof BookRoute
   OfferRoute: typeof OfferRoute
   PrivacyRoute: typeof PrivacyRoute
+  RefundRoute: typeof RefundRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/refund': {
+      id: '/refund'
+      path: '/refund'
+      fullPath: '/refund'
+      preLoaderRoute: typeof RefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookRoute: BookRoute,
   OfferRoute: OfferRoute,
   PrivacyRoute: PrivacyRoute,
+  RefundRoute: RefundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

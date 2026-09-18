@@ -279,19 +279,6 @@ function Home() {
                 </BuyDialog>
               )}
             </div>
-            <p className="mt-3 font-sans text-xs text-muted sm:text-right">
-              <Link to="/offer" className="underline-offset-2 hover:underline">
-                Оферта
-              </Link>
-              {" · "}
-              <Link
-                to="/offer"
-                hash="vozvrat"
-                className="underline-offset-2 hover:underline"
-              >
-                Возврат
-              </Link>
-            </p>
           </div>
         </div>
       </section>
@@ -379,14 +366,10 @@ function Home() {
                 Политика конфиденциальности
               </Link>
               <Link to="/offer" className="text-cream-fg/80 underline-offset-2 hover:underline">
-                Публичная оферта
+                Оферта
               </Link>
-              <Link
-                to="/offer"
-                hash="vozvrat"
-                className="text-cream-fg/80 underline-offset-2 hover:underline"
-              >
-                Политика возврата
+              <Link to="/refund" className="text-cream-fg/80 underline-offset-2 hover:underline">
+                Возврат
               </Link>
             </div>
           </div>
@@ -437,14 +420,11 @@ function Home() {
               Telegram · @MusicNPC_AI
             </a>
           </div>
+          <p className="sm:col-span-2 font-sans text-xs text-cream-fg/50">
+            © {new Date().getFullYear()} Все права защищены.
+          </p>
         </div>
       </section>
-
-      <footer className="px-4 pb-8 text-center">
-        <p className="font-sans text-xs text-muted">
-          © {new Date().getFullYear()} Все права защищены.
-        </p>
-      </footer>
     </div>
   );
 }
