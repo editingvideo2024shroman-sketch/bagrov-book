@@ -16,7 +16,7 @@ function PrivacyPage() {
       <div className="mt-6 space-y-4 font-serif text-base leading-relaxed text-ink-soft">
         <p>
           Оператором персональных данных является Шамин Роман Александрович
-          (ИНН 222222).
+          (ИНН 741509611320).
         </p>
         <p>
           Для доставки электронной книги мы получаем имя и адрес электронной

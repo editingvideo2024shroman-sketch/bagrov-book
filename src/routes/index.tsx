@@ -372,7 +372,7 @@ function Home() {
             <p className="mt-3 font-sans text-sm text-cream-fg/75">
               Шамин Роман Александрович
             </p>
-            <p className="font-sans text-sm text-cream-fg/75">ИНН 222222</p>
+            <p className="font-sans text-sm text-cream-fg/75">ИНН 741509611320</p>
             <div className="mt-4 flex flex-col gap-1 font-sans text-sm">
               <Link to="/privacy" className="text-cream-fg/80 underline-offset-2 hover:underline">
                 Политика конфиденциальности
