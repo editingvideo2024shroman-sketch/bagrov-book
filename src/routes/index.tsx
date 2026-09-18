@@ -364,21 +364,10 @@ function Home() {
               <Link to="/offer" className="text-cream-fg/80 underline-offset-2 hover:underline">
                 Оферта
               </Link>
-              <Link to="/refund" className="text-cream-fg/80 underline-offset-2 hover:underline">
-                Возврат
-              </Link>
             </div>
           </div>
           <div className="flex flex-col items-start gap-2.5 sm:items-end">
-            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
-              <Phone className="size-4 shrink-0 opacity-80" aria-hidden />
-              +7 951 785-76-98
-            </p>
-            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
-              <Mail className="size-4 shrink-0 opacity-80" aria-hidden />
-              vikramodin@gmail.com
-            </p>
-            <div className="mt-1 flex gap-2">
+            <div className="flex gap-2">
               <a
                 href="https://t.me/MusicNPC_AI"
                 target="_blank"
@@ -398,6 +387,14 @@ function Home() {
                 <InstagramIcon />
               </a>
             </div>
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
+              <Mail className="size-4 shrink-0 opacity-80" aria-hidden />
+              vikramodin@gmail.com
+            </p>
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80">
+              <Phone className="size-4 shrink-0 opacity-80" aria-hidden />
+              +7 951 785-76-98
+            </p>
           </div>
           <p className="sm:col-span-2 font-sans text-xs text-cream-fg/50">
             © {new Date().getFullYear()} Все права защищены.
