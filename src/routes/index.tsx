@@ -35,8 +35,8 @@ const FOR_WHOM = [
     body: "Хронический стресс не даёт полноценно отдыхать по ночам. Необходимы мягкие успокаивающие сборы и вечерние ритуалы, которые вернут глубокий сон без дневной сонливости и привыкания.",
   },
   {
-    title: "Поиск безопасных средств при простуде у детей",
-    body: "При первых признаках кашля или жара важно иметь чёткий план действий. Вам нужны надёжные домашние методы без химических сиропов, искусственных красителей и лишней нагрузки на детский организм.",
+    title: "Первые признаки простуды",
+    body: "Горло, насморк, озноб. Вечер, а до аптеки далеко. Нужны понятные домашние напитки без аптечных сиропов и лишней химии.",
   },
   {
     title: "Потребность в проверенном домашнем руководстве",
@@ -278,6 +278,19 @@ function Home() {
                 </BuyDialog>
               )}
             </div>
+            <p className="mt-3 font-sans text-xs text-muted sm:text-right">
+              <Link to="/offer" className="underline-offset-2 hover:underline">
+                Оферта
+              </Link>
+              {" · "}
+              <Link
+                to="/offer"
+                hash="vozvrat"
+                className="underline-offset-2 hover:underline"
+              >
+                Возврат
+              </Link>
+            </p>
           </div>
         </div>
       </section>
@@ -366,6 +379,13 @@ function Home() {
               </Link>
               <Link to="/offer" className="text-cream-fg/80 underline-offset-2 hover:underline">
                 Публичная оферта
+              </Link>
+              <Link
+                to="/offer"
+                hash="vozvrat"
+                className="text-cream-fg/80 underline-offset-2 hover:underline"
+              >
+                Политика возврата
               </Link>
             </div>
           </div>

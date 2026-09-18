@@ -103,6 +103,18 @@ export function BuyDialog({
           >
             {busy ? "Оплата…" : `Оплатить ${rub(book.price)}`}
           </Button>
+          <p className="text-center font-sans text-[11px] leading-relaxed text-muted">
+            Нажимая «Оплатить», вы принимаете{" "}
+            <a href="/offer" className="underline underline-offset-2">
+              оферту
+            </a>{" "}
+            и{" "}
+            <a href="/offer#vozvrat" className="underline underline-offset-2">
+              условия возврата
+            </a>
+            . Товар цифровой: после отправки ссылки на скачивание возврат не
+            осуществляется.
+          </p>
           <p className="text-center text-[11px] leading-relaxed text-muted">
             Оплата на этой странице учебная: книга откроется сразу, чтобы вы
             видели макет. Боевой эквайринг подключим отдельно.
