@@ -39,8 +39,8 @@ function PrivacyPage() {
               персональных данных (далее — Политика) применяется ко всей
               информации, которую Оператор может получить о посетителях
               веб-сайта{" "}
-              <a className="text-clay" href="https://timofey-bagrov.ru">
-                https://timofey-bagrov.ru
+              <a className="text-clay" href="https://bagrov-book.vercel.app">
+                https://bagrov-book.vercel.app
               </a>
               .
             </p>
@@ -63,8 +63,8 @@ function PrivacyPage() {
               2.3. Веб-сайт — совокупность графических и информационных
               материалов, а также программ для ЭВМ и баз данных, обеспечивающих
               их доступность в сети интернет по сетевому адресу{" "}
-              <a className="text-clay" href="https://timofey-bagrov.ru">
-                https://timofey-bagrov.ru
+              <a className="text-clay" href="https://bagrov-book.vercel.app">
+                https://bagrov-book.vercel.app
               </a>
               .
             </p>
@@ -101,8 +101,8 @@ function PrivacyPage() {
             <p className="mt-3">
               2.8. Персональные данные — любая информация, относящаяся прямо или
               косвенно к определенному или определяемому Пользователю веб-сайта{" "}
-              <a className="text-clay" href="https://timofey-bagrov.ru">
-                https://timofey-bagrov.ru
+              <a className="text-clay" href="https://bagrov-book.vercel.app">
+                https://bagrov-book.vercel.app
               </a>
               .
             </p>
@@ -118,8 +118,8 @@ function PrivacyPage() {
             </p>
             <p className="mt-3">
               2.10. Пользователь — любой посетитель веб-сайта{" "}
-              <a className="text-clay" href="https://timofey-bagrov.ru">
-                https://timofey-bagrov.ru
+              <a className="text-clay" href="https://bagrov-book.vercel.app">
+                https://bagrov-book.vercel.app
               </a>
               .
             </p>
@@ -590,9 +590,9 @@ function PrivacyPage() {
               сети Интернет по адресу{" "}
               <a
                 className="text-clay"
-                href="https://timofey-bagrov.ru/privacy"
+                href="https://bagrov-book.vercel.app/privacy"
               >
-                https://timofey-bagrov.ru/privacy
+                https://bagrov-book.vercel.app/privacy
               </a>
               .
             </p>
