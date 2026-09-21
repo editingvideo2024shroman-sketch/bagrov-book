@@ -3,7 +3,7 @@
 Сайт книги Тимофея Багрова: 150 таёжных рецептов.
 
 - Репозиторий: **bagrov-book**
-- После деплоя на Vercel: `https://bagrov-book.vercel.app`
+- После деплоя на Vercel: `https://www.timofey-bagrov.ru`
 - Свой домен позже: `timofey.bagrov.ru`
 
 ## Деплой

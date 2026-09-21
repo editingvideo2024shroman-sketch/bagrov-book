@@ -48,8 +48,8 @@ function OfferPage() {
               </li>
               <li>
                 Сайт — интернет-страница Продавца по адресу{" "}
-                <a className="text-clay" href="https://bagrov-book.vercel.app">
-                  https://bagrov-book.vercel.app
+                <a className="text-clay" href="https://www.timofey-bagrov.ru">
+                  https://www.timofey-bagrov.ru
                 </a>
                 .
               </li>
@@ -292,8 +292,8 @@ function OfferPage() {
               <li>ИНН: 741509611320</li>
               <li>
                 Сайт:{" "}
-                <a className="text-clay" href="https://bagrov-book.vercel.app">
-                  https://bagrov-book.vercel.app
+                <a className="text-clay" href="https://www.timofey-bagrov.ru">
+                  https://www.timofey-bagrov.ru
                 </a>
               </li>
             </ul>
