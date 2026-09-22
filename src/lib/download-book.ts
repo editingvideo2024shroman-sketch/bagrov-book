@@ -171,14 +171,14 @@ a{color:var(--clay);text-decoration:none}
 .list{display:flex;flex-direction:column;padding:0 0 .8rem 1.1rem}
 .list a{display:grid;grid-template-columns:1.7rem 1fr;gap:.25rem;padding:.35rem 0;color:var(--soft);font:13px/1.3 system-ui,sans-serif}
 .list a:hover{color:var(--clay)}
-.main{flex:1;min-width:0;padding:2rem 1.5rem 4rem}
-.page{max-width:40rem;margin:0 auto}
+.main{flex:1;min-width:0;padding:1.5rem 1.25rem 4rem}
+.page,.view{max-width:42rem;margin-left:auto;margin-right:auto}
 .view{display:none}
 #home{display:block}
 .view:target{display:block}
 body:has(.view:target) #home:not(:target){display:none}
 .cover{width:100%;max-width:22rem;display:block;margin:0 auto 1.25rem;border-radius:.6rem}
-.shot{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.5rem;background:#ddd3c4;margin:1rem 0}
+.shot{display:block;width:100%;max-height:26rem;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:.5rem;background:#ddd3c4;margin:.75rem 0 1rem}
 .kicker{font:700 .7rem/1.2 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin:0 0 .35rem}
 h1{font-size:2.1rem;line-height:1.12;margin:.35rem 0 1rem}
 .lead{color:var(--soft)}
