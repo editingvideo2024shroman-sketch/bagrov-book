@@ -9,10 +9,6 @@ function ym(): Ym | undefined {
   return (window as Window & { ym?: Ym }).ym;
 }
 
-export function reachGoal(goal: string) {
-  ym()?.(METRIKA_ID, "reachGoal", goal);
-}
-
 export function Metrika() {
   const href = useRouterState({
     select: (s) => s.location.href,
