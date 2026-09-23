@@ -107,7 +107,7 @@ export function BuyDialog({
               onChange={(e) => setAgreed(e.target.checked)}
               className="mt-0.5 size-4 shrink-0 accent-forest"
             />
-            После оплаты нажму только «Вернуться в магазин». Другие кнопки и бонусы не нажимаю: книга откроется на сайте. На почту придёт только чек.
+            После оплаты нажмите «Вернуться в магазин».
           </label>
           <SalePrice size="sm" className="mx-auto" />
           <Button
