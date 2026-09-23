@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookRouteImport } from './routes/book'
+import { Route as FailRouteImport } from './routes/fail'
 import { Route as OfferRouteImport } from './routes/offer'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
+import { Route as ApiRobokassaResultRouteImport } from './routes/api/robokassa/result'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const BookRoute = BookRouteImport.update({
   id: '/book',
   path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FailRoute = FailRouteImport.update({
+  id: '/fail',
+  path: '/fail',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OfferRoute = OfferRouteImport.update({
@@ -40,43 +47,78 @@ const RefundRoute = RefundRouteImport.update({
   path: '/refund',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRobokassaResultRoute = ApiRobokassaResultRouteImport.update({
+  id: '/api/robokassa/result',
+  path: '/api/robokassa/result',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/offer' | '/privacy' | '/refund'
+  fullPaths:
+    | '/'
+    | '/book'
+    | '/fail'
+    | '/offer'
+    | '/privacy'
+    | '/refund'
+    | '/api/robokassa/result'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/offer' | '/privacy' | '/refund'
-  id: '__root__' | '/' | '/book' | '/offer' | '/privacy' | '/refund'
+  to:
+    | '/'
+    | '/book'
+    | '/fail'
+    | '/offer'
+    | '/privacy'
+    | '/refund'
+    | '/api/robokassa/result'
+  id:
+    | '__root__'
+    | '/'
+    | '/book'
+    | '/fail'
+    | '/offer'
+    | '/privacy'
+    | '/refund'
+    | '/api/robokassa/result'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookRoute: typeof BookRoute
+  FailRoute: typeof FailRoute
   OfferRoute: typeof OfferRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
+  ApiRobokassaResultRoute: typeof ApiRobokassaResultRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -93,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/book'
       fullPath: '/book'
       preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fail': {
+      id: '/fail'
+      path: '/fail'
+      fullPath: '/fail'
+      preLoaderRoute: typeof FailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offer': {
@@ -116,15 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RefundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/robokassa/result': {
+      id: '/api/robokassa/result'
+      path: '/api/robokassa/result'
+      fullPath: '/api/robokassa/result'
+      preLoaderRoute: typeof ApiRobokassaResultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookRoute: BookRoute,
+  FailRoute: FailRoute,
   OfferRoute: OfferRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
+  ApiRobokassaResultRoute: ApiRobokassaResultRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

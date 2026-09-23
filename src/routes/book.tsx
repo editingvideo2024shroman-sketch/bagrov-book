@@ -14,18 +14,31 @@ import {
   recipesIn,
   sectionOf,
 } from "@/lib/book";
+import { confirmPayment } from "@/lib/pay.functions";
 import { downloadBookFile } from "@/lib/download-book";
 import { useFavorites } from "@/lib/favorites";
 import { usePurchase } from "@/lib/purchase";
 import { cn } from "@/lib/utils";
 
-type Search = { r?: number; n?: number; fav?: boolean };
+type Search = {
+  r?: number;
+  n?: number;
+  fav?: boolean;
+  OutSum?: string;
+  InvId?: string;
+  SignatureValue?: string;
+  Shp_email?: string;
+};
 
 export const Route = createFileRoute("/book")({
   validateSearch: (raw: Record<string, unknown>): Search => ({
     r: num(raw.r),
     n: num(raw.n),
     fav: raw.fav === true || raw.fav === "true" || raw.fav === "1" || raw.fav === 1,
+    OutSum: text(raw.OutSum),
+    InvId: text(raw.InvId),
+    SignatureValue: text(raw.SignatureValue),
+    Shp_email: text(raw.Shp_email),
   }),
   component: BookPage,
 });
@@ -35,10 +48,29 @@ function num(v: unknown) {
   return Number.isFinite(n) ? n : undefined;
 }
 
+function text(v: unknown) {
+  return typeof v === "string" && v.trim() ? v : undefined;
+}
+
 function BookPage() {
-  const { r, n, fav } = Route.useSearch();
+  const { r, n, fav, OutSum, InvId, SignatureValue, Shp_email } = Route.useSearch();
   const owned = usePurchase((s) => s.owned);
+  const buy = usePurchase((s) => s.buy);
   const [tocOpen, setTocOpen] = useState(false);
+
+  useEffect(() => {
+    if (!OutSum || !InvId || !SignatureValue) return;
+    void confirmPayment({
+      data: {
+        outSum: OutSum,
+        invId: InvId,
+        signature: SignatureValue,
+        email: Shp_email ?? "",
+      },
+    }).then((ok) => {
+      if (ok) buy({ email: Shp_email ?? "", name: "" });
+    });
+  }, [OutSum, InvId, SignatureValue, Shp_email, buy]);
 
   const recipe = r ? recipeById(r) : undefined;
   const note = n ? noteById(n) : undefined;
