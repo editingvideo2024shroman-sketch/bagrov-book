@@ -16,6 +16,6 @@ export const usePurchase = create<PurchaseState>()(
       name: "",
       buy: ({ email, name }) => set({ owned: true, email, name }),
     }),
-    { name: "kogda-daleko-purchase" },
+    { name: "bagrov-book-purchase-v2" },
   ),
 );
