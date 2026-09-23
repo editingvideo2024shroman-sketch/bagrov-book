@@ -74,7 +74,9 @@ export function BuyDialog({
       <DialogContent>
         <DialogTitle>Купить книгу с рецептами от Тимофея</DialogTitle>
         <DialogDescription>
-          Один платёж, без подписок. После оплаты нажмите «Вернуться в магазин». Книга откроется сразу.
+          Один платёж, без подписок.
+          <br />
+          Просто скачайте книгу и открывайте в любых местах.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
