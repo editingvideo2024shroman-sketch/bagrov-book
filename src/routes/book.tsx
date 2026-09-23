@@ -17,6 +17,7 @@ import {
 import { confirmPayment } from "@/lib/pay.functions";
 import { downloadBookFile } from "@/lib/download-book";
 import { useFavorites } from "@/lib/favorites";
+import { reachGoal } from "@/components/metrika";
 import { usePurchase } from "@/lib/purchase";
 import { cn } from "@/lib/utils";
 
@@ -82,6 +83,11 @@ function BookPage() {
       data: { outSum, invId, signature, email },
     }).then((ok) => {
       if (!ok) return;
+      const seen = `ym-pay-${invId}`;
+      if (!sessionStorage.getItem(seen)) {
+        sessionStorage.setItem(seen, "1");
+        reachGoal("purchase");
+      }
       buy({ email, name: "" });
       const next = new URL(window.location.href);
       next.search = "";

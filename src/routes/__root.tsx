@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { Metrika } from "@/components/metrika";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "150 таёжных рецептов, которые работают — Тимофей Багров";
@@ -33,6 +34,7 @@ export const Route = createRootRoute({
       <body className="bg-paper text-ink">
         <PreviewHostBridge />
         <AuthProvider>
+          <Metrika />
           <Outlet />
         </AuthProvider>
         <Scripts />
