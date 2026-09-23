@@ -61,19 +61,31 @@ function BookPage() {
 
   useEffect(() => {
     const fromUrl = new URLSearchParams(window.location.search);
-    const outSum = fromUrl.get("OutSum") || OutSum;
-    const invId = fromUrl.get("InvId") || InvId;
-    const signature = fromUrl.get("SignatureValue") || SignatureValue;
-    const email = fromUrl.get("Shp_email") || Shp_email || "";
+    const clean = (value?: string | null) => {
+      const raw = (value ?? "").trim();
+      if (raw.startsWith('"') && raw.endsWith('"')) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (typeof parsed === "string" || typeof parsed === "number") return String(parsed);
+        } catch {
+          return raw.slice(1, -1);
+        }
+      }
+      return raw;
+    };
+    const outSum = clean(fromUrl.get("OutSum") || OutSum);
+    const invId = clean(fromUrl.get("InvId") || InvId);
+    const signature = clean(fromUrl.get("SignatureValue") || SignatureValue);
+    const email = clean(fromUrl.get("Shp_email") || Shp_email);
     if (!outSum || !invId || !signature) return;
     void confirmPayment({
       data: { outSum, invId, signature, email },
     }).then((ok) => {
       if (!ok) return;
       buy({ email, name: "" });
-      const clean = new URL(window.location.href);
-      clean.search = "";
-      window.history.replaceState(window.history.state, "", `${clean.pathname}${clean.hash}`);
+      const next = new URL(window.location.href);
+      next.search = "";
+      window.history.replaceState(window.history.state, "", `${next.pathname}${next.hash}`);
     });
   }, [OutSum, InvId, SignatureValue, Shp_email, buy]);
 

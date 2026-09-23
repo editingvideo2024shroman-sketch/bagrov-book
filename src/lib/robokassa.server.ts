@@ -4,19 +4,28 @@ const LOGIN = (process.env.ROBOKASSA_LOGIN ?? "").trim();
 const PASSWORD1 = (process.env.ROBOKASSA_PASSWORD1 ?? "").trim();
 const PASSWORD2 = (process.env.ROBOKASSA_PASSWORD2 ?? "").trim();
 
-const OUT_SUM = "50.00";
+const OUT_SUM = "10.00";
 const ITEM_NAME = "Электронная книга 150 таёжных рецептов";
 
 function md5(value: string) {
   return createHash("md5").update(value, "utf8").digest("hex");
 }
 
-function same(a: string, b: string) {
-  return a.trim().toLowerCase() === b.trim().toLowerCase();
+function unquote(value: string) {
+  const trimmed = value.trim();
+  if (trimmed.length >= 2 && trimmed.startsWith('"') && trimmed.endsWith('"')) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (typeof parsed === "string" || typeof parsed === "number") return String(parsed);
+    } catch {
+      return trimmed.slice(1, -1);
+    }
+  }
+  return trimmed;
 }
 
 export function receiptJson() {
-  return `{"items":[{"name":"${ITEM_NAME}","quantity":1,"sum":50.00,"payment_method":"full_payment","payment_object":"intellectual_activity","tax":"none"}]}`;
+  return `{"items":[{"name":"${ITEM_NAME}","quantity":1,"sum":10.00,"payment_method":"full_payment","payment_object":"intellectual_activity","tax":"none"}]}`;
 }
 
 export function buildPayment(email: string) {
@@ -41,6 +50,10 @@ export function buildPayment(email: string) {
   };
 }
 
+function same(a: string, b: string) {
+  return a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+
 export function successSignatureOk(input: {
   outSum: string;
   invId: string;
@@ -48,9 +61,13 @@ export function successSignatureOk(input: {
   email: string;
 }) {
   if (!PASSWORD1) return false;
-  const emailPart = input.email ? `:Shp_email=${input.email}` : "";
-  const expected = md5(`${input.outSum}:${input.invId}:${PASSWORD1}${emailPart}`);
-  return same(expected, input.signature);
+  const outSum = unquote(input.outSum);
+  const invId = unquote(input.invId);
+  const email = unquote(input.email);
+  const signature = unquote(input.signature);
+  const emailPart = email ? `:Shp_email=${email}` : "";
+  const expected = md5(`${outSum}:${invId}:${PASSWORD1}${emailPart}`);
+  return same(expected, signature);
 }
 
 export function resultSignatureOk(params: URLSearchParams) {
