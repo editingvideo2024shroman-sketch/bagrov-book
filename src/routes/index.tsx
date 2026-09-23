@@ -257,12 +257,9 @@ function Home() {
               Акция для читателей блога
             </p>
             <SalePrice size="md" className="mt-2 sm:justify-end" />
-            <p className="mt-2 font-serif text-sm text-muted">
-              Оплата один раз, без подписок.
-              <br />
-              После оплаты откроется книга. Нажмите «Скачать книгу».
-              <br />
-              На почту придёт только чек.
+            <p className="mt-2 max-w-xs font-serif text-sm leading-relaxed text-muted sm:ml-auto">
+              Один платёж, без подписок. Книга откроется сразу. Сохраните её
+              кнопкой «Скачать книгу». На почту придёт чек.
             </p>
             <div className="mt-4">
               {owned ? (
