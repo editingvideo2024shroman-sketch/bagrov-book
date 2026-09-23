@@ -49,7 +49,8 @@ function num(v: unknown) {
 }
 
 function text(v: unknown) {
-  return typeof v === "string" && v.trim() ? v : undefined;
+  if (typeof v === "number" && Number.isFinite(v)) return String(v);
+  return typeof v === "string" && v.trim() ? v.trim() : undefined;
 }
 
 function BookPage() {
@@ -59,16 +60,20 @@ function BookPage() {
   const [tocOpen, setTocOpen] = useState(false);
 
   useEffect(() => {
-    if (!OutSum || !InvId || !SignatureValue) return;
+    const fromUrl = new URLSearchParams(window.location.search);
+    const outSum = fromUrl.get("OutSum") || OutSum;
+    const invId = fromUrl.get("InvId") || InvId;
+    const signature = fromUrl.get("SignatureValue") || SignatureValue;
+    const email = fromUrl.get("Shp_email") || Shp_email || "";
+    if (!outSum || !invId || !signature) return;
     void confirmPayment({
-      data: {
-        outSum: OutSum,
-        invId: InvId,
-        signature: SignatureValue,
-        email: Shp_email ?? "",
-      },
+      data: { outSum, invId, signature, email },
     }).then((ok) => {
-      if (ok) buy({ email: Shp_email ?? "", name: "" });
+      if (!ok) return;
+      buy({ email, name: "" });
+      const clean = new URL(window.location.href);
+      clean.search = "";
+      window.history.replaceState(window.history.state, "", `${clean.pathname}${clean.hash}`);
     });
   }, [OutSum, InvId, SignatureValue, Shp_email, buy]);
 
