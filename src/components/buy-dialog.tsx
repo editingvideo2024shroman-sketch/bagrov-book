@@ -29,7 +29,7 @@ export function BuyDialog({
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [agreed, setAgreed] = useState(true);
+  const [agreed, setAgreed] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
   const open = openProp ?? innerOpen;
   const setOpen = onOpenChange ?? setInnerOpen;
@@ -74,7 +74,7 @@ export function BuyDialog({
       <DialogContent>
         <DialogTitle>Купить книгу с рецептами от Тимофея</DialogTitle>
         <DialogDescription>
-          Один платёж, без подписок. Книга откроется сразу. Сохраните её кнопкой «Скачать книгу». На почту придёт чек.
+          Один платёж, без подписок. После оплаты нажмите «Вернуться в магазин». Книга откроется сразу.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
@@ -107,7 +107,7 @@ export function BuyDialog({
               onChange={(e) => setAgreed(e.target.checked)}
               className="mt-0.5 size-4 shrink-0 accent-forest"
             />
-            Понимаю: это не лечение. Если проблемы серьёзные — иду в больницу.
+            После оплаты нажму только «Вернуться в магазин». Другие кнопки и бонусы не нажимаю: книга откроется на сайте. На почту придёт только чек.
           </label>
           <SalePrice size="sm" className="mx-auto" />
           <Button
@@ -124,8 +124,8 @@ export function BuyDialog({
             <a href="/offer" className="underline underline-offset-2">
               оферту
             </a>
-            . Товар цифровой: после отправки ссылки на скачивание возврат не
-            осуществляется. Чек придёт на почту.
+            . Товар цифровой: после оплаты возврат не осуществляется. На почту
+            придёт только чек.
           </p>
         </form>
       </DialogContent>
