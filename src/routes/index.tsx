@@ -258,9 +258,11 @@ function Home() {
             </p>
             <SalePrice size="md" className="mt-2 sm:justify-end" />
             <p className="mt-2 font-serif text-sm text-muted">
-              Оплата единоразово, без подписок.
+              Оплата один раз, без подписок.
               <br />
-              Ссылка на скачивание придёт на вашу почту.
+              После оплаты откроется книга. Нажмите «Скачать книгу».
+              <br />
+              На почту придёт только чек.
             </p>
             <div className="mt-4">
               {owned ? (

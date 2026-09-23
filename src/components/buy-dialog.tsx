@@ -73,7 +73,9 @@ export function BuyDialog({
       {children ? <DialogTrigger asChild>{children}</DialogTrigger> : null}
       <DialogContent>
         <DialogTitle>Купить книгу с рецептами от Тимофея</DialogTitle>
-        <DialogDescription>Имя и почта. После оплаты книга откроется сразу.</DialogDescription>
+        <DialogDescription>
+          Имя и почта. После оплаты откроется книга — нажмите «Скачать книгу». На почту придёт только чек.
+        </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="buy-name">Имя</Label>
