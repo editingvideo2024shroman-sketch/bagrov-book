@@ -157,6 +157,26 @@ function BookPage() {
 
 function BookHeaderActions() {
   const owned = usePurchase((s) => s.owned);
+
+  if (!owned) {
+    return (
+      <BuyDialog>
+        <Button size="sm">Купить</Button>
+      </BuyDialog>
+    );
+  }
+
+  return (
+    <>
+      <DownloadBookButton />
+      <Button size="sm" variant="outline" asChild>
+        <Link to="/">На сайт</Link>
+      </Button>
+    </>
+  );
+}
+
+function DownloadBookButton({ big = false }: { big?: boolean }) {
   const [packing, setPacking] = useState(false);
 
   async function onDownload() {
@@ -171,35 +191,29 @@ function BookHeaderActions() {
     }
   }
 
-  if (!owned) {
-    return (
-      <BuyDialog>
-        <Button size="sm">Купить</Button>
-      </BuyDialog>
-    );
-  }
-
   return (
-    <>
-      <Button
-        size="sm"
-        variant="outline"
-        onClick={() => void onDownload()}
-        disabled={packing}
-      >
-        <Download className="size-4" />
-        {packing ? "Собираю книгу…" : "Скачать"}
-      </Button>
-      <Button size="sm" variant="outline" asChild>
-        <Link to="/">На сайт</Link>
-      </Button>
-    </>
+    <Button size={big ? "lg" : "sm"} onClick={() => void onDownload()} disabled={packing}>
+      <Download className="size-4" />
+      {packing ? "Собираю книгу…" : "Скачать книгу"}
+    </Button>
   );
 }
 
 function BookHome({ locked }: { locked: boolean }) {
   return (
     <div className="mx-auto max-w-2xl">
+      {locked ? null : (
+        <div className="mb-8 rounded-lg border border-line bg-cream px-5 py-6">
+          <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Книга ваша</p>
+          <h2 className="mt-2 font-display text-3xl">Сначала скачайте файл</h2>
+          <p className="mt-3 font-serif text-lg leading-relaxed text-ink-soft">
+            На почту приходит только чек об оплате, не сама книга. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
+          </p>
+          <div className="mt-5">
+            <DownloadBookButton big />
+          </div>
+        </div>
+      )}
       <img
         src={photo("cover")}
         alt=""
