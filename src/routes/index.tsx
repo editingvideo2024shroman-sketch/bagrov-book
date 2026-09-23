@@ -252,11 +252,11 @@ function Home() {
               ))}
             </ul>
           </div>
-          <div className="shrink-0 sm:text-right">
+          <div className="shrink-0 text-left">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Акция для читателей блога
             </p>
-            <SalePrice size="md" className="mt-2 sm:justify-end" />
+            <SalePrice size="md" className="mt-2" />
             <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
               <p>Один платёж, без подписок.</p>
               <p>Книга откроется сразу.</p>

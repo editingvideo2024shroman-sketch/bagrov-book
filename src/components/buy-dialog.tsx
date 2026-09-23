@@ -76,7 +76,11 @@ export function BuyDialog({
         <DialogDescription>
           Один платёж, без подписок.
           <br />
-          Просто скачайте книгу и открывайте в любых местах.
+          Книга откроется сразу.
+          <br />
+          Сохраните её кнопкой «Скачать книгу».
+          <br />
+          На почту придёт чек.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
