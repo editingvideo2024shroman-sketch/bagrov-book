@@ -257,10 +257,11 @@ function Home() {
               Акция для читателей блога
             </p>
             <SalePrice size="md" className="mt-2 sm:justify-end" />
-            <p className="mt-2 max-w-xs font-serif text-sm leading-relaxed text-muted sm:ml-auto">
-              Один платёж, без подписок. Книга откроется сразу. Сохраните её
-              кнопкой «Скачать книгу». На почту придёт чек.
-            </p>
+            <div className="mt-3 max-w-xs space-y-1 font-serif text-sm leading-snug text-muted sm:ml-auto sm:text-right">
+              <p>Один платёж, без подписок. Книга откроется сразу.</p>
+              <p>Сохраните её кнопкой «Скачать книгу».</p>
+              <p>На почту придёт чек.</p>
+            </div>
             <div className="mt-4">
               {owned ? (
                 <Button className="w-full sm:w-auto" asChild>
