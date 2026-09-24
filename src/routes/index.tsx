@@ -9,6 +9,7 @@ import {
   HeartPulse,
   Mail,
   Phone,
+  Shield,
   Sparkles,
   Sprout,
   Wheat,
