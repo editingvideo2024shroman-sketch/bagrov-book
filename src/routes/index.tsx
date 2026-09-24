@@ -263,17 +263,35 @@ function Home() {
               <p>Сохраните её кнопкой «Скачать книгу».</p>
               <p>На почту придёт чек.</p>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 flex w-full max-w-xs flex-col gap-2">
               {owned ? (
-                <Button className="w-full sm:w-auto" asChild>
+                <Button className="w-full" asChild>
                   <Link to="/book" search={{ r: 1 }}>
                     Открыть книгу
                   </Link>
                 </Button>
               ) : (
-                <BuyDialog>
-                  <Button className="w-full sm:w-auto">Получить книгу</Button>
-                </BuyDialog>
+                <>
+                  <BuyDialog>
+                    <Button className="w-full">Получить книгу</Button>
+                  </BuyDialog>
+                  <Button variant="outline" className="w-full rounded-full bg-paper" asChild>
+                    <a
+                      href="https://web.tribute.tg/p/FdZ"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Оплатить зарубежной картой
+                    </a>
+                  </Button>
+                  <p className="text-center font-sans text-xs leading-snug text-muted">
+                    Украина, США, Европа и весь мир через Telegram
+                  </p>
+                  <p className="flex items-center justify-center gap-1.5 text-center font-sans text-xs text-muted">
+                    <Shield className="size-3.5 shrink-0" />
+                    Безопасное соединение
+                  </p>
+                </>
               )}
             </div>
           </div>
