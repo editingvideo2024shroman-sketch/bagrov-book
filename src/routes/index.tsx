@@ -118,10 +118,22 @@ const CHAPTERS: {
 ];
 
 const INCLUDED = [
-  "150 рецептов с фото и полным описанием",
-  "Граммовки, шаги и противопоказания",
-  "Можно скачать и открывать без интернета",
-  "Можете читать как с телефона, так и с компьютера",
+  {
+    title: "150 рецептов в 9 главах для всего организма",
+    detail: "От давления и суставов до сна и иммунитета",
+  },
+  {
+    title: "Граммовки, фото и противопоказания",
+    detail: "К каждому рецепту",
+  },
+  {
+    title: "Личные заметки Тимофея",
+    detail: "Почему нужно это пить и для чего",
+  },
+  {
+    title: "Бессрочный доступ",
+    detail: "Файл сохраняется на вашем устройстве навсегда",
+  },
 ];
 
 const FAQ = [
@@ -238,21 +250,31 @@ function Home() {
       </section>
 
       <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-7">
-          <div className="max-w-xl">
+        <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Электронная книга
             </p>
-            <ul className="mt-4 space-y-2.5">
+            <h2 className="mt-3 max-w-xl font-display text-3xl leading-tight text-ink sm:text-4xl">
+              150 проверенных рецептов из тайги, которые действительно работают
+            </h2>
+            <ul className="mt-6 space-y-4">
               {INCLUDED.map((item) => (
-                <li key={item} className="flex gap-3 font-sans text-sm text-ink-soft">
-                  <Check className="mt-0.5 size-4 shrink-0 text-clay" />
-                  {item}
+                <li key={item.title} className="flex gap-3">
+                  <Check className="mt-1 size-4 shrink-0 text-clay" />
+                  <div>
+                    <p className="font-sans text-base font-medium leading-snug text-ink">
+                      {item.title}
+                    </p>
+                    <p className="mt-0.5 font-sans text-sm leading-snug text-muted">
+                      {item.detail}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="shrink-0 text-left">
+          <div className="rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Акция для читателей блога
             </p>
@@ -263,7 +285,7 @@ function Home() {
               <p>Сохраните её кнопкой «Скачать книгу».</p>
               <p>На почту придёт чек.</p>
             </div>
-            <div className="mt-4 flex w-full max-w-xs flex-col gap-2">
+            <div className="mt-4 flex w-full flex-col gap-2">
               {owned ? (
                 <Button className="w-full" asChild>
                   <Link to="/book" search={{ r: 1 }}>
