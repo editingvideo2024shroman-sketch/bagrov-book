@@ -124,8 +124,7 @@ export function BuyDialog({
             <a href="/offer" className="underline underline-offset-2">
               оферту
             </a>
-            . Товар цифровой: после оплаты возврат не осуществляется. На почту
-            придёт только чек.
+            .
           </p>
         </form>
       </DialogContent>
