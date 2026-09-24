@@ -285,7 +285,7 @@ function Home() {
                     </a>
                   </Button>
                   <p className="text-center font-sans text-xs leading-snug text-muted">
-                    Страны СНГ, Украина, США, Европа и весь мир через Telegram
+                    Украина, США, Европа и весь мир через Telegram
                   </p>
                   <p className="flex items-center justify-center gap-1.5 text-center font-sans text-xs text-muted">
                     <Shield className="size-3.5 shrink-0" />
