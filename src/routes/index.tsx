@@ -17,7 +17,6 @@ import {
   Brain,
   type LucideIcon,
 } from "lucide-react";
-import { BookCover } from "@/components/book-cover";
 import { BuyDialog } from "@/components/buy-dialog";
 import { Button } from "@/components/ui/button";
 import { photo } from "@/lib/book";
@@ -54,28 +53,28 @@ const CHAPTERS: {
 }[] = [
   {
     roman: "I",
-    title: "Синдром хронической усталости",
+    title: "Усталость и упадок сил",
     blurb: "Тяжесть в голове, дефицит энергии, упадок сил. Витаминные смеси за 2 минуты в блендере.",
     count: "24 рецепта",
     Icon: Zap,
   },
   {
     roman: "II",
-    title: "Проверенные тёплые напитки",
+    title: "Простуда и иммунитет",
     blurb: "Первые симптомы простуды, озноб и слабость. Те самые согревающие рецепты, которыми родители в детстве мгновенно поднимали нас на ноги.",
     count: "20 рецептов",
     Icon: Shield,
   },
   {
     roman: "III",
-    title: "Дискомфорт после еды",
+    title: "Тяжесть и вздутие живота",
     blurb: "Вздутие, тяжесть и распирание живота. Лёгкие домашние смеси для быстрого перезапуска пищеварения.",
     count: "22 рецепта",
     Icon: Apple,
   },
   {
     roman: "IV",
-    title: "Забота о кишечнике",
+    title: "Кишечник и пищеварение",
     blurb: "Редкий и нерегулярный стул. Мягкое очищение без слабительных: правильные сочетания кефира, льна и чернослива.",
     count: "10 рецептов",
     Icon: Wheat,
@@ -89,14 +88,14 @@ const CHAPTERS: {
   },
   {
     roman: "VI",
-    title: "Поддержка сосудов",
+    title: "Давление и сосуды",
     blurb: "Скачки давления и холестерин. Оздоровление капилляров силой свёклы, чеснока и зелени без лишней соли.",
     count: "21 рецепт",
     Icon: HeartPulse,
   },
   {
     roman: "VII",
-    title: "Домашнее спа для ног",
+    title: "Отёки и усталость ног",
     blurb: "Вечерний гул, отёки и усталость, когда к ночи не согнуться. 15-минутные ванночки и компрессы.",
     count: "17 рецептов",
     Icon: Sprout,
@@ -110,7 +109,7 @@ const CHAPTERS: {
   },
   {
     roman: "IX",
-    title: "Антистресс: когда сдают нервы",
+    title: "Тревога и сон",
     blurb: "Паника, фоновая тревога и выгорание. Дыхание и телесные техники за 3 минуты — без еды и таблеток.",
     count: "10 практик",
     Icon: Brain,
@@ -160,6 +159,9 @@ function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-4">
             <h1 className="sr-only">150 таёжных рецептов, которые работают</h1>
+            <p className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+              Авторская книга Тимофея Багрова
+            </p>
             <div className="w-full rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7">
               <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
                 О чём книга
@@ -175,7 +177,13 @@ function Home() {
               <a href="#toc">Открыть содержание</a>
             </Button>
           </div>
-          <BookCover className="w-full max-w-[340px] lg:max-w-[400px]" />
+          <img
+            src="/photos/hero-hold.jpg"
+            alt="Тимофей Багров и Майя с книгой"
+            width={768}
+            height={1376}
+            className="mx-auto h-auto w-full max-w-[420px] rounded-2xl object-contain"
+          />
         </div>
       </section>
 
