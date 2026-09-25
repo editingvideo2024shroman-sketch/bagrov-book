@@ -158,7 +158,7 @@ function Home() {
       <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
-            <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
+            <p className="pill">
               Авторский сборник Тимофея Багрова
             </p>
             <h1 className="max-w-xl font-sans text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[2.35rem]">
@@ -194,7 +194,7 @@ function Home() {
 
       <section id="for-whom" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="kicker text-clay">Для кого этот справочник</p>
+          <p className="pill">Для кого этот справочник</p>
           <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             Узнаете себя в этих ситуациях?
           </h2>
@@ -219,7 +219,7 @@ function Home() {
 
       <section id="toc" className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="kicker text-clay">Структура справочника</p>
+          <p className="pill">Структура справочника</p>
           <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             150 рецептов в 9 главах
           </h2>
@@ -234,7 +234,7 @@ function Home() {
       <section id="author" className="px-4 py-4 sm:px-6">
         <div className="mx-auto grid max-w-6xl items-start gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:grid-cols-[1fr_minmax(14rem,20rem)]">
           <div>
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            <p className="pill">
               Автор
             </p>
             <h2 className="mt-2 font-sans text-2xl font-semibold leading-snug sm:text-[1.7rem]">
@@ -294,7 +294,7 @@ function Home() {
           </div>
           <div id="pay" className="mt-4 grid scroll-mt-24 gap-4 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            <p className="pill">
               Электронный справочник
             </p>
             <h2 className="mt-3 max-w-xl font-sans text-2xl font-semibold leading-tight text-ink sm:text-[1.85rem]">
@@ -317,7 +317,7 @@ function Home() {
             </ul>
           </div>
           <div className="rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            <p className="pill">
               Акция для читателей блога
             </p>
             <SalePrice size="md" className="mt-2" />
@@ -367,7 +367,7 @@ function Home() {
 
       <section className="px-4 pb-4 sm:px-6">
         <div className="mx-auto max-w-6xl rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
-          <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+          <p className="pill">
             Частые вопросы
           </p>
           <div className="mt-4 space-y-2">
@@ -396,7 +396,7 @@ function Home() {
       <section id="care" className="px-4 py-4 sm:px-6 sm:pb-14">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-2xl border border-line bg-cream px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6">
           <div className="max-w-2xl">
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
+            <p className="pill">
               Служба заботы
             </p>
             <p className="mt-1 font-sans text-lg font-semibold leading-snug sm:text-xl">
@@ -422,7 +422,7 @@ function Home() {
 
         <div className="mx-auto mt-4 grid max-w-6xl gap-8 rounded-2xl bg-forest px-5 py-7 text-cream-fg sm:grid-cols-[1fr_auto] sm:items-start sm:px-8 sm:py-8">
           <div>
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-cream-fg/55 uppercase">
+            <p className="pill">
               Будьте здоровы
             </p>
             <p className="mt-1 font-sans text-xl font-semibold">Тимофей Багров</p>
@@ -598,7 +598,7 @@ function Reviews() {
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <p className="kicker text-clay">Отзывы читателей</p>
+            <p className="pill">Отзывы читателей</p>
             <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
               Что говорят о справочнике
             </h2>
