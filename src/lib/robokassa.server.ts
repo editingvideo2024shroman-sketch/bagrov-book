@@ -4,7 +4,7 @@ const LOGIN = (process.env.ROBOKASSA_LOGIN ?? "").trim();
 const PASSWORD1 = (process.env.ROBOKASSA_PASSWORD1 ?? "").trim();
 const PASSWORD2 = (process.env.ROBOKASSA_PASSWORD2 ?? "").trim();
 
-const OUT_SUM = "890.00";
+const OUT_SUM = "790.00";
 const ITEM_NAME = "Электронная книга 150 таёжных рецептов";
 
 function md5(value: string) {
@@ -25,7 +25,7 @@ function unquote(value: string) {
 }
 
 export function receiptJson() {
-  return `{"items":[{"name":"${ITEM_NAME}","quantity":1,"sum":890.00,"payment_method":"full_payment","payment_object":"intellectual_activity","tax":"none"}]}`;
+  return `{"items":[{"name":"${ITEM_NAME}","quantity":1,"sum":790.00,"payment_method":"full_payment","payment_object":"intellectual_activity","tax":"none"}]}`;
 }
 
 export function buildPayment(email: string) {
