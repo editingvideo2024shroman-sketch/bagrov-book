@@ -161,15 +161,21 @@ function Home() {
             <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
               Авторский сборник Тимофея Багрова
             </p>
-            <h1 className="max-w-xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
-              150 таёжных рецептов, которые работают
+            <h1 className="max-w-2xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
+              150 таёжных рецептов: проверенная система домашнего оздоровления
             </h1>
-            <p className="max-w-xl font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
-              Я собрал 150 проверенных временем рецептов из того, что всегда
-              есть у вас дома, в ближайшем супермаркете или на грядке у соседа.
-              Это готовая система домашнего оздоровления без агрессивной химии,
-              редкой экзотики и сложных аптечных сиропов.
-            </p>
+            <div className="max-w-xl space-y-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
+              <p>
+                Настоящее здоровье рождается из простых и понятных вещей. В этом
+                справочнике — 150 эффективных рецептов, компоненты для которых
+                всегда под рукой: дома, в ближайшем магазине или у соседа.
+              </p>
+              <p>
+                Никакой агрессивной химии, заморской экзотики и запутанных
+                рецептур. Это готовое, доступное каждому руководство по бережной
+                заботе о себе и близких.
+              </p>
+            </div>
             <Button size="xl" asChild>
               <a href="#toc">Открыть содержание</a>
             </Button>
