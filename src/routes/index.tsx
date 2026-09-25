@@ -161,7 +161,7 @@ function Home() {
             <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
               Авторский сборник Тимофея Багрова
             </p>
-            <h1 className="max-w-2xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
+            <h1 className="max-w-xl font-sans text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[2.35rem]">
               150 таёжных рецептов: проверенная система домашнего оздоровления
             </h1>
             <div className="max-w-xl space-y-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
@@ -195,7 +195,7 @@ function Home() {
       <section id="for-whom" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="kicker text-clay">Для кого этот справочник</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+          <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             Узнаете себя в этих ситуациях?
           </h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -207,7 +207,7 @@ function Home() {
                 <p className="mb-3 inline-flex size-9 items-center justify-center rounded-full bg-paper-2 font-sans text-sm font-semibold text-ink">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="font-display text-xl leading-snug">{s.title}</h3>
+                <h3 className="font-sans text-lg font-semibold leading-snug">{s.title}</h3>
                 <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
                   {s.body}
                 </p>
@@ -220,9 +220,13 @@ function Home() {
       <section id="toc" className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="kicker text-clay">Структура справочника</p>
-          <h2 className="mt-3 font-display text-3xl leading-tight tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             150 рецептов в 9 главах
           </h2>
+          <p className="mt-3 max-w-2xl font-sans text-sm leading-relaxed text-ink-soft sm:text-base">
+            Удобная система: находите нужную задачу за секунды и получаете
+            пошаговый рецепт с точными пропорциями.
+          </p>
           <ChapterCarousel />
         </div>
       </section>
@@ -233,7 +237,7 @@ function Home() {
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Автор
             </p>
-            <h2 className="mt-2 font-display text-2xl leading-snug sm:text-3xl">
+            <h2 className="mt-2 font-sans text-2xl font-semibold leading-snug sm:text-[1.7rem]">
               Тимофей Багров
             </h2>
             <div className="mt-3 space-y-2 font-serif text-sm leading-relaxed text-ink-soft sm:text-base">
@@ -293,7 +297,7 @@ function Home() {
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Электронный справочник
             </p>
-            <h2 className="mt-3 max-w-xl font-display text-3xl leading-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 max-w-xl font-sans text-2xl font-semibold leading-tight text-ink sm:text-[1.85rem]">
               150 проверенных рецептов из тайги, которые действительно работают
             </h2>
             <ul className="mt-6 space-y-4">
@@ -372,7 +376,7 @@ function Home() {
                 key={f.q}
                 className="group rounded-xl bg-paper px-4 py-3"
               >
-                <summary className="cursor-pointer list-none font-display text-lg leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer list-none font-sans text-base font-semibold leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-4">
                     {f.q}
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cream font-sans text-xl font-light text-clay group-open:rotate-45">
@@ -395,7 +399,7 @@ function Home() {
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Служба заботы
             </p>
-            <p className="mt-1 font-display text-lg leading-snug sm:text-xl">
+            <p className="mt-1 font-sans text-lg font-semibold leading-snug sm:text-xl">
               Оплатили, а справочник не открылся?
             </p>
             <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
@@ -421,7 +425,7 @@ function Home() {
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-cream-fg/55 uppercase">
               Будьте здоровы
             </p>
-            <p className="mt-1 font-display text-2xl">Тимофей Багров</p>
+            <p className="mt-1 font-sans text-xl font-semibold">Тимофей Багров</p>
             <p className="mt-3 font-sans text-sm text-cream-fg/75">
               Шамин Роман Александрович
             </p>
@@ -595,7 +599,7 @@ function Reviews() {
         <div className="flex items-end justify-between gap-4">
           <div className="max-w-2xl">
             <p className="kicker text-clay">Отзывы читателей</p>
-            <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+            <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
               Что говорят о справочнике
             </h2>
             <p className="mt-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
