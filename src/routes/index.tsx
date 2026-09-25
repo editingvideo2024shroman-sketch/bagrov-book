@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Droplets,
   HeartPulse,
+  Globe,
   Mail,
   Phone,
   Shield,
@@ -330,12 +331,10 @@ function Home() {
             <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
               <p>Один платёж, без подписок.</p>
               <p>Справочник откроется сразу.</p>
-              <p>Сохраните его кнопкой «Скачать справочник».</p>
-              <p>На почту придёт чек.</p>
             </div>
-            <div className="mt-4 flex w-full flex-col gap-2">
+            <div className="mt-4 flex w-full flex-col gap-3">
               {owned ? (
-                <Button className="w-full" asChild>
+                <Button className="w-full" size="lg" asChild>
                   <Link to="/book" search={{ r: 1 }}>
                     Открыть справочник
                   </Link>
@@ -343,14 +342,31 @@ function Home() {
               ) : (
                 <>
                   <BuyDialog>
-                    <Button className="w-full">Получить справочник</Button>
+                    <Button className="w-full" size="lg">
+                      Получить справочник
+                    </Button>
                   </BuyDialog>
-                  <Button variant="outline" className="w-full rounded-full bg-paper" asChild>
+                  <p className="text-center font-sans text-xs leading-snug text-muted">
+                    Сохраните его кнопкой «Скачать справочник».
+                  </p>
+                  <div className="flex items-center gap-3 py-1">
+                    <span className="h-px flex-1 bg-line" />
+                    <span className="font-sans text-[0.68rem] text-muted">
+                      если карта не подошла
+                    </span>
+                    <span className="h-px flex-1 bg-line" />
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="h-12 w-full rounded-xl border-line bg-paper text-sm font-semibold"
+                    asChild
+                  >
                     <a
                       href="https://web.tribute.tg/p/FdZ"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <Globe className="size-4 text-sky-700" />
                       Оплатить зарубежной картой
                     </a>
                   </Button>
