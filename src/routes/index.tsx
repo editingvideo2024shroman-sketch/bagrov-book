@@ -159,7 +159,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
             <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
-              Авторский справочник Тимофея Багрова
+              Авторский сборник Тимофея Багрова
             </p>
             <h1 className="max-w-xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
               150 таёжных рецептов, которые работают
