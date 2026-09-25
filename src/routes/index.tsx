@@ -335,6 +335,8 @@ function Home() {
         </div>
       </section>
 
+      <Reviews />
+
       <section className="px-4 pb-4 sm:px-6">
         <div className="mx-auto max-w-6xl rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
           <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
@@ -445,6 +447,191 @@ function Home() {
         </div>
       </section>
     </div>
+  );
+}
+
+const REVIEWS = [
+  {
+    name: "Галина Сорокина",
+    initials: "ГС",
+    text: "Раньше при первом насморке уже бежала в аптеку. Здесь всё из того, что и так лежит дома: лук, мёд, чай. В сезон простуд открываю справочник и не трачу вечер на поиски.",
+  },
+  {
+    name: "Андрей Волков",
+    initials: "АВ",
+    text: "Думал, опять травки и красивые слова. А тут граммы, что делать и кому не стоит. Без шаманов. Прочитал как инструкцию, а не как сказку.",
+  },
+  {
+    name: "Ирина Белова",
+    initials: "ИБ",
+    text: "К обеду уже никакая, кофе не берёт. Нашла раздел про усталость и стала делать одно простое на утро. Не чудо, но день дотягиваю без того, чтобы лечь и не встать.",
+  },
+  {
+    name: "Светлана Орлова",
+    initials: "СО",
+    text: "После еды распирает, ночью жжёт. На форумах одно противоречит другому. Здесь отдельно живот, отдельно кишечник, отдельно изжога. Открыла своё и не перепутала.",
+  },
+  {
+    name: "Николай Петров",
+    initials: "НП",
+    text: "К ночи колени и поясница ноют, стопы гудят. Ванночки и компрессы расписаны по шагам. Косточку это не уберёт, но вечером хотя бы могу разогнуться и лечь.",
+  },
+  {
+    name: "Людмила Ершова",
+    initials: "ЛЕ",
+    text: "Таблетки пью как врач сказал, справочник их не отменял. Но соль убрала, зелень и свёклу теперь готовлю по рецептам, а не наугад. Тяжесть в голове к вечеру стала реже.",
+  },
+  {
+    name: "Сергей Кравцов",
+    initials: "СК",
+    text: "Вахта, до нормальной аптеки далеко. Скачал файл в телефон, интернет там пропадает. Когда першит горло или знобит, рецепт уже в кармане, а не в поиске.",
+  },
+  {
+    name: "Марина Лебедева",
+    initials: "МЛ",
+    text: "Засыпать не могла, всё крутилось в голове. В конце не еда, а короткие вещи: как выдохнуть за три минуты. Не лекция. Просто делаю и легче лечь.",
+  },
+  {
+    name: "Ольга Демина",
+    initials: "ОД",
+    text: "Лицо тусклое, концы сеченые, а банки из магазина уже надоели. Маски из двух-трёх продуктов с холодильника. Состав вижу сама, не с этикетки.",
+  },
+  {
+    name: "Елена Григорьева",
+    initials: "ЕГ",
+    text: "Брала маме: давление, ноги, живот. Файл оставила и себе. Мама говорит, так бабушка в деревне делала, только тут не на глаз, а ложками. Шрифт крупный, на телефоне открыла без моей помощи.",
+  },
+];
+
+function ReviewCard({ item }: { item: (typeof REVIEWS)[number] }) {
+  return (
+    <article className="flex h-[22.5rem] flex-col rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)]">
+      <p className="font-sans text-sm tracking-[0.18em] text-clay" aria-label="5 из 5">
+        ★★★★★
+      </p>
+      <p className="mt-4 flex-1 font-serif text-[0.95rem] leading-relaxed text-ink-soft">
+        «{item.text}»
+      </p>
+      <div className="mt-4 flex items-center gap-3 border-t border-line pt-4">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-paper-2 font-sans text-xs font-semibold text-ink">
+          {item.initials}
+        </span>
+        <span className="font-sans text-sm font-medium text-ink">{item.name}</span>
+      </div>
+    </article>
+  );
+}
+
+function ReviewArrows({
+  labelPrev,
+  labelNext,
+  onPrev,
+  onNext,
+}: {
+  labelPrev: string;
+  labelNext: string;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div className="flex gap-2">
+      <button
+        type="button"
+        aria-label={labelPrev}
+        onClick={onPrev}
+        className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+      >
+        <ChevronLeft className="size-5" />
+      </button>
+      <button
+        type="button"
+        aria-label={labelNext}
+        onClick={onNext}
+        className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
+      >
+        <ChevronRight className="size-5" />
+      </button>
+    </div>
+  );
+}
+
+function Reviews() {
+  const n = REVIEWS.length;
+  const [i, setI] = useState(0);
+  const startX = useRef(0);
+  const visible = [0, 1, 2].map((k) => REVIEWS[(i + k) % n]!);
+
+  function go(d: number) {
+    setI((x) => (x + d + n) % n);
+  }
+
+  return (
+    <section className="px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex items-end justify-between gap-4">
+          <div className="max-w-2xl">
+            <p className="kicker text-clay">Отзывы читателей</p>
+            <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+              Что говорят о справочнике
+            </h2>
+            <p className="mt-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
+              Впечатления тех, для кого он уже стал настольным.
+            </p>
+          </div>
+          <div className="hidden shrink-0 lg:block">
+            <ReviewArrows
+              labelPrev="Предыдущие отзывы"
+              labelNext="Следующие отзывы"
+              onPrev={() => go(-1)}
+              onNext={() => go(1)}
+            />
+          </div>
+        </div>
+
+        <div className="mt-8 hidden items-stretch gap-5 lg:grid lg:grid-cols-3">
+          {visible.map((item) => (
+            <ReviewCard key={item.name} item={item} />
+          ))}
+        </div>
+
+        <div className="mt-8 lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">
+              {i + 1} / {n}
+            </p>
+            <ReviewArrows
+              labelPrev="Предыдущий отзыв"
+              labelNext="Следующий отзыв"
+              onPrev={() => go(-1)}
+              onNext={() => go(1)}
+            />
+          </div>
+          <div
+            className="mt-5 grid"
+            onTouchStart={(e) => {
+              startX.current = e.touches[0]?.clientX ?? 0;
+            }}
+            onTouchEnd={(e) => {
+              const x = e.changedTouches[0]?.clientX ?? 0;
+              const dx = x - startX.current;
+              if (dx < -40) go(1);
+              if (dx > 40) go(-1);
+            }}
+          >
+            {REVIEWS.map((item, idx) => (
+              <div
+                key={item.name}
+                className="col-start-1 row-start-1"
+                style={{ visibility: idx === i ? "visible" : "hidden" }}
+                aria-hidden={idx !== i}
+              >
+                <ReviewCard item={item} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
