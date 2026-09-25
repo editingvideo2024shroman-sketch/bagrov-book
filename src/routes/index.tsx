@@ -157,33 +157,32 @@ function Home() {
     <div className="min-h-svh bg-paper">
       <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="flex flex-col items-start gap-4">
-            <h1 className="sr-only">150 таёжных рецептов, которые работают</h1>
-            <p className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+          <div className="flex flex-col items-start gap-5">
+            <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
               Авторская книга Тимофея Багрова
             </p>
-            <div className="w-full rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7">
-              <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
-                О чём книга
-              </p>
-              <p className="mt-3 font-serif text-lg leading-relaxed text-ink-soft sm:text-xl">
-                Я собрал 150 проверенных временем рецептов из того, что всегда
-                есть у вас дома, в ближайшем супермаркете или на грядке у соседа.
-                Это готовая система домашнего оздоровления без агрессивной химии,
-                редкой экзотики и сложных аптечных сиропов.
-              </p>
-            </div>
+            <h1 className="max-w-xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
+              150 таёжных рецептов, которые работают
+            </h1>
+            <p className="max-w-xl font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
+              Я собрал 150 проверенных временем рецептов из того, что всегда
+              есть у вас дома, в ближайшем супермаркете или на грядке у соседа.
+              Это готовая система домашнего оздоровления без агрессивной химии,
+              редкой экзотики и сложных аптечных сиропов.
+            </p>
             <Button size="xl" asChild>
               <a href="#toc">Открыть содержание</a>
             </Button>
           </div>
-          <img
-            src="/photos/hero-hold.jpg"
-            alt="Тимофей Багров и Майя с книгой"
-            width={768}
-            height={1376}
-            className="mx-auto h-auto w-full max-w-[420px] rounded-2xl object-contain"
-          />
+          <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
+            <img
+              src="/photos/hero-hold.jpg"
+              alt="Тимофей Багров и Майя с книгой"
+              width={768}
+              height={1376}
+              className="h-auto w-full rounded-[1.25rem] object-contain"
+            />
+          </div>
         </div>
       </section>
 
