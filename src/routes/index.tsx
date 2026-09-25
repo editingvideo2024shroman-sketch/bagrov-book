@@ -217,10 +217,10 @@ function Home() {
         </div>
       </section>
 
-      <section id="toc" className="py-16 sm:py-24">
+      <section id="toc" className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="kicker text-clay">Структура справочника</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+          <h2 className="mt-3 font-display text-3xl leading-tight tracking-tight sm:text-4xl">
             150 рецептов в 9 главах
           </h2>
           <ChapterCarousel />
@@ -659,18 +659,20 @@ function InstagramIcon() {
 
 function ChapterCard({ sec }: { sec: (typeof CHAPTERS)[number] }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] sm:p-6">
-      <div className="flex items-start justify-between gap-3">
-        <span className="flex size-11 items-center justify-center rounded-2xl bg-paper-2 text-clay">
-          <sec.Icon className="size-5" strokeWidth={1.75} />
+    <article className="flex h-full flex-col rounded-2xl border border-line bg-cream p-4">
+      <div className="flex items-center justify-between gap-3">
+        <span className="flex size-9 items-center justify-center rounded-xl bg-paper-2 text-clay">
+          <sec.Icon className="size-4" strokeWidth={1.75} />
         </span>
-        <span className="rounded-full bg-paper-2 px-3 py-1 font-sans text-[0.7rem] text-muted">
+        <span className="rounded-full bg-paper-2 px-2.5 py-1 font-sans text-xs text-muted">
           {sec.count}
         </span>
       </div>
-      <h3 className="mt-4 font-display text-xl leading-snug">{sec.title}</h3>
-      <p className="mt-3 flex-1 rounded-xl bg-paper px-3 py-3 font-serif text-sm leading-relaxed text-ink-soft">
-        <span className="mb-1 block font-sans text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+      <h3 className="mt-3 font-sans text-base font-semibold leading-snug text-ink">
+        {sec.title}
+      </h3>
+      <p className="mt-2 min-h-[6.5rem] flex-1 font-sans text-sm leading-snug text-ink-soft">
+        <span className="mb-1 block text-[0.65rem] tracking-[0.12em] text-muted uppercase">
           Что внутри
         </span>
         {sec.blurb}
@@ -690,7 +692,7 @@ function ChapterCarousel() {
 
   return (
     <>
-      <div className="mt-10 hidden gap-5 lg:grid lg:grid-cols-2">
+      <div className="mt-8 hidden gap-4 lg:grid lg:grid-cols-3">
         {CHAPTERS.map((c) => (
           <ChapterCard key={c.roman} sec={c} />
         ))}
