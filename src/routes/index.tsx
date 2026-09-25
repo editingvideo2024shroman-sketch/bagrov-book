@@ -258,10 +258,16 @@ function Home() {
               href="https://www.youtube.com/@Timofey-bagrov"
               target="_blank"
               rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-1 rounded-full bg-paper px-3.5 py-2 font-sans text-sm font-medium text-ink hover:text-clay"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-paper px-3.5 py-2 font-sans text-sm font-medium text-ink hover:text-clay"
             >
               Смотрите, как я готовлю эти рецепты, на YouTube
-              <span aria-hidden>→</span>
+              <svg viewBox="0 0 24 24" className="size-5 shrink-0" aria-hidden>
+                <path
+                  fill="#FF0000"
+                  d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8Z"
+                />
+                <path fill="#fff" d="M9.75 15.5v-7l6.5 3.5-6.5 3.5Z" />
+              </svg>
             </a>
           </div>
           <img
