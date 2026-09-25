@@ -271,7 +271,24 @@ function Home() {
       </section>
 
       <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
-        <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-4 rounded-2xl bg-forest px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-5">
+            <div>
+              <p className="font-sans text-sm font-semibold text-white sm:text-base">
+                К каждому рецепту: пошаговый метод, точные дозировки и предостережения
+              </p>
+              <p className="mt-1 font-sans text-sm text-white/75">
+                Ингредиенты легко купить в травяной аптеке или продуктовом магазине.
+              </p>
+            </div>
+            <a
+              href="#pay"
+              className="inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-white hover:bg-clay-hover"
+            >
+              Получить доступ
+            </a>
+          </div>
+          <div id="pay" className="mt-4 grid scroll-mt-24 gap-4 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
               Электронный справочник
@@ -338,6 +355,7 @@ function Home() {
               )}
             </div>
           </div>
+        </div>
         </div>
       </section>
 
