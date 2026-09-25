@@ -31,7 +31,7 @@ export function BookCover({ className }: { className?: string }) {
         <div className="book-3d-cover">
           <img
             src="/photos/cover.jpg?v=5"
-            alt="Обложка книги Тимофея Багрова"
+            alt="Обложка справочника Тимофея Багрова"
             className="pointer-events-none h-full w-full object-cover object-[50%_18%]"
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-ink/90 via-ink/40 to-transparent px-6 pt-20 pb-5">

@@ -63,7 +63,7 @@ export function BuyDialog({
   if (owned && children) {
     return (
       <Button asChild>
-        <a href="/book?r=1">Открыть книгу</a>
+        <a href="/book?r=1">Открыть справочник</a>
       </Button>
     );
   }
@@ -72,9 +72,9 @@ export function BuyDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       {children ? <DialogTrigger asChild>{children}</DialogTrigger> : null}
       <DialogContent>
-        <DialogTitle>Купить книгу с рецептами от Тимофея</DialogTitle>
+        <DialogTitle>Купить справочник с рецептами от Тимофея</DialogTitle>
         <DialogDescription>
-          Просто скачиваете книгу и читаете в любом месте: с телефона или с компьютера.
+          Просто скачиваете справочник и читаете в любом месте: с телефона или с компьютера.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">

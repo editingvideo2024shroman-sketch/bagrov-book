@@ -5,7 +5,7 @@ const PASSWORD1 = (process.env.ROBOKASSA_PASSWORD1 ?? "").trim();
 const PASSWORD2 = (process.env.ROBOKASSA_PASSWORD2 ?? "").trim();
 
 const OUT_SUM = "790.00";
-const ITEM_NAME = "Электронная книга 150 таёжных рецептов";
+const ITEM_NAME = "Электронный справочник 150 таёжных рецептов";
 
 function md5(value: string) {
   return createHash("md5").update(value, "utf8").digest("hex");

@@ -137,8 +137,8 @@ const INCLUDED = [
 
 const FAQ = [
   {
-    q: "В каком виде я получу книгу?",
-    a: "Сразу после оплаты откроется полная электронная книга: 150 рецептов с фото. Можно скачать и открывать без интернета. Можете читать как с телефона, так и с компьютера.",
+    q: "В каком виде я получу справочник?",
+    a: "Сразу после оплаты откроется полный электронный справочник: 150 рецептов с фото. Можно скачать и открывать без интернета. Можете читать как с телефона, так и с компьютера.",
   },
   {
     q: "Нужны ли какие-то особые ингредиенты?",
@@ -159,7 +159,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
             <p className="rounded-full bg-paper-2 px-3.5 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-muted uppercase">
-              Авторская книга Тимофея Багрова
+              Авторский справочник Тимофея Багрова
             </p>
             <h1 className="max-w-xl font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
               150 таёжных рецептов, которые работают
@@ -177,7 +177,7 @@ function Home() {
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
             <img
               src="/photos/hero-hold.jpg"
-              alt="Тимофей Багров и Майя с книгой"
+              alt="Тимофей Багров и Майя со справочником"
               width={768}
               height={1376}
               className="h-auto w-full rounded-[1.25rem] object-contain"
@@ -188,7 +188,7 @@ function Home() {
 
       <section id="for-whom" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="kicker text-clay">Для кого эта книга</p>
+          <p className="kicker text-clay">Для кого этот справочник</p>
           <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
             Узнаете себя в этих ситуациях?
           </h2>
@@ -213,7 +213,7 @@ function Home() {
 
       <section id="toc" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="kicker text-clay">Структура книги</p>
+          <p className="kicker text-clay">Структура справочника</p>
           <h2 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
             150 рецептов в 9 главах
           </h2>
@@ -241,7 +241,7 @@ function Home() {
                 тем, что работает.
               </p>
               <p>
-                Бонусом в конце книги оставил для тебя 6 коротких записей, на
+                Бонусом в конце справочника оставил для тебя 6 коротких записей, на
                 случай если тебе сейчас тяжело. Не болейте, друзья!
               </p>
             </div>
@@ -260,7 +260,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
             <p className="font-sans text-[0.65rem] font-semibold tracking-[0.16em] text-clay uppercase">
-              Электронная книга
+              Электронный справочник
             </p>
             <h2 className="mt-3 max-w-xl font-display text-3xl leading-tight text-ink sm:text-4xl">
               150 проверенных рецептов из тайги, которые действительно работают
@@ -288,21 +288,21 @@ function Home() {
             <SalePrice size="md" className="mt-2" />
             <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
               <p>Один платёж, без подписок.</p>
-              <p>Книга откроется сразу.</p>
-              <p>Сохраните её кнопкой «Скачать книгу».</p>
+              <p>Справочник откроется сразу.</p>
+              <p>Сохраните его кнопкой «Скачать справочник».</p>
               <p>На почту придёт чек.</p>
             </div>
             <div className="mt-4 flex w-full flex-col gap-2">
               {owned ? (
                 <Button className="w-full" asChild>
                   <Link to="/book" search={{ r: 1 }}>
-                    Открыть книгу
+                    Открыть справочник
                   </Link>
                 </Button>
               ) : (
                 <>
                   <BuyDialog>
-                    <Button className="w-full">Получить книгу</Button>
+                    <Button className="w-full">Получить справочник</Button>
                   </BuyDialog>
                   <Button variant="outline" className="w-full rounded-full bg-paper" asChild>
                     <a
@@ -361,7 +361,7 @@ function Home() {
             Важно
           </p>
           <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
-            Данная книга носит исключительно ознакомительный и кулинарный характер.
+            Данный справочник носит исключительно ознакомительный и кулинарный характер.
             Рецепты смузи и коктейлей не являются лекарственными средствами,
             медицинскими назначениями или заменой профессионального лечения. Перед
             изменением рациона и при наличии хронических заболеваний обязательно
@@ -377,13 +377,13 @@ function Home() {
               Служба заботы
             </p>
             <p className="mt-1 font-display text-lg leading-snug sm:text-xl">
-              Оплатили, а книга не открылась?
+              Оплатили, а справочник не открылся?
             </p>
             <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
               Чек приходит на почту через 1–2 минуты. Если его нет, загляните в
-              «Спам». Книга на почту не приходит: она открывается сразу на сайте.
-              Чтобы она осталась у вас, нажмите «Скачать книгу». Кнопка будет прямо
-              на странице книги. Если страница не открылась или остались вопросы,
+              «Спам». Справочник на почту не приходит: он открывается сразу на сайте.
+              Чтобы он остался у вас, нажмите «Скачать справочник». Кнопка будет прямо
+              на странице справочника. Если страница не открылась или остались вопросы,
               напишите нам. Мы на связи и сразу поможем.
             </p>
           </div>

@@ -36,7 +36,7 @@ export function StickyCta() {
         {owned ? (
           <Button className="ml-auto" asChild>
             <Link to="/book" search={{ r: 1 }}>
-              Открыть книгу
+              Открыть справочник
             </Link>
           </Button>
         ) : (

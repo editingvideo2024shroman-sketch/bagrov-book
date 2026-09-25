@@ -19,12 +19,12 @@ export function SiteHeader() {
         {owned ? (
           <Button size="sm" asChild>
             <Link to="/book" search={{ r: 1 }}>
-              Открыть книгу
+              Открыть справочник
             </Link>
           </Button>
         ) : (
           <BuyDialog>
-            <Button size="sm">Забрать книгу</Button>
+            <Button size="sm">Забрать справочник</Button>
           </BuyDialog>
         )}
       </div>

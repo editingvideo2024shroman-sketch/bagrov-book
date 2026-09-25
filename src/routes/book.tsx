@@ -111,7 +111,7 @@ function BookPage() {
           150 рецептов
         </Link>
         <span className="hidden font-sans text-sm text-muted sm:inline">
-          / книга
+          / справочник
         </span>
         <div className="ml-auto flex items-center gap-2">
           <BookHeaderActions />
@@ -202,7 +202,7 @@ function DownloadBookButton({ big = false }: { big?: boolean }) {
     try {
       await downloadBookFile();
     } catch {
-      window.alert("Не получилось собрать книгу. Попробуйте ещё раз.");
+      window.alert("Не получилось собрать справочник. Попробуйте ещё раз.");
     } finally {
       setPacking(false);
     }
@@ -211,7 +211,7 @@ function DownloadBookButton({ big = false }: { big?: boolean }) {
   return (
     <Button size={big ? "lg" : "sm"} onClick={() => void onDownload()} disabled={packing}>
       <Download className="size-4" />
-      {packing ? "Собираю книгу…" : "Скачать книгу"}
+      {packing ? "Собираю справочник…" : "Скачать справочник"}
     </Button>
   );
 }
@@ -221,10 +221,10 @@ function BookHome({ locked }: { locked: boolean }) {
     <div className="mx-auto max-w-2xl">
       {locked ? null : (
         <div className="mb-8 rounded-lg border border-line bg-cream px-5 py-6">
-          <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Книга ваша</p>
+          <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Справочник ваш</p>
           <h2 className="mt-2 font-display text-3xl">Сначала скачайте файл</h2>
           <p className="mt-3 font-serif text-lg leading-relaxed text-ink-soft">
-            На почту приходит только чек об оплате, не сама книга. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
+            На почту приходит только чек об оплате, не сам справочник. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
           </p>
           <div className="mt-5">
             <DownloadBookButton big />
@@ -272,7 +272,7 @@ function Gate({ title }: { title: string }) {
       </p>
       <div className="mt-6">
         <BuyDialog>
-          <Button size="lg">Купить книгу</Button>
+          <Button size="lg">Купить справочник</Button>
         </BuyDialog>
       </div>
     </div>
@@ -330,7 +330,7 @@ function FavoritesView({ owned }: { owned: boolean }) {
   return (
     <div className="mx-auto max-w-2xl">
       <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">
-        В книге
+        В справочнике
       </p>
       <h1 className="mt-2 font-display text-4xl tracking-tight">Избранное</h1>
       {recipes.length === 0 ? (
@@ -417,7 +417,7 @@ function Nav({
           >
             <span className="min-w-0 flex-1">
               <span className="block font-sans text-sm font-semibold text-clay">Далее</span>
-              <span className="mt-1 block font-sans text-sm text-ink">купить книгу</span>
+              <span className="mt-1 block font-sans text-sm text-ink">купить справочник</span>
             </span>
             <ChevronRight className="size-4 shrink-0 text-clay" />
           </button>
