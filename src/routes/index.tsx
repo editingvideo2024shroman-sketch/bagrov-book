@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { photo } from "@/lib/book";
 import { usePurchase } from "@/lib/purchase";
 import { SalePrice } from "@/components/sale-price";
+import { StickyCta } from "@/components/sticky-cta";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -156,7 +157,7 @@ function Home() {
   const owned = usePurchase((s) => s.owned);
 
   return (
-    <div className="min-h-svh bg-paper">
+    <div className="min-h-svh bg-paper pb-24">
       <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
@@ -178,11 +179,18 @@ function Home() {
                 заботе о себе и близких.
               </p>
             </div>
-            <Button size="xl" asChild>
-              <a href="#toc" onClick={() => goal("content")}>
-                Открыть содержание
-              </a>
-            </Button>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <Button size="xl" asChild>
+                <a href="#toc" onClick={() => goal("content")}>
+                  Открыть содержание
+                </a>
+              </Button>
+              <Button size="xl" variant="outline" className="rounded-full bg-white" asChild>
+                <a href="#pay" onClick={() => goal("to_pay")}>
+                  Перейти к покупке
+                </a>
+              </Button>
+            </div>
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
             <img
@@ -503,6 +511,7 @@ function Home() {
           </p>
         </div>
       </section>
+      <StickyCta />
     </div>
   );
 }
