@@ -115,7 +115,7 @@ export function BuyDialog({
               onChange={(e) => setAgreed(e.target.checked)}
               className="mt-0.5 size-4 shrink-0 accent-forest"
             />
-            После оплаты нажмите «Вернуться в магазин».
+            После оплаты нажмите «Вернуться в магазин», книга для скачивания откроется там.
           </label>
           <SalePrice size="sm" className="mx-auto" />
           <Button
