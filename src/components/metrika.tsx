@@ -9,6 +9,13 @@ function ym(): Ym | undefined {
   return (window as Window & { ym?: Ym }).ym;
 }
 
+export function goal(name: string, params?: Record<string, string>) {
+  const call = ym();
+  if (!call) return;
+  if (params) call(METRIKA_ID, "reachGoal", name, params);
+  else call(METRIKA_ID, "reachGoal", name);
+}
+
 export function Metrika() {
   const href = useRouterState({
     select: (s) => s.location.href,
@@ -31,6 +38,7 @@ export function Metrika() {
       clickmap: true,
       trackLinks: true,
       accurateTrackBounce: true,
+      webvisor: true,
     });
   }, []);
 

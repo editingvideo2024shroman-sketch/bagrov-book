@@ -14,15 +14,18 @@ import { startPayment } from "@/lib/pay.functions";
 import { usePurchase } from "@/lib/purchase";
 import { rub } from "@/lib/utils";
 import { SalePrice } from "@/components/sale-price";
+import { goal } from "@/components/metrika";
 
 export function BuyDialog({
   children,
   open: openProp,
   onOpenChange,
+  source = "site",
 }: {
   children?: React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  source?: string;
 }) {
   const owned = usePurchase((s) => s.owned);
   const [name, setName] = useState("");
@@ -32,7 +35,10 @@ export function BuyDialog({
   const [agreed, setAgreed] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
   const open = openProp ?? innerOpen;
-  const setOpen = onOpenChange ?? setInnerOpen;
+  function setOpen(next: boolean) {
+    if (next) goal("buy_open", { from: source });
+    (onOpenChange ?? setInnerOpen)(next);
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,6 +46,7 @@ export function BuyDialog({
     setBusy(true);
     setError("");
     try {
+      goal("buy_pay", { from: source });
       const payment = await startPayment({ data: { email: email.trim() } });
       const form = document.createElement("form");
       form.method = "POST";
@@ -56,6 +63,7 @@ export function BuyDialog({
       form.submit();
     } catch {
       setBusy(false);
+      goal("buy_error", { from: source });
       setError("Не удалось открыть оплату. Напишите в Telegram, оформим вручную.");
     }
   }

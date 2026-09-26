@@ -19,6 +19,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { BuyDialog } from "@/components/buy-dialog";
+import { goal } from "@/components/metrika";
 import { Button } from "@/components/ui/button";
 import { photo } from "@/lib/book";
 import { usePurchase } from "@/lib/purchase";
@@ -178,7 +179,9 @@ function Home() {
               </p>
             </div>
             <Button size="xl" asChild>
-              <a href="#toc">Открыть содержание</a>
+              <a href="#toc" onClick={() => goal("content")}>
+                Открыть содержание
+              </a>
             </Button>
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
@@ -259,6 +262,7 @@ function Home() {
               href="https://www.youtube.com/@Timofey-bagrov"
               target="_blank"
               rel="noreferrer"
+              onClick={() => goal("youtube")}
               className="mt-4 inline-flex items-center gap-2 rounded-full bg-paper px-3.5 py-2 font-sans text-sm font-medium text-ink hover:text-clay"
             >
               Смотрите, как я готовлю эти рецепты, на YouTube
@@ -294,6 +298,7 @@ function Home() {
             </div>
             <a
               href="#pay"
+              onClick={() => goal("to_pay")}
               className="inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-white hover:bg-clay-hover"
             >
               Получить доступ
@@ -341,7 +346,7 @@ function Home() {
                 </Button>
               ) : (
                 <>
-                  <BuyDialog>
+                  <BuyDialog source="price">
                     <Button className="w-full" size="lg">
                       Получить справочник
                     </Button>
@@ -365,6 +370,7 @@ function Home() {
                       href="https://web.tribute.tg/p/FdZ"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => goal("foreign_card")}
                     >
                       <Globe className="size-4 text-sky-700" />
                       Оплатить зарубежной картой
@@ -436,6 +442,7 @@ function Home() {
             href="https://t.me/MusicNPC_AI"
             target="_blank"
             rel="noreferrer"
+            onClick={() => goal("support")}
             className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-clay-hover sm:mt-0"
           >
             Написать в поддержку

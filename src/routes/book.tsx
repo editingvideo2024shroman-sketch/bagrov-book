@@ -15,6 +15,7 @@ import {
   sectionOf,
 } from "@/lib/book";
 import { confirmPayment } from "@/lib/pay.functions";
+import { goal } from "@/components/metrika";
 import { downloadBookFile } from "@/lib/download-book";
 import { useFavorites } from "@/lib/favorites";
 import { usePurchase } from "@/lib/purchase";
@@ -82,6 +83,7 @@ function BookPage() {
       data: { outSum, invId, signature, email },
     }).then((ok) => {
       if (!ok) return;
+      goal("paid");
       buy({ email, name: "" });
       const next = new URL(window.location.href);
       next.search = "";
@@ -177,7 +179,7 @@ function BookHeaderActions() {
 
   if (!owned) {
     return (
-      <BuyDialog>
+      <BuyDialog source="book_header">
         <Button size="sm">Купить</Button>
       </BuyDialog>
     );
@@ -245,7 +247,7 @@ function BookHome({ locked }: { locked: boolean }) {
       </p>
       <div className="mt-8">
         {locked ? (
-          <BuyDialog>
+          <BuyDialog source="book_cover">
             <Button size="lg">Открыть все 150 рецептов</Button>
           </BuyDialog>
         ) : (
@@ -271,7 +273,7 @@ function Gate({ title }: { title: string }) {
         Этот разворот открывается после покупки.
       </p>
       <div className="mt-6">
-        <BuyDialog>
+        <BuyDialog source="book_locked">
           <Button size="lg">Купить справочник</Button>
         </BuyDialog>
       </div>
@@ -410,7 +412,7 @@ function Nav({
           <ChevronRight className="size-4 shrink-0 text-clay" />
         </Link>
       ) : next && !nextOpen ? (
-        <BuyDialog>
+        <BuyDialog source="book_next">
           <button
             type="button"
             className="flex w-full items-center gap-2 rounded-lg border border-line bg-cream px-3 py-3 text-left hover:border-clay"

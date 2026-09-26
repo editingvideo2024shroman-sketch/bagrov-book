@@ -40,7 +40,7 @@ export function StickyCta() {
             </Link>
           </Button>
         ) : (
-          <BuyDialog>
+          <BuyDialog source="sticky">
             <Button className="ml-auto">Купить · {rub(book.price)}</Button>
           </BuyDialog>
         )}

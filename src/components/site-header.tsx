@@ -23,7 +23,7 @@ export function SiteHeader() {
             </Link>
           </Button>
         ) : (
-          <BuyDialog>
+          <BuyDialog source="header">
             <Button size="sm">Забрать справочник</Button>
           </BuyDialog>
         )}

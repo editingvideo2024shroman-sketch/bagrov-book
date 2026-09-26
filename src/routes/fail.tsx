@@ -1,10 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { goal } from "@/components/metrika";
 
 export const Route = createFileRoute("/fail")({
   component: FailPage,
 });
 
 function FailPage() {
+  useEffect(() => {
+    goal("pay_fail");
+  }, []);
   return (
     <main className="mx-auto flex min-h-svh max-w-lg flex-col justify-center px-6 py-16">
       <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Оплата</p>
