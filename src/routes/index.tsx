@@ -206,7 +206,7 @@ function Home() {
 
       <section id="for-whom" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="pill">Для кого этот справочник</p>
+          <p className="pill">Для кого эта книга</p>
           <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             Узнаете себя в этих ситуациях?
           </h2>
@@ -231,7 +231,7 @@ function Home() {
 
       <section id="toc" className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="pill">Структура справочника</p>
+          <p className="pill">Структура книги</p>
           <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
             150 рецептов в 9 главах
           </h2>
