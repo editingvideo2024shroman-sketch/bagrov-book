@@ -158,15 +158,6 @@ function Home() {
 
   return (
     <div className="min-h-svh bg-paper pb-24">
-      <div className="bg-ink px-4 py-3 text-center">
-        <a
-          href="/recepty-tekst.txt"
-          download="recepty-tekst.txt"
-          className="inline-block rounded-full bg-white px-5 py-2 font-sans text-sm font-semibold text-ink"
-        >
-          Скачать текст всех рецептов
-        </a>
-      </div>
       <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
