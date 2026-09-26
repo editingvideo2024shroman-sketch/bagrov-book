@@ -50,7 +50,7 @@ export const book = raw as Book;
 export const SAMPLE_IDS: readonly number[] = [];
 
 export function photo(key: string) {
-  return `/photos/${key}.jpg?v=14`;
+  return `/photos/${key}.jpg?v=15`;
 }
 
 export function sectionOf(id: SectionId) {
