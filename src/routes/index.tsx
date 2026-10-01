@@ -56,28 +56,28 @@ const CHAPTERS: {
 }[] = [
   {
     roman: "I",
-    title: "Усталость и упадок сил",
+    title: "Синдром хронической усталости",
     blurb: "Тяжесть в голове, дефицит энергии, сонливость по утрам, потеря концентрации в течение дня.",
     count: "24 рецепта",
     Icon: Zap,
   },
   {
     roman: "II",
-    title: "Простуда и иммунитет",
+    title: "Проверенные временем тёплые напитки",
     blurb: "Первые симптомы простуды, озноб и слабость, кашель, быстрое восстановление сил.",
     count: "20 рецептов",
     Icon: Shield,
   },
   {
     roman: "III",
-    title: "Тяжесть и вздутие живота",
+    title: "Дискомфорт после еды",
     blurb: "Вздутие, тяжесть и распирание живота, дискомфорт после плотной еды.",
     count: "22 рецепта",
     Icon: Apple,
   },
   {
     roman: "IV",
-    title: "Кишечник и пищеварение",
+    title: "Забота о кишечнике",
     blurb: "Редкий и нерегулярный стул, дискомфорт в животе, мягкое восстановление баланса.",
     count: "10 рецептов",
     Icon: Wheat,
@@ -91,28 +91,28 @@ const CHAPTERS: {
   },
   {
     roman: "VI",
-    title: "Давление и сосуды",
+    title: "Поддержка и укрепление сосудов",
     blurb: "Скачки давления, холестерин, тяжесть и напряжение в теле.",
     count: "21 рецепт",
     Icon: HeartPulse,
   },
   {
     roman: "VII",
-    title: "Суставы и усталость ног",
+    title: "Домашнее спа: ванночки и компрессы",
     blurb: "Ноют колени, поясница и косточка на ноге, вечерние отёки и тяжесть, которая не даёт уснуть. Компрессы, растирания и ванночки для облегчения к утру.",
     count: "17 рецептов",
     Icon: Sprout,
   },
   {
     roman: "VIII",
-    title: "Кожа, волосы, лицо",
+    title: "Естественная красота: кожа, волосы, глаза",
     blurb: "Тусклый тон, выпадение волос, шелушение и стянутость кожи.",
     count: "16 рецептов",
     Icon: Sparkles,
   },
   {
     roman: "IX",
-    title: "Тревога и сон",
+    title: "Антистресс: когда сдают нервы",
     blurb: "Паника, фоновая тревога, выгорание, трудности с засыпанием.",
     count: "10 практик",
     Icon: Brain,
@@ -387,6 +387,18 @@ function Home() {
                   <p className="text-center font-sans text-xs leading-snug text-muted">
                     Украина, США, Европа и весь мир через Telegram
                   </p>
+                  <a
+                    href="https://t.me/MusicNPC_AI"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => goal("manager")}
+                    className="flex w-full items-center gap-3 rounded-xl border border-line bg-paper px-4 py-3 text-left font-sans text-sm font-semibold leading-snug text-ink hover:bg-paper-2"
+                  >
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#229ED9] text-white">
+                      <TelegramIcon />
+                    </span>
+                    Если не получилось оплатить, напишите менеджеру лично
+                  </a>
                   <p className="flex items-center justify-center gap-1.5 text-center font-sans text-xs text-muted">
                     <Shield className="size-3.5 shrink-0" />
                     Безопасное соединение
