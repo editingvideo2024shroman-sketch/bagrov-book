@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { mailConfigured, sendBookLetter } from "@/lib/mail.server";
 import { resultSignatureOk } from "@/lib/robokassa.server";
 
 async function readParams(request: Request) {
@@ -17,6 +18,16 @@ async function answer(request: Request) {
   const invId = params.get("InvId") ?? "";
   if (!resultSignatureOk(params)) {
     return new Response("bad sign", { status: 400 });
+  }
+  const email = params.get("Shp_email") ?? "";
+  const outSum = params.get("OutSum") ?? "";
+  if (mailConfigured() && email) {
+    try {
+      await sendBookLetter({ email, outSum, invId });
+    } catch (err) {
+      console.error("[mail]", err);
+      return new Response("mail failed", { status: 500 });
+    }
   }
   return new Response(`OK${invId}`, {
     status: 200,

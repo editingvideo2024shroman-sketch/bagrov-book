@@ -54,6 +54,17 @@ function same(a: string, b: string) {
   return a.trim().toLowerCase() === b.trim().toLowerCase();
 }
 
+export function bookAccessUrl(outSum: string, invId: string, email: string) {
+  if (!PASSWORD1 || !outSum || !invId || !email) return "";
+  const signature = md5(`${outSum}:${invId}:${PASSWORD1}:Shp_email=${email}`);
+  const url = new URL("https://www.timofey-bagrov.ru/book");
+  url.searchParams.set("OutSum", outSum);
+  url.searchParams.set("InvId", invId);
+  url.searchParams.set("SignatureValue", signature);
+  url.searchParams.set("Shp_email", email);
+  return url.toString();
+}
+
 export function successSignatureOk(input: {
   outSum: string;
   invId: string;
