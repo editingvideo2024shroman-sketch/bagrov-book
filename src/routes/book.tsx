@@ -221,18 +221,6 @@ function DownloadBookButton({ big = false }: { big?: boolean }) {
 function BookHome({ locked }: { locked: boolean }) {
   return (
     <div className="mx-auto max-w-2xl">
-      {locked ? null : (
-        <div className="mb-8 rounded-lg border border-line bg-cream px-5 py-6">
-          <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Справочник ваш</p>
-          <h2 className="mt-2 font-display text-3xl">Сначала скачайте файл</h2>
-          <p className="mt-3 font-serif text-lg leading-relaxed text-ink-soft">
-            Ссылка на этот справочник также пришла на почту. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
-          </p>
-          <div className="mt-5">
-            <DownloadBookButton big />
-          </div>
-        </div>
-      )}
       <img
         src={photo("cover")}
         alt=""

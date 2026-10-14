@@ -115,7 +115,7 @@ export function BuyDialog({
               onChange={(e) => setAgreed(e.target.checked)}
               className="mt-0.5 size-4 shrink-0 accent-forest"
             />
-            После оплаты нажмите «Вернуться в магазин». Справочник откроется там, и ссылка придёт на почту.
+            После оплаты нажмите «Вернуться в магазин» — справочник откроется. Ссылка придёт на почту вместе с чеком.
           </label>
           <SalePrice size="sm" className="mx-auto" />
           <Button

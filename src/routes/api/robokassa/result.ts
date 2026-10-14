@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { waitUntil } from "@vercel/functions";
 import { mailConfigured, sendBookLetter } from "@/lib/mail.server";
 import { resultSignatureOk } from "@/lib/robokassa.server";
 
@@ -22,12 +23,11 @@ async function answer(request: Request) {
   const email = params.get("Shp_email") ?? "";
   const outSum = params.get("OutSum") ?? "";
   if (mailConfigured() && email) {
-    try {
-      await sendBookLetter({ email, outSum, invId });
-    } catch (err) {
-      console.error("[mail]", err);
-      return new Response("mail failed", { status: 500 });
-    }
+    waitUntil(
+      sendBookLetter({ email, outSum, invId }).catch((err) => {
+        console.error("[mail]", err);
+      }),
+    );
   }
   return new Response(`OK${invId}`, {
     status: 200,
