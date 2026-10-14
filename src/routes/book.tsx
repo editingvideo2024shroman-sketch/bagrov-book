@@ -226,7 +226,7 @@ function BookHome({ locked }: { locked: boolean }) {
           <p className="font-sans text-xs tracking-[0.16em] text-clay uppercase">Справочник ваш</p>
           <h2 className="mt-2 font-display text-3xl">Сначала скачайте файл</h2>
           <p className="mt-3 font-serif text-lg leading-relaxed text-ink-soft">
-            На почту приходит только чек об оплате, не сам справочник. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
+            Ссылка на этот справочник также пришла на почту. Нажмите кнопку ниже. Файл сохранится в телефоне и откроется без интернета. Читать можно и здесь.
           </p>
           <div className="mt-5">
             <DownloadBookButton big />
