@@ -455,47 +455,15 @@ function Home() {
               Если письма нет, проверьте папку «Спам». Если не пришло и туда, напишите нам.
             </p>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:min-w-64">
-            <a
-              href="https://t.me/MusicNPC_AI"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => goal("support")}
-              className="inline-flex items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-clay-hover"
-            >
-              Написать в поддержку в Telegram
-            </a>
-            <p className="pt-1 text-center font-sans text-xs text-muted sm:text-left">
-              Написать на почту. Откроется в браузере:
-            </p>
-            <a
-              href="https://mail.yandex.ru/compose?to=vikramodin@gmail.com&subject=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => goal("support")}
-              className="inline-flex items-center justify-center rounded-full border border-line bg-paper px-5 py-3 font-sans text-sm font-medium text-ink hover:bg-cream"
-            >
-              Яндекс Почта
-            </a>
-            <a
-              href="https://e.mail.ru/compose/?mailto=mailto%3Avikramodin%40gmail.com"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => goal("support")}
-              className="inline-flex items-center justify-center rounded-full border border-line bg-paper px-5 py-3 font-sans text-sm font-medium text-ink hover:bg-cream"
-            >
-              Mail.ru
-            </a>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=vikramodin@gmail.com&su=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => goal("support")}
-              className="inline-flex items-center justify-center rounded-full border border-line bg-paper px-5 py-3 font-sans text-sm font-medium text-ink hover:bg-cream"
-            >
-              Gmail
-            </a>
-          </div>
+          <a
+            href="https://t.me/MusicNPC_AI"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => goal("support")}
+            className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-clay-hover sm:mt-0"
+          >
+            Написать в поддержку
+          </a>
         </div>
 
         <div className="mx-auto mt-4 grid max-w-6xl gap-8 rounded-2xl bg-forest px-5 py-7 text-cream-fg sm:grid-cols-[1fr_auto] sm:items-start sm:px-8 sm:py-8">
