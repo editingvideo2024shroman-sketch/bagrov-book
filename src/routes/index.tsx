@@ -194,10 +194,10 @@ function Home() {
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
             <img
-              src="/photos/hero-hold.jpg"
+              src="/photos/hero-hold.jpg?v=6"
               alt="Тимофей Багров и Майя со справочником"
-              width={768}
-              height={1376}
+              width={1400}
+              height={2508}
               className="h-auto w-full rounded-[1.25rem] object-contain"
             />
           </div>
