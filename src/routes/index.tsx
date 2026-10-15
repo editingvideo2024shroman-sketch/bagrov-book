@@ -21,7 +21,6 @@ import {
 import { BuyDialog } from "@/components/buy-dialog";
 import { goal } from "@/components/metrika";
 import { Button } from "@/components/ui/button";
-import { photo } from "@/lib/book";
 import { usePurchase } from "@/lib/purchase";
 import { SalePrice } from "@/components/sale-price";
 import { StickyCta } from "@/components/sticky-cta";
@@ -284,10 +283,10 @@ function Home() {
             </a>
           </div>
           <img
-            src={photo("author")}
+            src="/photos/author.jpg?v=16"
             alt="Тимофей Багров и Майя"
-            width={1008}
-            height={1792}
+            width={1400}
+            height={2508}
             className="h-auto w-full rounded-xl object-contain"
           />
         </div>
