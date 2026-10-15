@@ -32,7 +32,6 @@ export function BuyDialog({
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [agreed, setAgreed] = useState(false);
   const [innerOpen, setInnerOpen] = useState(false);
   const open = openProp ?? innerOpen;
   function setOpen(next: boolean) {
@@ -42,7 +41,7 @@ export function BuyDialog({
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim() || !agreed || busy) return;
+    if (!email.trim() || busy) return;
     setBusy(true);
     setError("");
     try {
@@ -107,22 +106,12 @@ export function BuyDialog({
               placeholder="you@mail.ru"
             />
           </div>
-          <label className="flex items-start gap-2.5 font-sans text-sm leading-snug text-ink-soft">
-            <input
-              type="checkbox"
-              required
-              checked={agreed}
-              onChange={(e) => setAgreed(e.target.checked)}
-              className="mt-0.5 size-4 shrink-0 accent-forest"
-            />
-            Понимаю: это не лечение. Если проблемы серьёзные — иду в больницу.
-          </label>
           <SalePrice size="sm" className="mx-auto" />
           <Button
             type="submit"
             size="lg"
             className="mt-1 w-full"
-            disabled={busy || !agreed}
+            disabled={busy}
           >
             {busy ? "Переходим к оплате…" : `Оплатить ${rub(book.price)}`}
           </Button>
