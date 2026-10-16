@@ -21,6 +21,9 @@ import { useFavorites } from "@/lib/favorites";
 import { usePurchase } from "@/lib/purchase";
 import { cn } from "@/lib/utils";
 
+/** Временно открыто с сайта. Убрать вместе с кнопкой «Открыть книгу». */
+const BOOK_PREVIEW = true;
+
 type Search = {
   r?: number;
   n?: number;
@@ -94,7 +97,10 @@ function BookPage() {
   const recipe = r ? recipeById(r) : undefined;
   const note = n ? noteById(n) : undefined;
   const isSample = recipe ? (SAMPLE_IDS as readonly number[]).includes(recipe.id) : false;
-  const locked = !owned && ((recipe && !isSample) || !!note || (!recipe && !note && !fav));
+  const locked =
+    !BOOK_PREVIEW &&
+    !owned &&
+    ((recipe && !isSample) || !!note || (!recipe && !note && !fav));
 
   const view = fav ? "fav" : note ? "note" : recipe ? "recipe" : "home";
 
@@ -152,13 +158,13 @@ function BookPage() {
         ) : null}
 
         <main className="min-w-0 flex-1 px-4 py-8 sm:px-8 sm:py-12">
-          {view === "home" ? <BookHome locked={!owned} /> : null}
+          {view === "home" ? <BookHome locked={!owned && !BOOK_PREVIEW} /> : null}
           {view === "fav" ? <FavoritesView owned={owned} /> : null}
           {view === "recipe" && recipe ? (
             locked ? (
               <Gate title={recipe.title} />
             ) : (
-              <RecipeView recipeId={recipe.id} owned={owned} />
+              <RecipeView recipeId={recipe.id} owned={owned || BOOK_PREVIEW} />
             )
           ) : null}
           {view === "note" && note ? (
@@ -369,7 +375,9 @@ function Nav({
   const search = (id: number) => (kind === "note" ? { n: id } : { r: id });
   const nextOpen =
     !!next &&
-    (owned || (kind === "recipe" && (SAMPLE_IDS as readonly number[]).includes(next.id)));
+    (owned ||
+      BOOK_PREVIEW ||
+      (kind === "recipe" && (SAMPLE_IDS as readonly number[]).includes(next.id)));
 
   return (
     <div className="no-print mt-10 grid grid-cols-2 items-stretch gap-3 border-t border-line pt-6">

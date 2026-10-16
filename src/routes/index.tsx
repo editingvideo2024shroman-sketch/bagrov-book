@@ -184,6 +184,11 @@ function Home() {
                   Открыть содержание
                 </a>
               </Button>
+              <Button size="xl" variant="outline" asChild>
+                <Link to="/book" search={{ r: 1 }}>
+                  Открыть книгу
+                </Link>
+              </Button>
             </div>
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
