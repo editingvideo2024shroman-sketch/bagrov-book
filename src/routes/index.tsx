@@ -184,11 +184,6 @@ function Home() {
                   Открыть содержание
                 </a>
               </Button>
-              <Button size="xl" variant="outline" className="rounded-full bg-white" asChild>
-                <a href="#pay" onClick={() => goal("to_pay")}>
-                  Перейти к покупке
-                </a>
-              </Button>
             </div>
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
