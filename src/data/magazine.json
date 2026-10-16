@@ -1,3 +1,87 @@
 {
-  "r-001": { "use": "r-001-use", "ing": "r-001-ing", "ready": "r-001-ready" }
+  "r-001": {
+    "use": "r-001-use",
+    "ing": "r-001-ing",
+    "ready": "r-001-ready"
+  },
+  "r-002": {
+    "use": "r-002-use",
+    "ing": "r-002-ing",
+    "ready": "r-002-ready"
+  },
+  "r-003": {
+    "use": "r-003-use",
+    "ing": "r-003-ing",
+    "ready": "r-003-ready"
+  },
+  "r-004": {
+    "use": "r-004-use",
+    "ing": "r-004-ing",
+    "ready": "r-004-ready"
+  },
+  "r-005": {
+    "use": "r-005-use",
+    "ing": "r-005-ing",
+    "ready": "r-005-ready"
+  },
+  "r-052": {
+    "use": "r-052-use",
+    "ing": "r-052-ing",
+    "ready": "r-052-ready"
+  },
+  "r-053": {
+    "use": "r-053-use",
+    "ing": "r-053-ing",
+    "ready": "r-053-ready"
+  },
+  "r-054": {
+    "use": "r-054-use",
+    "ing": "r-054-ing",
+    "ready": "r-054-ready"
+  },
+  "r-055": {
+    "use": "r-055-use",
+    "ing": "r-055-ing",
+    "ready": "r-055-ready"
+  },
+  "r-077": {
+    "use": "r-077-use",
+    "ing": "r-077-ing",
+    "ready": "r-077-ready"
+  },
+  "r-078": {
+    "use": "r-078-use",
+    "ing": "r-078-ing",
+    "ready": "r-078-ready"
+  },
+  "r-079": {
+    "use": "r-079-use",
+    "ing": "r-079-ing",
+    "ready": "r-079-ready"
+  },
+  "r-080": {
+    "use": "r-080-use",
+    "ing": "r-080-ing",
+    "ready": "r-080-ready"
+  },
+  "r-127": {
+    "use": "r-127-use",
+    "ing": "r-127-ing",
+    "ready": "r-127-ready"
+  },
+  "r-128": {
+    "use": "r-128-use",
+    "ing": "r-128-ing",
+    "ready": "r-128-ready"
+  },
+  "r-129": {
+    "use": "r-129-use",
+    "ing": "r-129-ing",
+    "ready": "r-129-ready"
+  },
+  "r-130": {
+    "use": "r-130-use",
+    "ing": "r-130-ing",
+    "ready": "r-130-ready"
+  }
 }
