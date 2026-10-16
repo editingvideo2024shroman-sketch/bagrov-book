@@ -28,7 +28,6 @@ export function BuyDialog({
   source?: string;
 }) {
   const owned = usePurchase((s) => s.owned);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -84,16 +83,6 @@ export function BuyDialog({
           Просто скачиваете справочник и читаете в любом месте: с телефона или с компьютера.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="buy-name">Имя</Label>
-            <Input
-              id="buy-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              autoComplete="name"
-              placeholder="Как к вам обращаться"
-            />
-          </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="buy-email">Почта</Label>
             <Input
