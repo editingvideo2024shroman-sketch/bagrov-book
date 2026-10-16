@@ -1,4 +1,5 @@
 import raw from "@/data/book.json";
+import magazine from "@/data/magazine.json";
 
 export type SectionId = "i" | "ii" | "iii" | "iv" | "v" | "vi" | "vii" | "viii" | "ix";
 
@@ -54,9 +55,7 @@ export function photo(key: string) {
 }
 
 /** Recipes that already have the three magazine frames: person, ingredients, finished. */
-const MAGAZINE: Record<string, { use: string; ing: string; ready: string }> = {
-  "r-001": { use: "r-001-use", ing: "r-001-ing", ready: "r-001-ready" },
-};
+const MAGAZINE = magazine as Record<string, { use: string; ing: string; ready: string }>;
 
 export function magazineOf(image: string) {
   return MAGAZINE[image] ?? null;

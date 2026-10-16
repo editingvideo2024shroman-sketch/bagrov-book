@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { BuyDialog } from "@/components/buy-dialog";
 import { usePurchase } from "@/lib/purchase";
 
 export function SiteHeader() {
@@ -23,9 +22,7 @@ export function SiteHeader() {
             </Link>
           </Button>
         ) : (
-          <BuyDialog source="header">
-            <Button size="sm">Забрать справочник</Button>
-          </BuyDialog>
+          <span />
         )}
       </div>
     </header>
