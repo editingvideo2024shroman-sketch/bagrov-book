@@ -50,7 +50,16 @@ export const book = raw as Book;
 export const SAMPLE_IDS: readonly number[] = [];
 
 export function photo(key: string) {
-  return `/photos/${key}.jpg?v=15`;
+  return `/photos/${key}.jpg?v=16`;
+}
+
+/** Recipes that already have the three magazine frames: person, ingredients, finished. */
+const MAGAZINE: Record<string, { use: string; ing: string; ready: string }> = {
+  "r-001": { use: "r-001-use", ing: "r-001-ing", ready: "r-001-ready" },
+};
+
+export function magazineOf(image: string) {
+  return MAGAZINE[image] ?? null;
 }
 
 export function sectionOf(id: SectionId) {

@@ -275,7 +275,7 @@ function RecipeView({ recipeId, owned }: { recipeId: number; owned: boolean }) {
   const prev = recipeById(recipeId - 1);
   const next = recipeById(recipeId + 1);
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-3xl">
       <p className="font-sans text-xs tracking-[0.16em] text-muted uppercase">
         Глава {sec.roman}. {sec.title}
       </p>

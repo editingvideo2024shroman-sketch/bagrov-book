@@ -1,4 +1,4 @@
-import { book } from "@/lib/book";
+import { book, magazineOf } from "@/lib/book";
 
 function esc(s: string) {
   return s
@@ -44,7 +44,15 @@ async function blobToJpeg(blob: Blob, max = 960, quality = 0.72) {
 
 async function loadPhotos() {
   const keys = new Set<string>(["cover"]);
-  for (const r of book.recipes) keys.add(r.image);
+  for (const r of book.recipes) {
+    keys.add(r.image);
+    const frames = magazineOf(r.image);
+    if (frames) {
+      keys.add(frames.use);
+      keys.add(frames.ing);
+      keys.add(frames.ready);
+    }
+  }
   for (const n of book.notes) keys.add(n.image);
   const list = [...keys];
   const photos: Record<string, string> = {};
@@ -110,16 +118,24 @@ function buildHtml(photos: Record<string, string>) {
       const nextL = next
         ? `<a class="nav-next" href="#r${next.id}"><span><b>Далее</b><em>${esc(next.title)}</em></span> →</a>`
         : `<a class="nav-next" href="#n1"><span><b>Далее</b><em>к разговору</em></span> →</a>`;
+      const frames = magazineOf(r.image);
+      const shots = frames
+        ? `${img(photos, frames.use, "shot", r.title)}
+        <div class="pair">
+          <figure>${img(photos, frames.ing, "shot", "Ингредиенты")}<figcaption>Что берём</figcaption></figure>
+          <figure>${img(photos, frames.ready, "shot", "Готово")}<figcaption>Что получается</figcaption></figure>
+        </div>`
+        : img(photos, r.image, "shot", r.title);
       return `<article class="view" id="r${r.id}">
         <p class="kicker">Глава ${sec ? esc(sec.roman) : ""}. ${sec ? esc(sec.title) : ""}</p>
-        ${img(photos, r.image, "shot", r.title)}
+        ${shots}
         <p class="kicker">${practice ? "Приём" : "Рецепт"} ${r.id}</p>
         <h1>${esc(r.title)}</h1>
-        <div class="field"><b>Почему советую</b>${paras(r.benefit)}</div>
+        <p class="lead">${esc(r.benefit)}</p>
         <div class="field"><b>${practice ? "Что нужно" : "Ингредиенты"}</b>${paras(r.ingredients)}</div>
         <div class="field"><b>${practice ? "Как делать" : "Как приготовить"}</b>${paras(r.cook)}</div>
         <div class="field"><b>${practice ? "Когда и сколько" : "Как принимать"}</b>${paras(r.take)}</div>
-        <div class="field"><b>Противопоказания</b>${paras(r.contra)}</div>
+        <div class="field warn"><b>Кому нельзя</b>${paras(r.contra)}</div>
         <div class="nav">${prevL}${nextL}</div>
       </article>`;
     })
@@ -152,7 +168,7 @@ function buildHtml(photos: Record<string, string>) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(book.title)} — ${esc(book.author)}</title>
 <style>
-:root{--paper:#efe8dc;--ink:#1a1410;--soft:#4a4138;--muted:#8a7f73;--line:#d4cbbd;--clay:#b45a32}
+:root{--paper:#f4efe6;--ink:#2b241c;--soft:#4e463d;--muted:#6d5b4a;--line:#e6dccb;--clay:#8a5a3c}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.5 Georgia,serif}
 a{color:var(--clay);text-decoration:none}
@@ -178,7 +194,12 @@ a{color:var(--clay);text-decoration:none}
 .view:target{display:block}
 body:has(.view:target) #home:not(:target){display:none}
 .cover{width:100%;max-width:22rem;display:block;margin:0 auto 1.25rem;border-radius:.6rem}
-.shot{display:block;width:100%;max-height:26rem;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:.5rem;background:#ddd3c4;margin:.75rem 0 1rem}
+.shot{display:block;width:100%;max-height:26rem;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:.7rem;background:#e7dccb;margin:.75rem 0 .35rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.4rem 0 1rem}
+.pair figure{margin:0}
+.pair .shot{aspect-ratio:3/2;max-height:none;margin:0}
+.pair figcaption{margin-top:.35rem;font:700 .68rem/1.2 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field.warn{background:#f3ebe1;border:1px solid #e4d3bc;border-radius:.7rem;padding:.75rem .9rem}
 .kicker{font:700 .7rem/1.2 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin:0 0 .35rem}
 h1{font-size:2.1rem;line-height:1.12;margin:.35rem 0 1rem}
 .lead{color:var(--soft)}
@@ -187,8 +208,8 @@ h1{font-size:2.1rem;line-height:1.12;margin:.35rem 0 1rem}
 .field b{display:block;font:700 .7rem/1.2 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
 .nav{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;align-items:stretch;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
 .nav-prev,.nav-next{border-radius:.5rem;padding:.75rem .85rem;text-decoration:none;font:600 14px/1.3 system-ui,sans-serif}
-.nav-prev{display:flex;align-items:center;gap:.35rem;background:#c45a32;color:#fff}
-.nav-next{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:.5rem;border:1px solid var(--line);background:#faf4ea;color:#c45a32}
+.nav-prev{display:flex;align-items:center;gap:.35rem;background:#6d5b4a;color:#fff}
+.nav-next{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:.5rem;border:1px solid var(--line);background:#fbf7f1;color:#6d5b4a}
 .nav-next span{display:flex;flex-direction:column;color:inherit;min-width:0}
 .nav-next b{font-weight:700}
 .nav-next em{margin-top:.3rem;font-style:normal;font-weight:400;color:var(--ink);white-space:normal}
@@ -199,6 +220,7 @@ h1{font-size:2.1rem;line-height:1.12;margin:.35rem 0 1rem}
   .scrim{position:fixed;inset:3.5rem 0 0;background:#0003;z-index:25}
   #toc:target ~ .scrim{display:block}
   .main{padding:1.25rem 1rem 3rem}
+  .pair{grid-template-columns:1fr}
 }
 </style>
 </head>
