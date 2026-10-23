@@ -23,7 +23,6 @@ import { goal } from "@/components/metrika";
 import { Button } from "@/components/ui/button";
 import { usePurchase } from "@/lib/purchase";
 import { SalePrice } from "@/components/sale-price";
-import { StickyCta } from "@/components/sticky-cta";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -156,7 +155,7 @@ function Home() {
   const owned = usePurchase((s) => s.owned);
 
   return (
-    <div className="min-h-svh bg-paper pb-24">
+    <div className="min-h-svh bg-paper">
       <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
         <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col items-start gap-5">
@@ -514,7 +513,6 @@ function Home() {
           </p>
         </div>
       </section>
-      <StickyCta />
     </div>
   );
 }
