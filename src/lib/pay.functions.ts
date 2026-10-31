@@ -11,11 +11,20 @@ export const startPayment = createServerFn({ method: "POST" })
 
 export const confirmPayment = createServerFn({ method: "POST" })
   .validator((data: { outSum: string; invId: string; signature: string; email: string }) => data)
-  .handler(async ({ data }) =>
-    successSignatureOk({
+  .handler(async ({ data }) => {
+    const ok = successSignatureOk({
       outSum: data.outSum,
       invId: data.invId,
       signature: data.signature,
       email: data.email,
-    }),
-  );
+    });
+    if (ok && data.email) {
+      const { sendBookLetter } = await import("./mail.server");
+      await sendBookLetter({
+        email: data.email,
+        outSum: data.outSum,
+        invId: data.invId,
+      }).catch((err) => console.error("[mail]", err));
+    }
+    return ok;
+  });
