@@ -334,7 +334,7 @@ function Home() {
             <SalePrice size="md" className="mt-2" />
             <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
               <p>Один платёж, без подписок.</p>
-              <p>Ссылка придёт на почту вместе с чеком.</p>
+              <p>Книга придет на почту вместе с чеком.</p>
             </div>
             <div className="mt-4 flex w-full flex-col gap-3">
               {owned ? (
