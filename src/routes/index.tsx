@@ -139,7 +139,7 @@ const INCLUDED = [
 const FAQ = [
   {
     q: "В каком виде я получу справочник?",
-    a: "Ссылка на справочник придёт на почту вместе с чеком. Если письма нет, проверьте папку «Спам». Читать можно с телефона и с компьютера.",
+    a: "Ссылки на обе книги придут на почту вместе с чеком. Если письма нет, проверьте папку «Спам». Читать можно с телефона и с компьютера.",
   },
   {
     q: "Нужны ли какие-то особые ингредиенты?",
@@ -167,7 +167,7 @@ function Home() {
             </h1>
             <div className="max-w-xl space-y-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
               <p>
-                Вернуть силы и лёгкость после 50 — обычной едой с вашей кухни.
+                Вернуть силы и лёгкость после 40 — обычной едой с вашей кухни.
               </p>
               <p>
                 Рецепты для оживления всего тела: от тяжести после еды, утренней
@@ -234,107 +234,36 @@ function Home() {
         </div>
       </section>
 
-      <section id="author" className="px-4 py-4 sm:px-6">
-        <div className="mx-auto grid max-w-6xl items-start gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:grid-cols-[1fr_minmax(14rem,20rem)]">
-          <div>
-            <p className="pill">
-              Автор
-            </p>
-            <h2 className="mt-2 font-sans text-2xl font-semibold leading-snug sm:text-[1.7rem]">
-              Тимофей Багров
-            </h2>
-            <div className="mt-3 space-y-2 font-serif text-sm leading-relaxed text-ink-soft sm:text-base">
-              <p>Экс-фельдшер скорой.</p>
-              <p>
-                Четыре года назад уехал с собакой Майей жить в тайгу — за сотни
-                километров от цивилизации и аптек. Возрождаю и тестирую на себе
-                методы наших дедов, вместо таблеток. Снимаю всё на видео —
-                некоторые ролики посмотрели больше миллиона человек.
-              </p>
-              <p>Делюсь тем, что реально работает.</p>
-              <p>
-                Бонусом в конце справочника — 6 коротких записей на случай, если
-                тебе сейчас тяжело. Не болейте, друзья!
-              </p>
-            </div>
-            <a
-              href="https://www.youtube.com/@Timofey-bagrov"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => goal("youtube")}
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-paper px-3.5 py-2 font-sans text-sm font-medium text-ink hover:text-clay"
-            >
-              Смотрите, как я готовлю эти рецепты, на YouTube
-              <svg viewBox="0 0 24 24" className="size-5 shrink-0" aria-hidden>
-                <path
-                  fill="#FF0000"
-                  d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8Z"
-                />
-                <path fill="#fff" d="M9.75 15.5v-7l6.5 3.5-6.5 3.5Z" />
-              </svg>
-            </a>
-          </div>
-          <img
-            src="/photos/author.jpg?v=16"
-            alt="Тимофей Багров и Майя"
-            width={1400}
-            height={2508}
-            className="h-auto w-full rounded-xl object-contain"
-          />
-        </div>
-      </section>
-
       <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-4 rounded-2xl bg-forest px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-5">
-            <div>
-              <p className="font-sans text-sm font-semibold text-white sm:text-base">
-                К каждому рецепту: пошаговый метод, точные дозировки и предостережения
+          <div className="mb-4 grid items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7 lg:grid-cols-[1fr_15.5rem]">
+            <div className="rounded-xl border border-line bg-white px-4 py-3">
+              <p className="font-sans text-[0.68rem] font-semibold tracking-[0.16em] text-clay uppercase">
+                Бонусом
               </p>
-              <p className="mt-1 font-sans text-sm text-white/75">
-                Ингредиенты легко купить в травяной аптеке или продуктовом магазине.
+              <p className="mt-1 font-sans text-base font-semibold text-ink">
+                Книга «Лёгкая»
+              </p>
+              <p className="mt-1 font-sans text-sm leading-relaxed text-ink-soft">
+                50 рецептов на завтрак, обед и ужин. У каждой тарелки посчитаны калории, белки, жиры и углеводы.
               </p>
             </div>
-            <a
-              href="#pay"
-              onClick={() => goal("to_pay")}
-              className="inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-white hover:bg-clay-hover"
-            >
-              Получить доступ
-            </a>
+            <img
+              src="/photos/plate-cover.jpg"
+              alt="Книга «Лёгкая» — 50 рецептов правильного питания"
+              width={900}
+              height={1200}
+              className="mx-auto w-full max-w-[220px] rounded-xl object-contain shadow-[0_18px_40px_-24px_rgb(26_20_16/0.55)] max-lg:order-first lg:max-w-none"
+            />
           </div>
-          <div id="pay" className="mt-4 grid scroll-mt-24 gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
-            <p className="pill">
-              Электронный справочник
-            </p>
-            <h2 className="mt-3 max-w-xl font-sans text-2xl font-semibold leading-tight text-ink sm:text-[1.85rem]">
-              150 проверенных рецептов из тайги, которые действительно работают
-            </h2>
-            <ul className="mt-6 space-y-4">
-              {INCLUDED.map((item) => (
-                <li key={item.title} className="flex gap-3">
-                  <Check className="mt-1 size-4 shrink-0 text-clay" />
-                  <div>
-                    <p className="font-sans text-base font-medium leading-snug text-ink">
-                      {item.title}
-                    </p>
-                    <p className="mt-0.5 font-sans text-sm leading-snug text-muted">
-                      {item.detail}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div id="pay" className="grid scroll-mt-24 gap-4 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
             <p className="pill">
               Акция для читателей блога
             </p>
             <SalePrice size="md" className="mt-2" />
             <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
-              <p>Один платёж, без подписок.</p>
-              <p>Книга придет на почту вместе с чеком.</p>
+              <p>Обе книги придут на почту вместе с чеком.</p>
             </div>
             <div className="mt-4 flex w-full flex-col gap-3">
               {owned ? (
@@ -398,6 +327,29 @@ function Home() {
               )}
             </div>
           </div>
+          <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
+            <p className="pill">
+              Электронный справочник
+            </p>
+            <h2 className="mt-3 max-w-xl font-sans text-2xl font-semibold leading-tight text-ink sm:text-[1.85rem]">
+              150 проверенных рецептов из тайги, которые действительно работают
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {INCLUDED.map((item) => (
+                <li key={item.title} className="flex gap-3">
+                  <Check className="mt-1 size-4 shrink-0 text-clay" />
+                  <div>
+                    <p className="font-sans text-base font-medium leading-snug text-ink">
+                      {item.title}
+                    </p>
+                    <p className="mt-0.5 font-sans text-sm leading-snug text-muted">
+                      {item.detail}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         </div>
       </section>
@@ -442,7 +394,7 @@ function Home() {
               Оплатили, а справочник не открылся?
             </p>
             <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">
-              Ссылка на справочник приходит на почту вместе с чеком, обычно за 1–2 минуты.
+              Ссылки на обе книги приходят на почту вместе с чеком, обычно за 1–2 минуты.
               Если письма нет, проверьте папку «Спам». Если не пришло и туда, напишите нам.
             </p>
           </div>

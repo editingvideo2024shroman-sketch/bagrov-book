@@ -146,40 +146,103 @@ def link(key: str, text: str) -> str:
     return f'<link href="#{key}" color="#243028">{esc(text)}</link>'
 
 
-def field(label: str, body: str):
-    return [
-        Paragraph(esc(label).upper(), STYLES["label"]),
-        Spacer(1, 1.5 * mm),
-        Paragraph(esc(body), STYLES["body"]),
-        Spacer(1, 3.2 * mm),
-    ]
+def picture_fill(key: str, box_w: float, box_h: float, quality: int = 66) -> RLImage:
+    tw = 1200
+    th = max(1, int(round(tw * box_h / box_w)))
+    dest = CACHE / f"{key}-fill-{tw}x{th}-q{quality}.jpg"
+    src = PHOTOS / f"{key}.jpg"
+    if not (dest.exists() and dest.stat().st_mtime >= src.stat().st_mtime):
+        image = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+        scale = max(tw / image.width, th / image.height)
+        resized = image.resize((max(tw, int(image.width * scale)), max(th, int(image.height * scale))), Image.Resampling.LANCZOS)
+        left = max(0, (resized.width - tw) // 2)
+        top = max(0, (resized.height - th) // 2)
+        resized = resized.crop((left, top, left + tw, top + th))
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        resized.save(dest, "JPEG", quality=quality, optimize=True)
+    return RLImage(str(dest), box_w, box_h)
 
 
-def recipe_block(recipe, section):
+def flow_height(flowables) -> float:
+    total = 0.0
+    for item in flowables:
+        _, height = item.wrap(CONTENT_W, PAGE_H)
+        total += height
+    return total
+
+
+FRAME_H = PAGE_H - TOP - BOTTOM
+
+
+def recipe_page(recipe, section, open_chapter=False):
     practice = recipe.get("kind") == "practice"
     key = f"r{recipe['id']}"
     word = "Практика" if practice else "Рецепт"
-    head = [
+    labels = [
+        ("Почему советую", recipe["benefit"]),
+        ("Что нужно" if practice else "Ингредиенты", recipe["ingredients"]),
+        ("Как делать" if practice else "Как приготовить", recipe["cook"]),
+        ("Когда и сколько" if practice else "Как принимать", recipe["take"]),
+        ("Противопоказания", recipe["contra"]),
+    ]
+    chosen = None
+    chapter_bits = []
+    if open_chapter:
+        chapter_bits = [
+            Paragraph(esc(f"Глава {section['roman']}"), STYLES["kicker"]),
+            Spacer(1, 1 * mm),
+            Paragraph(esc(section["title"]), STYLES["h2"]),
+            Spacer(1, 2.4 * mm),
+        ]
+    for size, leading, gap, title_size in (
+        (13, 17.2, 4.0 * mm, 20),
+        (12.2, 16.0, 3.4 * mm, 18),
+        (11.2, 14.6, 2.8 * mm, 17),
+        (10.5, 13.6, 2.2 * mm, 16),
+    ):
+        body = ParagraphStyle(
+            f"rb{size}", fontName="Serif", fontSize=size, leading=leading, textColor=SOFT,
+        )
+        label = ParagraphStyle(
+            f"rl{size}", fontName="Sans-Bold", fontSize=9, leading=11, textColor=CLAY,
+        )
+        title = ParagraphStyle(
+            f"rt{size}", fontName="Serif-Bold", fontSize=title_size, leading=title_size + 3, textColor=INK,
+        )
+        kicker = f"{word} {recipe['id']}" if open_chapter else f"Глава {section['roman']}. {section['title']}  ·  {word} {recipe['id']}"
+        text = [
+            *chapter_bits,
+            Paragraph(esc(kicker), STYLES["kicker"]),
+            Spacer(1, 1.4 * mm),
+            Paragraph(esc(recipe["title"]), title),
+            Spacer(1, 3.2 * mm),
+        ]
+        for name, value in labels:
+            text.append(Paragraph(esc(name).upper(), label))
+            text.append(Spacer(1, 1.2 * mm))
+            text.append(Paragraph(esc(value), body))
+            text.append(Spacer(1, gap))
+        text_h = flow_height(text)
+        photo_h = FRAME_H - text_h - 3.2 * mm
+        if photo_h >= 48 * mm:
+            chosen = (text, min(photo_h, 118 * mm))
+            break
+    if chosen is None:
+        chosen = (text, 44 * mm)
+    text, photo_h = chosen
+    head = []
+    if open_chapter:
+        head.append(Bookmark(f"ch-{section['id']}", f"Глава {section['roman']}. {section['title']}", 0))
+        head.append(Paragraph(f'<a name="ch-{section["id"]}"/>', STYLES["kicker"]))
+    return [
+        *head,
         Bookmark(key, f"{recipe['id']}. {recipe['title']}", 1),
         Paragraph(f'<a name="{key}"/>', STYLES["kicker"]),
-        picture(recipe["image"], CONTENT_W, 58 * mm, 1100, 740),
-        Spacer(1, 2.5 * mm),
-        Paragraph(
-            esc(f"Глава {section['roman']}. {section['title']}  ·  {word} {recipe['id']}"),
-            STYLES["kicker"],
-        ),
-        Spacer(1, 1 * mm),
-        Paragraph(esc(recipe["title"]), STYLES["recipe_title"]),
-        Spacer(1, 3 * mm),
+        picture_fill(recipe["image"], CONTENT_W, photo_h),
+        Spacer(1, 3.2 * mm),
+        *text,
+        PageBreak(),
     ]
-    body = [
-        *field("Почему советую", recipe["benefit"]),
-        *field("Что нужно" if practice else "Ингредиенты", recipe["ingredients"]),
-        *field("Как делать" if practice else "Как приготовить", recipe["cook"]),
-        *field("Когда и сколько" if practice else "Как принимать", recipe["take"]),
-        *field("Противопоказания", recipe["contra"]),
-    ]
-    return head, body
 
 
 def chapter_head(section, count):
@@ -334,41 +397,37 @@ def build(pages: dict | None):
 
     for section in BOOK["sections"]:
         recipes = by_section[section["id"]]
-        story.append(chapter_head(section, len(recipes)))
-        for recipe in recipes:
-            story.append(CondPageBreak(95 * mm))
-            head, body = recipe_block(recipe, section)
-            story.append(KeepTogether(head))
-            story.extend(body)
-            story.append(Spacer(1, 2 * mm))
-        story.append(PageBreak())
+        for index, recipe in enumerate(recipes):
+            story.extend(recipe_page(recipe, section, open_chapter=index == 0))
 
-    story.append(Bookmark("notes", "Шесть записей", 0))
-    story.append(Paragraph('<a name="notes"/>', STYLES["kicker"]))
-    story.append(Paragraph("Шесть записей", STYLES["h1"]))
-    story.append(Spacer(1, 2 * mm))
-    story.append(Paragraph(
-        "Если сейчас тяжело. Это не рецепты. Можно не читать.",
-        STYLES["body"],
-    ))
-    story.append(Spacer(1, 5 * mm))
-    for note in BOOK["notes"]:
+    for index, note in enumerate(BOOK["notes"]):
         key = f"n{note['id']}"
-        story.append(CondPageBreak(80 * mm))
+        if index:
+            story.append(PageBreak())
+        head = []
+        if index == 0:
+            head = [
+                Bookmark("notes", "Шесть записей", 0),
+                Paragraph('<a name="notes"/>', STYLES["kicker"]),
+                Paragraph("Шесть записей", STYLES["h2"]),
+                Spacer(1, 1.2 * mm),
+                Paragraph("Если сейчас тяжело. Это не рецепты. Можно не читать.", STYLES["small"]),
+                Spacer(1, 3 * mm),
+            ]
+        story.extend(head)
         story.append(KeepTogether([
             Bookmark(key, f"Запись {note['id']}. {note['title']}", 1),
             Paragraph(f'<a name="{key}"/>', STYLES["kicker"]),
-            picture(note["image"], CONTENT_W, 62 * mm, 1100, 800),
-            Spacer(1, 2.5 * mm),
-            Paragraph(esc(f"Запись {note['id']}"), STYLES["kicker"]),
-            Spacer(1, 1 * mm),
-            Paragraph(esc(note["title"]), STYLES["recipe_title"]),
+            picture_fill(note["image"], CONTENT_W, 70 * mm),
             Spacer(1, 3 * mm),
+            Paragraph(esc(f"Запись {note['id']}"), STYLES["kicker"]),
+            Spacer(1, 1.2 * mm),
+            Paragraph(esc(note["title"]), STYLES["recipe_title"]),
+            Spacer(1, 3.5 * mm),
         ]))
         for chunk in [c.strip() for c in note["body"].split("\n\n") if c.strip()]:
             story.append(Paragraph(esc(chunk).replace("\n", "<br/>"), STYLES["body"]))
-            story.append(Spacer(1, 2.2 * mm))
-        story.append(Spacer(1, 4 * mm))
+            story.append(Spacer(1, 2.6 * mm))
 
     buf = io.BytesIO()
     doc = BaseDocTemplate(
@@ -397,6 +456,12 @@ def main():
     _, found = build(None)
     pdf, found2 = build(found)
     OUT.write_bytes(pdf)
+    import fitz
+    doc = fitz.open(OUT)
+    doc.set_pagemode("UseOutlines")
+    doc.set_pagelayout("SinglePage")
+    doc.saveIncr()
+    doc.close()
     print(f"pages_mapped {len(found2)}")
     print(f"bytes {OUT.stat().st_size}")
     print(f"out {OUT}")

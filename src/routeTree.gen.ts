@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as FailRouteImport } from './routes/fail'
 import { Route as OfferRouteImport } from './routes/offer'
+import { Route as PlateRouteImport } from './routes/plate'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as ApiRobokassaResultRouteImport } from './routes/api/robokassa/result'
@@ -37,6 +38,11 @@ const OfferRoute = OfferRouteImport.update({
   path: '/offer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlateRoute = PlateRouteImport.update({
+  id: '/plate',
+  path: '/plate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/book': typeof BookRoute
   '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
+  '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
+  '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/book': typeof BookRoute
   '/fail': typeof FailRoute
   '/offer': typeof OfferRoute
+  '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/fail'
     | '/offer'
+    | '/plate'
     | '/privacy'
     | '/refund'
     | '/api/robokassa/result'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/fail'
     | '/offer'
+    | '/plate'
     | '/privacy'
     | '/refund'
     | '/api/robokassa/result'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/fail'
     | '/offer'
+    | '/plate'
     | '/privacy'
     | '/refund'
     | '/api/robokassa/result'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   BookRoute: typeof BookRoute
   FailRoute: typeof FailRoute
   OfferRoute: typeof OfferRoute
+  PlateRoute: typeof PlateRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   ApiRobokassaResultRoute: typeof ApiRobokassaResultRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OfferRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plate': {
+      id: '/plate'
+      path: '/plate'
+      fullPath: '/plate'
+      preLoaderRoute: typeof PlateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookRoute: BookRoute,
   FailRoute: FailRoute,
   OfferRoute: OfferRoute,
+  PlateRoute: PlateRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   ApiRobokassaResultRoute: ApiRobokassaResultRoute,

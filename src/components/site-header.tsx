@@ -11,9 +11,6 @@ export function SiteHeader() {
           <a href="#toc" className="hover:text-ink">
             Оглавление
           </a>
-          <a href="#author" className="hover:text-ink">
-            Автор
-          </a>
         </nav>
         {owned ? (
           <Button size="sm" asChild>
