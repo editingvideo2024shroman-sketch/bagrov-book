@@ -1,1 +1,260 @@
-FULLFILE
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef, useState } from "react";
+import { Check, ChevronLeft, ChevronRight, Globe, Mail, Phone, Shield } from "lucide-react";
+import { BuyDialog } from "@/components/buy-dialog";
+import { goal } from "@/components/metrika";
+import { Button } from "@/components/ui/button";
+import { usePurchase } from "@/lib/purchase";
+import { SalePrice } from "@/components/sale-price";
+
+export const Route = createFileRoute("/")({ component: Home });
+
+const FOR_WHOM = [
+  { title: "Постоянная боль в суставах, спине или перепады давления", body: "Таблетки приносят лишь временное облегчение или вредят желудку. Вам нужны проверенные натуральные рецепты для безопасного и регулярного восстановления организма." },
+  { title: "Тревожность, плохой сон и упадок сил", body: "Хронический стресс не даёт полноценно отдыхать по ночам. Необходимы мягкие успокаивающие сборы и вечерние ритуалы, которые вернут глубокий сон без дневной сонливости и привыкания." },
+  { title: "Первые признаки простуды", body: "Горло, насморк, озноб. Вечер, а до аптеки далеко. Нужны понятные домашние напитки без аптечных сиропов и лишней химии." },
+  { title: "Потребность в проверенном домашнем руководстве", body: "Больше не придётся собирать сомнительные советы на форумах. Вы получите под рукой чёткий справочник с точными дозировками, пошаговыми рецептами и обязательным указанием противопоказаний." },
+];
+
+const INCLUDED = [
+  { title: "150 рецептов в 9 главах для всего организма", detail: "От давления и суставов до сна и иммунитета" },
+  { title: "Граммовки, фото и противопоказания", detail: "К каждому рецепту" },
+  { title: "Личные заметки Тимофея", detail: "Почему нужно это пить и для чего" },
+  { title: "Бессрочный доступ", detail: "Файл сохраняется на вашем устройстве навсегда" },
+];
+
+const FAQ = [
+  { q: "В каком виде я получу справочник?", a: "Ссылки на обе книги придут на почту вместе с чеком. Если письма нет, проверьте папку «Спам». Читать можно с телефона и с компьютера." },
+  { q: "Нужны ли какие-то особые ингредиенты?", a: "Нет. Редких трав не нужно. Лук, мёд, свёкла, овсянка, кефир, ромашка и другие простые продукты, которые обычно есть дома или в ближайшем магазине." },
+  { q: "Смогу ли я приготовить рецепты без специальных навыков?", a: "Каждый из 150 рецептов расписан предельно понятно и пошагово: указаны точные граммовки (в ложках и граммах), температура воды, время настаивания, способ приёма и обязательные предостережения." },
+];
+
+const REVIEWS = [
+  { name: "Галина Сорокина", initials: "ГС", text: "Раньше при первом насморке уже бежала в аптеку. Здесь всё из того, что и так лежит дома: лук, мёд, чай. В сезон простуд открываю справочник и не трачу вечер на поиски." },
+  { name: "Андрей Волков", initials: "АВ", text: "Думал, опять травки и красивые слова. А тут граммы, что делать и кому не стоит. Без шаманов. Прочитал как инструкцию, а не как сказку." },
+  { name: "Ирина Белова", initials: "ИБ", text: "К обеду уже никакая, кофе не берёт. Нашла раздел про усталость и стала делать одно простое на утро. Не чудо, но день дотягиваю без того, чтобы лечь и не встать." },
+  { name: "Светлана Орлова", initials: "СО", text: "После еды распирает, ночью жжёт. На форумах одно противоречит другому. Здесь отдельно живот, отдельно кишечник, отдельно изжога. Открыла своё и не перепутала." },
+  { name: "Николай Петров", initials: "НП", text: "К ночи колени и поясница ноют, стопы гудят. Ванночки и компрессы расписаны по шагам. Косточку это не уберёт, но вечером хотя бы могу разогнуться и лечь." },
+  { name: "Людмила Ершова", initials: "ЛЕ", text: "Таблетки пью как врач сказал, справочник их не отменял. Но соль убрала, зелень и свёклу теперь готовлю по рецептам, а не наугад. Тяжесть в голове к вечеру стала реже." },
+  { name: "Сергей Кравцов", initials: "СК", text: "Вахта, до нормальной аптеки далеко. Скачал файл в телефон, интернет там пропадает. Когда першит горло или знобит, рецепт уже в кармане, а не в поиске." },
+  { name: "Марина Лебедева", initials: "МЛ", text: "Засыпать не могла, всё крутилось в голове. В конце не еда, а короткие вещи: как выдохнуть за три минуты. Не лекция. Просто делаю и легче лечь." },
+  { name: "Ольга Демина", initials: "ОД", text: "Лицо тусклое, концы сеченые, а банки из магазина уже надоели. Маски из двух-трёх продуктов с холодильника. Состав вижу сама, не с этикетки." },
+  { name: "Елена Григорьева", initials: "ЕГ", text: "Брала маме: давление, ноги, живот. Файл оставила и себе. Мама говорит, так бабушка в деревне делала, только тут не на глаз, а ложками. Шрифт крупный, на телефоне открыла без моей помощи." },
+];
+
+function TelegramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+      <path d="M21.5 3.3 2.8 10.5c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8 1 .8.5 0 .7-.2 1-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9l3.7-17.4c.4-1.5-.5-2.2-1.6-1.6Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+      <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8ZM17.35 6.4a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z" />
+    </svg>
+  );
+}
+
+function ReviewCard({ item }: { item: (typeof REVIEWS)[number] }) {
+  return (
+    <article className="flex h-[22.5rem] flex-col rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)]">
+      <p className="font-sans text-sm tracking-[0.18em] text-clay" aria-label="5 из 5">★★★★★</p>
+      <p className="mt-4 flex-1 font-serif text-[0.95rem] leading-relaxed text-ink-soft">«{item.text}»</p>
+      <div className="mt-4 flex items-center gap-3 border-t border-line pt-4">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-paper-2 font-sans text-xs font-semibold text-ink">{item.initials}</span>
+        <span className="font-sans text-sm font-medium text-ink">{item.name}</span>
+      </div>
+    </article>
+  );
+}
+
+function ReviewArrows({ labelPrev, labelNext, onPrev, onNext }: { labelPrev: string; labelNext: string; onPrev: () => void; onNext: () => void }) {
+  return (
+    <div className="flex gap-2">
+      <button type="button" aria-label={labelPrev} onClick={onPrev} className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"><ChevronLeft className="size-5" /></button>
+      <button type="button" aria-label={labelNext} onClick={onNext} className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"><ChevronRight className="size-5" /></button>
+    </div>
+  );
+}
+
+function Reviews() {
+  const n = REVIEWS.length;
+  const [i, setI] = useState(0);
+  const startX = useRef(0);
+  const visible = [0, 1, 2].map((k) => REVIEWS[(i + k) % n]!);
+  function go(d: number) { setI((x) => (x + d + n) % n); }
+  return (
+    <section className="px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex items-end justify-between gap-4">
+          <div className="max-w-2xl">
+            <p className="pill">Отзывы читателей</p>
+            <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">Что говорят о справочнике</h2>
+            <p className="mt-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">Впечатления тех, для кого он уже стал настольным.</p>
+          </div>
+          <div className="hidden shrink-0 lg:block">
+            <ReviewArrows labelPrev="Предыдущие отзывы" labelNext="Следующие отзывы" onPrev={() => go(-1)} onNext={() => go(1)} />
+          </div>
+        </div>
+        <div className="mt-8 hidden items-stretch gap-5 lg:grid lg:grid-cols-3">
+          {visible.map((item) => <ReviewCard key={item.name} item={item} />)}
+        </div>
+        <div className="mt-8 lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">{i + 1} / {n}</p>
+            <ReviewArrows labelPrev="Предыдущий отзыв" labelNext="Следующий отзыв" onPrev={() => go(-1)} onNext={() => go(1)} />
+          </div>
+          <div className="mt-5 grid" onTouchStart={(e) => { startX.current = e.touches[0]?.clientX ?? 0; }} onTouchEnd={(e) => { const x = e.changedTouches[0]?.clientX ?? 0; const dx = x - startX.current; if (dx < -40) go(1); if (dx > 40) go(-1); }}>
+            {REVIEWS.map((item, idx) => (
+              <div key={item.name} className="col-start-1 row-start-1" style={{ visibility: idx === i ? "visible" : "hidden" }} aria-hidden={idx !== i}>
+                <ReviewCard item={item} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Home() {
+  const owned = usePurchase((s) => s.owned);
+  return (
+    <div className="min-h-svh bg-paper">
+      <section className="px-4 pt-6 pb-4 sm:px-6 sm:pt-10">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="flex flex-col items-start gap-5">
+            <p className="pill">Авторский сборник Тимофея Багрова</p>
+            <h1 className="max-w-xl font-sans text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[2.35rem]">150 таёжных рецептов: проверенная система домашнего оздоровления</h1>
+            <div className="max-w-xl space-y-3 font-serif text-base leading-relaxed text-ink-soft sm:text-lg">
+              <p>Вернуть силы и лёгкость после 40 — обычной едой с вашей кухни.</p>
+              <p>Рецепты для оживления всего тела: от тяжести после еды, утренней вялости, отёков, изжоги, проблем с кишечником, плохого сна и расшатанных нервов.</p>
+            </div>
+          </div>
+          <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
+            <img src="/photos/hero-hold.jpg?v=6" alt="Тимофей Багров и Майя со справочником" width={1400} height={2508} className="h-auto w-full rounded-[1.25rem] object-contain" />
+          </div>
+        </div>
+      </section>
+      <section id="for-whom" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="pill">Для кого эта книга</p>
+          <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">Узнаете себя в этих ситуациях?</h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {FOR_WHOM.map((s, i) => (
+              <article key={s.title} className="rounded-2xl border border-line bg-cream p-5 shadow-[0_8px_24px_-18px_rgb(26_20_16/0.35)] transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1.5 active:-translate-y-1 sm:p-6">
+                <p className="mb-3 inline-flex size-9 items-center justify-center rounded-full bg-paper-2 font-sans text-sm font-semibold text-ink">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="font-sans text-lg font-semibold leading-snug">{s.title}</h3>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">{s.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="order-1 rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8 lg:col-start-1 lg:row-start-1">
+            <p className="pill">Электронный справочник</p>
+            <h2 className="mt-3 max-w-xl font-sans text-2xl font-semibold leading-tight text-ink sm:text-[1.85rem]">150 проверенных рецептов из тайги, которые действительно работают</h2>
+            <ul className="mt-6 space-y-4">
+              {INCLUDED.map((item) => (
+                <li key={item.title} className="flex gap-3">
+                  <Check className="mt-1 size-4 shrink-0 text-clay" />
+                  <div>
+                    <p className="font-sans text-base font-medium leading-snug text-ink">{item.title}</p>
+                    <p className="mt-0.5 font-sans text-sm leading-snug text-muted">{item.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div id="pay" className="order-2 scroll-mt-24 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:col-start-2 lg:row-start-1">
+            <p className="pill">Акция для читателей блога</p>
+            <SalePrice size="md" className="mt-2" />
+            <div className="mt-3 space-y-1.5 text-left font-serif text-sm leading-snug text-muted">
+              <p>Обе книги придут на почту вместе с чеком.</p>
+            </div>
+            <div className="mt-4 flex w-full flex-col gap-3">
+              {owned ? (
+                <Button className="w-full" size="lg" asChild><Link to="/book" search={{ r: 1 }}>Открыть справочник</Link></Button>
+              ) : (
+                <>
+                  <BuyDialog source="price"><Button className="w-full" size="lg">Получить справочник</Button></BuyDialog>
+                  <p className="text-center font-sans text-xs leading-snug text-muted">Если письма нет, проверьте папку «Спам».</p>
+                  <div className="flex items-center gap-3 py-1"><span className="h-px flex-1 bg-line" /><span className="font-sans text-[0.68rem] text-muted">если карта не подошла</span><span className="h-px flex-1 bg-line" /></div>
+                  <Button variant="outline" className="h-12 w-full rounded-xl border-line bg-paper text-sm font-semibold" asChild>
+                    <a href="https://web.tribute.tg/p/FdZ" target="_blank" rel="noopener noreferrer" onClick={() => goal("foreign_card")}><Globe className="size-4 text-sky-700" />Оплатить зарубежной картой</a>
+                  </Button>
+                  <p className="text-center font-sans text-xs leading-snug text-muted">Украина, США, Европа и весь мир через Telegram</p>
+                  <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noopener noreferrer" onClick={() => goal("manager")} className="flex w-full items-center gap-3 rounded-xl border border-line bg-paper px-4 py-3 text-left font-sans text-sm font-semibold leading-snug text-ink hover:bg-paper-2">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#229ED9] text-white"><TelegramIcon /></span>
+                    Если не получилось оплатить, напишите менеджеру лично
+                  </a>
+                  <p className="flex items-center justify-center gap-1.5 text-center font-sans text-xs text-muted"><Shield className="size-3.5 shrink-0" />Безопасное соединение</p>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="order-3 grid items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7 lg:col-span-2 lg:grid-cols-[1fr_15.5rem]">
+            <div className="rounded-xl border border-line bg-white px-4 py-3">
+              <p className="font-sans text-[0.68rem] font-semibold tracking-[0.16em] text-clay uppercase">Бонусом</p>
+              <p className="mt-1 font-sans text-base font-semibold text-ink">Книга «Лёгкая»</p>
+              <p className="mt-1 font-sans text-sm leading-relaxed text-ink-soft">50 рецептов на завтрак, обед и ужин. У каждой тарелки посчитаны калории, белки, жиры и углеводы.</p>
+            </div>
+            <img src="/photos/plate-cover.jpg" alt="Книга «Лёгкая» — 50 рецептов правильного питания" width={900} height={1200} className="mx-auto w-full max-w-[220px] rounded-xl object-contain shadow-[0_18px_40px_-24px_rgb(26_20_16/0.55)] max-lg:order-first lg:max-w-none" />
+          </div>
+        </div>
+      </section>
+      <Reviews />
+      <section className="px-4 pb-4 sm:px-6">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
+          <p className="pill">Частые вопросы</p>
+          <div className="mt-4 space-y-2">
+            {FAQ.map((f) => (
+              <details key={f.q} className="group rounded-xl bg-paper px-4 py-3">
+                <summary className="cursor-pointer list-none font-sans text-base font-semibold leading-snug text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-center justify-between gap-4">{f.q}<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cream font-sans text-xl font-light text-clay group-open:rotate-45">+</span></span>
+                </summary>
+                <p className="mt-3 rounded-xl bg-cream px-4 py-3 font-serif text-sm leading-relaxed text-ink-soft">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="care" className="px-4 py-4 sm:px-6 sm:pb-14">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-2xl border border-line bg-cream px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-6">
+          <div className="max-w-2xl">
+            <p className="pill">Служба заботы</p>
+            <p className="mt-1 font-sans text-lg font-semibold leading-snug sm:text-xl">Оплатили, а справочник не открылся?</p>
+            <p className="mt-2 font-serif text-sm leading-relaxed text-ink-soft">Ссылки на обе книги приходят на почту вместе с чеком, обычно за 1–2 минуты. Если письма нет, проверьте папку «Спам». Если не пришло и туда, напишите нам.</p>
+          </div>
+          <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noreferrer" onClick={() => goal("support")} className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full bg-clay px-5 py-3 font-sans text-sm font-medium text-cream-fg hover:bg-clay-hover sm:mt-0">Написать в поддержку</a>
+        </div>
+        <div className="mx-auto mt-4 grid max-w-6xl gap-8 rounded-2xl bg-forest px-5 py-7 text-cream-fg sm:grid-cols-[1fr_auto] sm:items-start sm:px-8 sm:py-8">
+          <div>
+            <p className="pill">Будьте здоровы</p>
+            <p className="mt-1 font-sans text-xl font-semibold">Тимофей Багров</p>
+            <p className="mt-3 font-sans text-sm text-cream-fg/75">Шамин Роман Александрович</p>
+            <p className="font-sans text-sm text-cream-fg/75">ИНН 741509611320</p>
+            <div className="mt-4 flex flex-col gap-1 font-sans text-sm">
+              <Link to="/privacy" className="text-cream-fg/80 underline-offset-2 hover:underline">Политика конфиденциальности</Link>
+              <Link to="/offer" className="text-cream-fg/80 underline-offset-2 hover:underline">Оферта</Link>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-2.5 sm:items-end">
+            <div className="flex gap-2">
+              <a href="https://t.me/MusicNPC_AI" target="_blank" rel="noreferrer" aria-label="Telegram" className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"><TelegramIcon /></a>
+              <a href="https://www.instagram.com/odin.v.tayge" target="_blank" rel="noreferrer" aria-label="Instagram" className="flex size-10 items-center justify-center rounded-full border border-cream-fg/20 text-cream-fg hover:bg-cream-fg/10"><InstagramIcon /></a>
+            </div>
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80"><Mail className="size-4 shrink-0 opacity-80" aria-hidden />vikramodin@gmail.com</p>
+            <p className="flex items-center gap-2 font-sans text-sm text-cream-fg/80"><Phone className="size-4 shrink-0 opacity-80" aria-hidden />+7 951 785-76-98</p>
+          </div>
+          <p className="sm:col-span-2 font-sans text-xs text-cream-fg/50">© {new Date().getFullYear()} Все права защищены.</p>
+        </div>
+      </section>
+    </div>
+  );
+}
