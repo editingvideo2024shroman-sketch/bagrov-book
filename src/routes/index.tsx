@@ -133,8 +133,8 @@ function Home() {
       </section>
 
       <section id="buy" className="px-4 py-10 sm:px-6 sm:py-14">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-4 grid items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7 lg:grid-cols-[1fr_15.5rem]">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 lg:block">
+          <div className="order-3 grid items-center gap-6 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 sm:py-7 lg:order-none lg:mb-4 lg:grid-cols-[1fr_15.5rem]">
             <div className="rounded-xl border border-line bg-white px-4 py-3">
               <p className="font-sans text-[0.68rem] font-semibold tracking-[0.16em] text-clay uppercase">
                 Бонусом
@@ -154,8 +154,8 @@ function Home() {
               className="mx-auto w-full max-w-[220px] rounded-xl object-contain shadow-[0_18px_40px_-24px_rgb(26_20_16/0.55)] max-lg:order-first lg:max-w-none"
             />
           </div>
-          <div id="pay" className="grid scroll-mt-24 gap-4 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
+          <div className="contents lg:grid lg:scroll-mt-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-4">
+          <div id="pay" className="order-2 scroll-mt-24 rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7 lg:order-none">
             <p className="pill">
               Акция для читателей блога
             </p>
@@ -225,7 +225,7 @@ function Home() {
               )}
             </div>
           </div>
-          <div className="rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8">
+          <div className="order-1 rounded-2xl border border-line bg-paper px-5 py-6 sm:px-7 sm:py-8 lg:order-none">
             <p className="pill">
               Электронный справочник
             </p>
