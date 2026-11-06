@@ -1,22 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import {
-  Apple,
   Check,
   ChevronLeft,
   ChevronRight,
-  Droplets,
-  HeartPulse,
   Globe,
   Mail,
   Phone,
   Shield,
-  Sparkles,
-  Sprout,
-  Wheat,
-  Zap,
-  Brain,
-  type LucideIcon,
 } from "lucide-react";
 import { BuyDialog } from "@/components/buy-dialog";
 import { goal } from "@/components/metrika";
@@ -42,78 +33,6 @@ const FOR_WHOM = [
   {
     title: "Потребность в проверенном домашнем руководстве",
     body: "Больше не придётся собирать сомнительные советы на форумах. Вы получите под рукой чёткий справочник с точными дозировками, пошаговыми рецептами и обязательным указанием противопоказаний.",
-  },
-];
-
-const CHAPTERS: {
-  roman: string;
-  title: string;
-  blurb: string;
-  count: string;
-  Icon: LucideIcon;
-}[] = [
-  {
-    roman: "I",
-    title: "Синдром хронической усталости",
-    blurb: "Тяжесть в голове, дефицит энергии, сонливость по утрам, потеря концентрации в течение дня.",
-    count: "24 рецепта",
-    Icon: Zap,
-  },
-  {
-    roman: "II",
-    title: "Проверенные временем тёплые напитки",
-    blurb: "Первые симптомы простуды, озноб и слабость, кашель, быстрое восстановление сил.",
-    count: "20 рецептов",
-    Icon: Shield,
-  },
-  {
-    roman: "III",
-    title: "Дискомфорт после еды",
-    blurb: "Вздутие, тяжесть и распирание живота, дискомфорт после плотной еды.",
-    count: "22 рецепта",
-    Icon: Apple,
-  },
-  {
-    roman: "IV",
-    title: "Забота о кишечнике",
-    blurb: "Редкий и нерегулярный стул, дискомфорт в животе, мягкое восстановление баланса.",
-    count: "10 рецептов",
-    Icon: Wheat,
-  },
-  {
-    roman: "V",
-    title: "Скорая помощь при изжоге",
-    blurb: "Жжение после еды, раздражённый желудок, дискомфорт по ночам.",
-    count: "10 рецептов",
-    Icon: Droplets,
-  },
-  {
-    roman: "VI",
-    title: "Поддержка и укрепление сосудов",
-    blurb: "Скачки давления, холестерин, тяжесть и напряжение в теле.",
-    count: "21 рецепт",
-    Icon: HeartPulse,
-  },
-  {
-    roman: "VII",
-    title: "Домашнее спа: ванночки и компрессы",
-    blurb: "Ноют колени, поясница и косточка на ноге, вечерние отёки и тяжесть, которая не даёт уснуть. Компрессы, растирания и ванночки для облегчения к утру.",
-    count: "17 рецептов",
-    Icon: Sprout,
-  },
-  {
-    roman: "VIII",
-    title: "Естественная красота: кожа, волосы, глаза",
-    blurb: "Тусклый тон, выпадение волос, шелушение и стянутость кожи.",
-    count: "16 рецептов",
-    Icon: Sparkles,
-  },
-  {
-    roman: "IX",
-    title: "Антистресс: когда сдают нервы",
-    blurb: "Паника, фоновая тревога, выгорание, трудности с засыпанием.",
-    count: "10 практик",
-    Icon: Brain,
   },
 ];
 
@@ -175,13 +94,6 @@ function Home() {
                 расшатанных нервов.
               </p>
             </div>
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <Button size="xl" asChild>
-                <a href="#toc" onClick={() => goal("content")}>
-                  Открыть содержание
-                </a>
-              </Button>
-            </div>
           </div>
           <div className="mx-auto w-full max-w-[440px] rounded-[1.6rem] bg-white p-2.5 shadow-[0_16px_40px_-28px_rgb(26_20_16/0.55)]">
             <img
@@ -217,20 +129,6 @@ function Home() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="toc" className="py-12 sm:py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="pill">Структура книги</p>
-          <h2 className="mt-3 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-[2.15rem]">
-            150 рецептов в 9 главах
-          </h2>
-          <p className="mt-3 max-w-2xl font-sans text-sm leading-relaxed text-ink-soft sm:text-base">
-            Удобная система: находите нужную задачу за секунды и получаете
-            пошаговый рецепт с точными пропорциями.
-          </p>
-          <ChapterCarousel />
         </div>
       </section>
 
@@ -665,97 +563,5 @@ function InstagramIcon() {
     <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
       <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8ZM17.35 6.4a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z" />
     </svg>
-  );
-}
-
-function ChapterCard({ sec }: { sec: (typeof CHAPTERS)[number] }) {
-  return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-cream p-4">
-      <div className="flex items-center justify-between gap-3">
-        <span className="flex size-9 items-center justify-center rounded-xl bg-paper-2 text-clay">
-          <sec.Icon className="size-4" strokeWidth={1.75} />
-        </span>
-        <span className="rounded-full bg-paper-2 px-2.5 py-1 font-sans text-xs text-muted">
-          {sec.count}
-        </span>
-      </div>
-      <h3 className="mt-3 font-sans text-base font-semibold leading-snug text-ink">
-        {sec.title}
-      </h3>
-      <p className="mt-2 min-h-[6.5rem] flex-1 font-sans text-sm leading-snug text-ink-soft">
-        <span className="mb-1 block text-[0.65rem] tracking-[0.12em] text-muted uppercase">
-          Что внутри
-        </span>
-        {sec.blurb}
-      </p>
-    </article>
-  );
-}
-
-function ChapterCarousel() {
-  const n = CHAPTERS.length;
-  const [i, setI] = useState(0);
-  const startX = useRef(0);
-
-  function go(d: number) {
-    setI((x) => (x + d + n) % n);
-  }
-
-  return (
-    <>
-      <div className="mt-8 hidden gap-4 lg:grid lg:grid-cols-3">
-        {CHAPTERS.map((c) => (
-          <ChapterCard key={c.roman} sec={c} />
-        ))}
-      </div>
-      <div className="mt-8 max-w-xl lg:hidden">
-        <div className="flex items-center justify-between gap-3">
-          <p className="rounded-full bg-paper-2 px-3 py-1 font-sans text-sm text-muted">
-            {i + 1} / {n}
-          </p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              aria-label="Предыдущая глава"
-              onClick={() => go(-1)}
-              className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              type="button"
-              aria-label="Следующая глава"
-              onClick={() => go(1)}
-              className="flex size-11 items-center justify-center rounded-full border border-line bg-cream text-ink shadow-sm active:scale-95"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </div>
-        </div>
-        <div
-          className="mt-5 grid"
-          onTouchStart={(e) => {
-            startX.current = e.touches[0]?.clientX ?? 0;
-          }}
-          onTouchEnd={(e) => {
-            const x = e.changedTouches[0]?.clientX ?? 0;
-            const dx = x - startX.current;
-            if (dx < -40) go(1);
-            if (dx > 40) go(-1);
-          }}
-        >
-          {CHAPTERS.map((c, idx) => (
-            <div
-              key={c.roman}
-              className="col-start-1 row-start-1"
-              style={{ visibility: idx === i ? "visible" : "hidden" }}
-              aria-hidden={idx !== i}
-            >
-              <ChapterCard sec={c} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
   );
 }
