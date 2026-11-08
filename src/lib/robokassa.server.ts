@@ -12,6 +12,10 @@ function md5(value: string) {
   return createHash("md5").update(value, "utf8").digest("hex");
 }
 
+function sha256(value: string) {
+  return createHash("sha256").update(value, "utf8").digest("hex");
+}
+
 function unquote(value: string) {
   const trimmed = value.trim();
   if (trimmed.length >= 2 && trimmed.startsWith('"') && trimmed.endsWith('"')) {
@@ -52,7 +56,13 @@ export function buildPayment(email: string) {
 }
 
 function same(a: string, b: string) {
-  return a.trim().toLowerCase() === b.trim().toLowerCase();
+  const left = a.trim().toLowerCase();
+  const right = b.trim().toLowerCase();
+  return left === right;
+}
+
+function matches(payload: string, signature: string) {
+  return same(md5(payload), signature) || same(sha256(payload), signature);
 }
 
 export function bookAccessUrl(outSum: string, invId: string, email: string) {
@@ -78,8 +88,8 @@ export function successSignatureOk(input: {
   const email = unquote(input.email);
   const signature = unquote(input.signature);
   const emailPart = email ? `:Shp_email=${email}` : "";
-  const expected = md5(`${outSum}:${invId}:${PASSWORD1}${emailPart}`);
-  return same(expected, signature);
+  const expected = `${outSum}:${invId}:${PASSWORD1}${emailPart}`;
+  return matches(expected, signature);
 }
 
 export function resultSignatureOk(params: URLSearchParams) {
@@ -93,6 +103,6 @@ export function resultSignatureOk(params: URLSearchParams) {
     .map((key) => `${key}=${params.get(key) ?? ""}`)
     .join(":");
   const tail = extra ? `:${extra}` : "";
-  const expected = md5(`${outSum}:${invId}:${PASSWORD2}${tail}`);
-  return Boolean(outSum && invId && same(expected, signature));
+  const expected = `${outSum}:${invId}:${PASSWORD2}${tail}`;
+  return Boolean(outSum && invId && matches(expected, signature));
 }

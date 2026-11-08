@@ -17,6 +17,7 @@ import { Route as PlateRouteImport } from './routes/plate'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as SuccessRouteImport } from './routes/success'
+import { Route as ApiMailPingRouteImport } from './routes/api/mail-ping'
 import { Route as ApiRobokassaResultRouteImport } from './routes/api/robokassa/result'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const SuccessRoute = SuccessRouteImport.update({
   path: '/success',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMailPingRoute = ApiMailPingRouteImport.update({
+  id: '/api/mail-ping',
+  path: '/api/mail-ping',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRobokassaResultRoute = ApiRobokassaResultRouteImport.update({
   id: '/api/robokassa/result',
   path: '/api/robokassa/result',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/success': typeof SuccessRoute
+  '/api/mail-ping': typeof ApiMailPingRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/success': typeof SuccessRoute
+  '/api/mail-ping': typeof ApiMailPingRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/success': typeof SuccessRoute
+  '/api/mail-ping': typeof ApiMailPingRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/refund'
     | '/success'
+    | '/api/mail-ping'
     | '/api/robokassa/result'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/refund'
     | '/success'
+    | '/api/mail-ping'
     | '/api/robokassa/result'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/refund'
     | '/success'
+    | '/api/mail-ping'
     | '/api/robokassa/result'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   SuccessRoute: typeof SuccessRoute
+  ApiMailPingRoute: typeof ApiMailPingRoute
   ApiRobokassaResultRoute: typeof ApiRobokassaResultRoute
 }
 
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/mail-ping': {
+      id: '/api/mail-ping'
+      path: '/api/mail-ping'
+      fullPath: '/api/mail-ping'
+      preLoaderRoute: typeof ApiMailPingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/robokassa/result': {
       id: '/api/robokassa/result'
       path: '/api/robokassa/result'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   SuccessRoute: SuccessRoute,
+  ApiMailPingRoute: ApiMailPingRoute,
   ApiRobokassaResultRoute: ApiRobokassaResultRoute,
 }
 export const routeTree = rootRouteImport

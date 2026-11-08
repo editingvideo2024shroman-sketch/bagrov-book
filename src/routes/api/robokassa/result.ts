@@ -20,7 +20,11 @@ async function answer(request: Request) {
     console.error("[robokassa] bad sign", [...params.keys()].sort().join(","));
     return new Response("bad sign", { status: 400 });
   }
-  const email = params.get("Shp_email") ?? "";
+  const email =
+    params.get("Shp_email") ||
+    params.get("EMail") ||
+    params.get("Email") ||
+    "";
   const outSum = params.get("OutSum") ?? "";
   if (email) {
     try {
