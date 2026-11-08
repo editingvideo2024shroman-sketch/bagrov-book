@@ -15,7 +15,7 @@ export const Route = createFileRoute("/plate")({
     return search;
   },
   head: () => ({
-    meta: [{ title: "Лёгкая — 50 рецептов" }],
+    meta: [{ title: "50 рецептов ПП" }],
     links: [
       {
         rel: "stylesheet",
@@ -76,9 +76,8 @@ function PlatePage() {
           <Menu className="size-5" />
         </button>
         <Link to="/plate" className="text-[1.35rem] leading-none" style={{ fontFamily: serif }}>
-          Лёгкая
+          50 рецептов ПП
         </Link>
-        <span className="hidden text-xs tracking-[0.22em] text-[#7a756c] uppercase sm:inline">50 рецептов</span>
         <Link to="/" className="ml-auto text-xs tracking-wide text-[#7a756c]">
           На сайт
         </Link>
@@ -118,7 +117,7 @@ function Title() {
     <div className="mx-auto flex w-full max-w-[560px] flex-col items-center">
       <img
         src="/photos/plate-cover.jpg"
-        alt="Лёгкая. 50 рецептов правильного питания. Тимофей Багров"
+        alt="50 рецептов ПП. Тимофей Багров"
         className="w-full rounded-sm shadow-[0_28px_70px_-28px_rgb(40_32_24/0.55)]"
       />
       <Link

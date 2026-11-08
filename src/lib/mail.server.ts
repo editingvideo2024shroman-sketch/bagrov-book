@@ -81,7 +81,7 @@ export async function sendBookLetter(input: { email: string; outSum: string; inv
     "",
     "Откройте ссылку и нажмите «Скачать справочник». Файл сохранится в телефоне и откроется без интернета.",
     "",
-    "2. Книга «Лёгкая»:",
+    "2. Книга «50 рецептов ПП»:",
     "https://www.timofey-bagrov.ru/legkaya.html",
     "",
     "Если письма нет во входящих, откройте «Спам» и «Рассылки».",
@@ -89,7 +89,7 @@ export async function sendBookLetter(input: { email: string; outSum: string; inv
 
   await deliverMail({
     to: email,
-    subject: "Ваши книги: справочник и «Лёгкая»",
+    subject: "Ваши книги: справочник и «50 рецептов ПП»",
     text,
   });
   return "sent" as const;

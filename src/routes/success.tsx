@@ -116,9 +116,9 @@ function SuccessPage() {
               {packing ? "Собираю справочник…" : "Скачать справочник"}
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="/legkaya.html" download="Legkaya.html">
+              <a href="/legkaya.html" download="50-receptov-pp.html">
                 <Download className="size-4" />
-                Скачать книгу «Лёгкая»
+                Скачать книгу «50 рецептов ПП»
               </a>
             </Button>
             <Button size="lg" variant="forest" asChild>
