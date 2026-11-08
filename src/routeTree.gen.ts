@@ -16,6 +16,7 @@ import { Route as OfferRouteImport } from './routes/offer'
 import { Route as PlateRouteImport } from './routes/plate'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
+import { Route as SuccessRouteImport } from './routes/success'
 import { Route as ApiRobokassaResultRouteImport } from './routes/api/robokassa/result'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const RefundRoute = RefundRouteImport.update({
   path: '/refund',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SuccessRoute = SuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRobokassaResultRoute = ApiRobokassaResultRouteImport.update({
   id: '/api/robokassa/result',
   path: '/api/robokassa/result',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/success': typeof SuccessRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/success': typeof SuccessRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/plate': typeof PlateRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
+  '/success': typeof SuccessRoute
   '/api/robokassa/result': typeof ApiRobokassaResultRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/plate'
     | '/privacy'
     | '/refund'
+    | '/success'
     | '/api/robokassa/result'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/plate'
     | '/privacy'
     | '/refund'
+    | '/success'
     | '/api/robokassa/result'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/plate'
     | '/privacy'
     | '/refund'
+    | '/success'
     | '/api/robokassa/result'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   PlateRoute: typeof PlateRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
+  SuccessRoute: typeof SuccessRoute
   ApiRobokassaResultRoute: typeof ApiRobokassaResultRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RefundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/success': {
+      id: '/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof SuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/robokassa/result': {
       id: '/api/robokassa/result'
       path: '/api/robokassa/result'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlateRoute: PlateRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
+  SuccessRoute: SuccessRoute,
   ApiRobokassaResultRoute: ApiRobokassaResultRoute,
 }
 export const routeTree = rootRouteImport

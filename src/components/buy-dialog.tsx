@@ -80,7 +80,7 @@ export function BuyDialog({
       <DialogContent>
         <DialogTitle>Купить справочник с рецептами от Тимофея</DialogTitle>
         <DialogDescription>
-          Обе книги и чек придут вам на почту. Их можно скачать или открыть по ссылкам из письма в любое время.
+          После оплаты вы вернётесь на сайт и сможете скачать обе книги. Ссылки продублируем на почту.
         </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
