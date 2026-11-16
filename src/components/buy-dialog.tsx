@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -79,9 +78,6 @@ export function BuyDialog({
       {children ? <DialogTrigger asChild>{children}</DialogTrigger> : null}
       <DialogContent>
         <DialogTitle>Купить справочник с рецептами от Тимофея</DialogTitle>
-        <DialogDescription>
-          После оплаты вы вернётесь на сайт и сможете скачать обе книги. На почту придёт одно письмо с двумя ссылками.
-        </DialogDescription>
         <form className="mt-5 flex flex-col gap-3.5" onSubmit={submit}>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="buy-email">Почта</Label>
@@ -96,7 +92,12 @@ export function BuyDialog({
             />
           </div>
           <SalePrice size="sm" className="mx-auto" />
-          <Button type="submit" size="lg" className="mt-1 w-full" disabled={busy}>
+          <Button
+            type="submit"
+            size="lg"
+            className="mt-1 w-full"
+            disabled={busy}
+          >
             {busy ? "Переходим к оплате…" : `Оплатить ${rub(book.price)}`}
           </Button>
           {error ? <p className="text-center font-sans text-sm text-clay">{error}</p> : null}
