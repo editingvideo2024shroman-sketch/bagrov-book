@@ -108,7 +108,7 @@ function SuccessPage() {
         <>
           <h1 className="mt-2 font-display text-4xl">Оплата прошла</h1>
           <p className="mt-4 font-serif text-lg text-ink-soft">
-            Обе книги можно скачать сейчас. Ссылки продублируем на почту. Если письма нет во входящих, загляните в «Спам».
+            Обе книги можно скачать сейчас. Одно письмо со ссылками на обе книги придёт на почту. Если его нет во входящих, загляните в «Спам».
           </p>
           <div className="mt-8 flex flex-col gap-3">
             <Button size="lg" onClick={() => void downloadHandbook()} disabled={packing}>
