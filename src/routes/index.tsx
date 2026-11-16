@@ -204,7 +204,7 @@ function Home() {
               <p className="mt-1 font-sans text-base font-semibold text-ink">Книга «50 рецептов ПП»</p>
               <p className="mt-1 font-sans text-sm leading-relaxed text-ink-soft">50 рецептов на завтрак, обед и ужин. У каждой тарелки посчитаны калории, белки, жиры и углеводы.</p>
             </div>
-            <img src="/photos/plate-cover.jpg" alt="Книга «50 рецептов ПП»" width={900} height={1200} className="mx-auto w-full max-w-[220px] rounded-xl object-contain shadow-[0_18px_40px_-24px_rgb(26_20_16/0.55)] max-lg:order-first lg:max-w-none" />
+            <img src="/photos/plate-cover.jpg?v=legkaya" alt="Книга «Лёгкая». Тимофей Багров" width={900} height={1200} className="mx-auto w-full max-w-[220px] rounded-xl object-contain shadow-[0_18px_40px_-24px_rgb(26_20_16/0.55)] max-lg:order-first lg:max-w-none" />
           </div>
         </div>
       </section>

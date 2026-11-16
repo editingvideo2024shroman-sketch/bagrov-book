@@ -116,8 +116,8 @@ function Title() {
   return (
     <div className="mx-auto flex w-full max-w-[560px] flex-col items-center">
       <img
-        src="/photos/plate-cover.jpg"
-        alt="50 рецептов ПП. Тимофей Багров"
+        src="/photos/plate-cover.jpg?v=legkaya"
+        alt="Лёгкая. Тимофей Багров"
         className="w-full rounded-sm shadow-[0_28px_70px_-28px_rgb(40_32_24/0.55)]"
       />
       <Link
