@@ -67,22 +67,37 @@ export async function deliverMail(input: { to: string; subject: string; text: st
   throw last instanceof Error ? last : new Error(mailErrorText(last));
 }
 
+const sentLetters = new Map<string, Promise<"sent" | "skip">>();
+
 export async function sendBookLetter(input: { email: string; outSum: string; invId: string }) {
   const email = input.email.trim().toLowerCase();
-  if (!email.includes("@")) return "skip" as const;
-  const link = bookAccessUrl(input.outSum, input.invId, email);
-  if (!link) throw new Error("no_sign");
+  const key = `${input.invId}|${email}`;
+  const already = sentLetters.get(key);
+  if (already) return already;
 
+  const job = deliverBookLetter({ ...input, email }).catch((err) => {
+    sentLetters.delete(key);
+    throw err;
+  });
+  sentLetters.set(key, job);
+  return job;
+}
+
+async function deliverBookLetter(input: { email: string; outSum: string; invId: string }) {
+  const email = input.email.trim().toLowerCase();
+  if (!email.includes("@")) return "skip" as const;
+  const handbook = bookAccessUrl(input.outSum, input.invId, email);
+  if (!handbook) throw new Error("no_sign");
+
+  const pp = "https://www.timofey-bagrov.ru/legkaya.html";
   const text = [
     "Оплата прошла. Ваши книги:",
     "",
-    "1. Справочник «150 таёжных рецептов»:",
-    link,
+    "1. Справочник «150 таёжных рецептов»",
+    handbook,
     "",
-    "Откройте ссылку и нажмите «Скачать справочник». Файл сохранится в телефоне и откроется без интернета.",
-    "",
-    "2. Книга «50 рецептов ПП»:",
-    "https://www.timofey-bagrov.ru/legkaya.html",
+    "2. Книга «50 рецептов ПП»",
+    pp,
     "",
     "Если письма нет во входящих, откройте «Спам» и «Рассылки».",
   ].join("\n");
