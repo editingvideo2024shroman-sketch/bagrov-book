@@ -97,7 +97,7 @@ export function BuyDialog({
           </div>
           <SalePrice size="sm" className="mx-auto" />
           <Button type="submit" size="lg" className="mt-1 w-full" disabled={busy}>
-            {busy ? "Переходим к оплате…" : `\u041e\u043f\u043b\u0430\u0442\u0438\u0442\u044c ${rub(book.price)}`}
+            {busy ? "Переходим к оплате…" : `Оплатить ${rub(book.price)}`}
           </Button>
           {error ? <p className="text-center font-sans text-sm text-clay">{error}</p> : null}
           <p className="text-center font-sans text-[11px] leading-relaxed text-muted">
